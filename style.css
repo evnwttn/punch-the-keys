@@ -1,0 +1,11 @@
+.keys {
+  text-align: center;
+  font-size: 14px;
+  font-family: sans-serif;
+}
+
+.key-row {
+  display: inline-block;
+  height: 3em;
+  margin: 0.2em;
+}
