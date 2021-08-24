@@ -27,3 +27,11 @@
   box-shadow: 0 0.2em 0 0.05em #222;
   border-bottom-color: #555;
 }
+
+.double {
+  padding-top: 0.2em;
+}
+
+.letter {
+  line-height: 2.4em;
+}
