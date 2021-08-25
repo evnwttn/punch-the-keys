@@ -35,8 +35,22 @@
 
 .double {
   padding-top: 0.2em;
+  width: 3.62em;
 }
 
 .letter {
   line-height: 2.4em;
+  width: 3.63em;
+}
+
+.backspacetab {
+  width: 7em;
+}
+
+.capsenter {
+  width: 7.4em;
+}
+
+.shift {
+  width: 9.55em;
 }
