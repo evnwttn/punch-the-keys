@@ -1,7 +1,16 @@
 /* keys // broad strokes */
 
+html {
+  background-image: linear-gradient(#a9a9a9, #a1a1a1);
+  height: 100%;
+  margin: 0;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
 .keys {
   text-align: center;
+  margin-top: 9%;
   font-size: 15px;
   font-family: "Lato", sans-serif;
 }
@@ -14,7 +23,7 @@
 
 .key-row > div[data-pressed],
 .key-row > div:active {
-  background: #2a2a2a;
+  background: #d7f205;
   color: #aaa;
   position: relative;
   top: 0.2em;
@@ -23,7 +32,7 @@
 
 .key-row > * {
   position: relative;
-  background: #333;
+  background: transparent;
   text-align: center;
   color: #eee;
   float: left;
