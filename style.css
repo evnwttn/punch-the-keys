@@ -28,6 +28,11 @@
   border-bottom-color: #555;
 }
 
+.row-1 {
+  height: 1.7em;
+  line-height: 1.4em;
+}
+
 .double {
   padding-top: 0.2em;
 }
