@@ -1,6 +1,21 @@
+// the following is ripped almost directly from https://codepen.io/gschier/pen/VKgyaY
+
+document.body.addEventListener("keydown", function (e) {
+  let key = getKey(e);
+  if (!key) {
+    return console.warn("No key for", e.keyCode);
+  }
+  key.setAttribute("data-pressed", "on");
+});
+
+document.body.addEventListener("keyup", function (e) {
+  let key = getKey(e);
+  key && key.removeAttribute("data-pressed");
+});
+
 function getKey(e) {
-  var location = e.location;
-  var selector;
+  let location = e.location;
+  let selector;
   if (location === KeyboardEvent.DOM_KEY_LOCATION_RIGHT) {
     selector = ['[data-key="' + e.keyCode + '-R"]'];
   } else {
@@ -14,7 +29,7 @@ function getKey(e) {
 }
 
 function pressKey(char) {
-  var key = document.querySelector('[data-char*="' + char.toUpperCase() + '"]');
+  let key = document.querySelector('[data-char*="' + char.toUpperCase() + '"]');
   if (!key) {
     return console.warn("No key for", char);
   }
@@ -23,17 +38,3 @@ function pressKey(char) {
     key.removeAttribute("data-pressed");
   }, 200);
 }
-
-document.body.addEventListener("keydown", function (e) {
-  var key = getKey(e);
-  if (!key) {
-    return console.warn("No key for", e.keyCode);
-  }
-
-  key.setAttribute("data-pressed", "on");
-});
-
-document.body.addEventListener("keyup", function (e) {
-  var key = getKey(e);
-  key && key.removeAttribute("data-pressed");
-});
