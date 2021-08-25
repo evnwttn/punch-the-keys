@@ -15,6 +15,13 @@ html {
   font-family: "Lato", sans-serif;
 }
 
+.gdt {
+  background-image: linear-gradient(#a9a9a9, #0d0d0d);
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: center;
+}
+
 .key-row {
   display: inline-block;
   height: 3em;
@@ -23,18 +30,17 @@ html {
 
 .key-row > div[data-pressed],
 .key-row > div:active {
-  background: #d7f205;
   color: #aaa;
   position: relative;
   top: 0.2em;
-  box-shadow: 0 0 0 0.05em black;
+  box-shadow: 0 0 0 0.05em #0a0140;
 }
 
 .key-row > * {
   position: relative;
-  background: transparent;
   text-align: center;
   color: #eee;
+  /* text-shadow: 1px 1px #0a0140; */
   float: left;
   border-radius: 0.3em;
   margin: 0.3em;
@@ -43,8 +49,8 @@ html {
   height: 100%;
   box-sizing: border-box;
   cursor: pointer;
-  border: 1px solid #444;
-  box-shadow: 0 0.2em 0 0.05em #222;
+  border: 1px solid #d7f205;
+  box-shadow: 0 0.2em 0 0.05em #bff205;
   border-bottom-color: #555;
 }
 
