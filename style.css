@@ -49,11 +49,13 @@
 .double {
   padding-top: 0.2em;
   width: 3.62em;
+  padding-right: 2em;
 }
 
 .letter {
   line-height: 2.4em;
   width: 3.63em;
+  padding-right: 2em;
 }
 
 .backspacetab {
@@ -74,14 +76,31 @@
 
 .bottomctrl {
   width: 6em;
-  padding-right: 3em;
+  padding-right: 2.8em;
   padding-top: 0.8em;
 }
 
 .bottom {
   width: 4em;
+  padding-right: 1.8em;
 }
 
 .space {
   width: 20.5em;
+}
+
+.word {
+  padding-top: 0.8em;
+}
+
+.align-tab {
+  padding-right: 4.3em;
+}
+
+.align-caps {
+  padding-right: 3em;
+}
+
+.align-shiftl {
+  padding-right: 6em;
 }
