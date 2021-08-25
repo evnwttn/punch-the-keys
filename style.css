@@ -16,7 +16,7 @@ html {
 }
 
 .gdt {
-  background-image: linear-gradient(#a9a9a9, #0d0d0d);
+  background-image: linear-gradient(transparent, #0d0d0d);
   background-attachment: fixed;
   background-size: cover;
   background-position: center;
@@ -39,7 +39,7 @@ html {
 .key-row > * {
   position: relative;
   text-align: center;
-  color: #eee;
+  color: #f7fcff;
   /* text-shadow: 1px 1px #0a0140; */
   float: left;
   border-radius: 0.3em;
