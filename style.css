@@ -75,7 +75,7 @@
 }
 
 .bottomctrl {
-  width: 6em;
+  width: 6.2em;
   padding-right: 2.8em;
   padding-top: 0.8em;
 }
@@ -103,4 +103,20 @@
 
 .align-shiftl {
   padding-right: 6em;
+}
+
+.align-backspace {
+  padding-left: 2.5em;
+}
+
+.align-enter {
+  padding-left: 2.9em;
+}
+
+.align-shiftr {
+  padding-left: 5.3em;
+}
+
+.arrow {
+  padding-top: 0.8em;
 }
