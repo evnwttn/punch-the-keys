@@ -1,3 +1,5 @@
+// KEYBOARD
+
 document.body.addEventListener("keydown", (e) => {
   e.preventDefault();
   let key = getKey(e);
@@ -17,9 +19,9 @@ function getKey(e) {
   let location = e.location;
   let selector;
   if (location === KeyboardEvent.DOM_KEY_LOCATION_RIGHT) {
-    selector = ['[data-key="' + e.keyCode + '-R"]'];
+    selector = ['[data-key="' + e.keyCode + '-"]'];
   } else {
-    var code = e.keyCode || e.which;
+    let code = e.keyCode || e.which;
     selector = [
       '[data-key="' + code + '"]',
       '[data-char*="' + encodeURIComponent(String.fromCharCode(code)) + '"]',
@@ -38,3 +40,5 @@ function pressKey(char) {
     key.removeAttribute("data-pressed");
   }, 200);
 }
+
+// AUDIO
