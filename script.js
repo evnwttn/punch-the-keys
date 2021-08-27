@@ -1,6 +1,5 @@
-// the following is ripped almost directly from https://codepen.io/gschier/pen/VKgyaY
-
-document.body.addEventListener("keydown", function (e) {
+document.body.addEventListener("keydown", (e) => {
+  e.preventDefault();
   let key = getKey(e);
   if (!key) {
     return console.warn("No key for", e.keyCode);
@@ -8,7 +7,8 @@ document.body.addEventListener("keydown", function (e) {
   key.setAttribute("data-pressed", "on");
 });
 
-document.body.addEventListener("keyup", function (e) {
+document.body.addEventListener("keyup", (e) => {
+  e.preventDefault();
   let key = getKey(e);
   key && key.removeAttribute("data-pressed");
 });
