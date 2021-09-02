@@ -42,3 +42,8 @@ function pressKey(char) {
 }
 
 // AUDIO
+
+// const player = new Tone.Player("audio.fx1.wav").toDestination();
+// Tone.loaded().then(() => {
+//   player.start();
+// });
