@@ -19,7 +19,10 @@ function getKey(e) {
   let location = e.location;
   let selector;
   if (location === KeyboardEvent.DOM_KEY_LOCATION_RIGHT) {
-    selector = ['[data-key="' + e.keyCode + '-"]'];
+    selector = [
+      '[data-right="true"]',
+      '[data-key="' + e.keyCode + '"]',
+    ].join("");
   } else {
     let code = e.keyCode || e.which;
     selector = [
