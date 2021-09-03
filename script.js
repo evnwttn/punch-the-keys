@@ -45,7 +45,15 @@ function pressKey(char) {
 
 // AUDIO
 
-// const player = new Tone.Player("audio.fx1.wav").toDestination();
-// Tone.loaded().then(() => {
-//   player.start();
-// });
+// const synth = new Tone.Synth().toDestination();
+
+// //play a middle 'C' for the duration of an 8th note
+// synth.triggerAttackRelease("C4", "8n");
+
+document.body.addEventListener("keydown", (e) => {
+  let dataSound = getKey(e);
+  if (dataSound) {
+    let note = dataSound.getAttribute("data-sound");
+    console.log(note);
+  }
+});
