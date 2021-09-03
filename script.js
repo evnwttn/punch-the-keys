@@ -53,6 +53,20 @@ document.body.addEventListener("keydown", (e) => {
     console.log("no note");
   } else {
     let note = dataSound.getAttribute("data-sound");
-    synth.triggerAttackRelease(`${note}`, "4n");
+    synth.triggerAttackRelease(`${note}4`, "4n");
+  }
+});
+
+// octaves
+
+document.body.addEventListener("keydown", (e) => {
+  let octave = 4;
+  let getOctave = getKey(e);
+  if (getOctave.hasAttribute("octave-up") == true) {
+    octave++;
+    console.log(octave);
+  } else if (getOctave.hasAttribute("octave-down") == true) {
+    octave--;
+    console.log(octave);
   }
 });
