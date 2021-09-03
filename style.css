@@ -8,6 +8,10 @@ html {
   background-attachment: fixed;
 }
 
+#container {
+  min-width: 960px;
+}
+
 .keys {
   text-align: center;
   margin-top: 9%;
