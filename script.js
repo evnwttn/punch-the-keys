@@ -45,10 +45,7 @@ function pressKey(char) {
 
 // AUDIO
 
-const synth = new Tone.Synth().toDestination();
-
-// //play a middle 'C' for the duration of an 8th note
-// synth.triggerAttackRelease("C4", "8n");
+const synth = new Tone.PolySynth().toDestination();
 
 document.body.addEventListener("keydown", (e) => {
   let dataSound = getKey(e);
@@ -56,7 +53,6 @@ document.body.addEventListener("keydown", (e) => {
     console.log("no note");
   } else {
     let note = dataSound.getAttribute("data-sound");
-    synth.triggerAttackRelease(`${note}`, "8n");
-    console.log(note);
+    synth.triggerAttackRelease(`${note}`, "4n");
   }
 });
