@@ -45,7 +45,6 @@ html {
   position: relative;
   text-align: center;
   color: #f7fcff;
-  /* text-shadow: 1px 1px #0a0140; */
   float: left;
   border-radius: 0.3em;
   margin: 0.3em;
@@ -54,7 +53,7 @@ html {
   height: 100%;
   box-sizing: border-box;
   cursor: pointer;
-  border: 1px solid #d7f205;
+  border: 1px solid #e0e0d9;
   box-shadow: 0 0.2em 0 0.05em #bff205;
   border-bottom-color: #555;
 }
@@ -135,6 +134,10 @@ html {
 
 .align-shiftr {
   padding-left: 5.3em;
+}
+
+.align-esc {
+  padding-right: 0.5em;
 }
 
 .arrow {
