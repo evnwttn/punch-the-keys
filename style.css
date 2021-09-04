@@ -10,6 +10,7 @@ html {
 
 #container {
   min-width: 960px;
+  max-width: 1885px;
 }
 
 .keys {

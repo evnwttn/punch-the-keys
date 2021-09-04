@@ -1,12 +1,5 @@
 // KEYBOARD
 
-const clickKey = document.querySelectorAll(".gdt");
-for (let i = 0; i < clickKey.length; i++) {
-  clickKey[i].addEventListener("click", function () {
-    console.log("Hello World!");
-  });
-}
-
 document.body.addEventListener("keydown", (e) => {
   e.preventDefault();
   let key = getKey(e);
@@ -25,7 +18,6 @@ document.body.addEventListener("keyup", (e) => {
 function getKey(e) {
   let location = e.location;
   let selector;
-  console.log(e.keyCode);
   if (location === KeyboardEvent.DOM_KEY_LOCATION_RIGHT) {
     selector = ['[data-right="true"]', '[data-key="' + e.keyCode + '"]'].join(
       ""
@@ -64,6 +56,13 @@ document.body.addEventListener("keydown", (e) => {
     synth.triggerAttackRelease(`${note}4`, "4n");
   }
 });
+
+const clickKey = document.querySelectorAll(".gdt");
+for (let i = 0; i < clickKey.length; i++) {
+  clickKey[i].addEventListener("click", function () {
+    console.log("Hello World!");
+  });
+}
 
 // octaves
 
