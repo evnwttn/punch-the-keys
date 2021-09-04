@@ -65,10 +65,12 @@ document.body.addEventListener("keydown", (e) => {
 const clickOctave = document.querySelectorAll(".gdt");
 for (let i = 0; i < clickOctave.length; i++) {
   clickOctave[i].addEventListener("click", function () {
-    if (clickOctave[i].hasAttribute("octave")) {
+    if (clickOctave[i].hasAttribute("octave-up")) {
+      octave++;
+    } else if (clickOctave[i].hasAttribute("octave-down")) {
+      octave--;
+    } else if (clickOctave[i].hasAttribute("octave")) {
       octave = clickOctave[i].getAttribute("octave");
-    } else {
-      console.log("no octave");
     }
   });
 }
@@ -80,8 +82,6 @@ document.body.addEventListener("keydown", (e) => {
   if (typeKey.hasAttribute("data-sound")) {
     let note = typeKey.getAttribute("data-sound");
     synth.triggerAttackRelease(`${note}${octave}`, "4n");
-  } else {
-    console.log("no note");
   }
 });
 
@@ -91,8 +91,6 @@ for (let i = 0; i < clickKey.length; i++) {
     if (clickKey[i].hasAttribute("data-sound")) {
       let note = clickKey[i].getAttribute("data-sound");
       synth.triggerAttackRelease(`${note}${octave}`, "4n");
-    } else {
-      console.log("no note");
     }
   });
 }
