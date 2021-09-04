@@ -46,7 +46,10 @@ function pressKey(char) {
 // AUDIO
 
 const synth = new Tone.PolySynth().toDestination();
-let octave;
+
+// OCTAVE FUNCTIONS
+
+let octave = 4;
 
 document.body.addEventListener("keydown", (e) => {
   let getOctave = getKey(e);
@@ -55,6 +58,19 @@ document.body.addEventListener("keydown", (e) => {
     console.log(octave);
   }
 });
+
+const clickOctave = document.querySelectorAll(".gdt");
+for (let i = 0; i < clickOctave.length; i++) {
+  clickOctave[i].addEventListener("click", function () {
+    if (clickOctave[i].hasAttribute("octave")) {
+      octave = clickOctave[i].getAttribute("octave");
+    } else {
+      console.log("no octave");
+    }
+  });
+}
+
+// KEY FUNCTIONS
 
 document.body.addEventListener("keydown", (e) => {
   let typeKey = getKey(e);
