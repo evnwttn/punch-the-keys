@@ -60,7 +60,10 @@ document.body.addEventListener("keydown", (e) => {
 const clickKey = document.querySelectorAll(".gdt");
 for (let i = 0; i < clickKey.length; i++) {
   clickKey[i].addEventListener("click", function () {
-    console.log("Hello World!");
+    if (clickKey[i].hasAttribute("data-sound")) {
+      let note = clickKey[i].getAttribute("data-sound");
+      synth.triggerAttackRelease(`${note}4`, "4n");
+    }
   });
 }
 
