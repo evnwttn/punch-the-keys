@@ -6,6 +6,7 @@ it'll be a keyboard keyboard one day.
 https://evnwttn.github.io/punch-the-keys/
 
 🌴 current functions 🌴
-- A - K // whole notes (white keys)
-- Q - U // sharps/flats (black keys)
-- 1 - 9 // octave selector
+<br /> A - K // whole notes (white keys)
+<br /> Q - U // sharps/flats (black keys)
+<br /> 1 - 0 // octave selection (low - high)
+<br />- & + // toggle octave down & up 
