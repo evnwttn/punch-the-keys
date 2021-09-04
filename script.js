@@ -46,12 +46,21 @@ function pressKey(char) {
 // AUDIO
 
 const synth = new Tone.PolySynth().toDestination();
+let octave;
+
+document.body.addEventListener("keydown", (e) => {
+  let getOctave = getKey(e);
+  if (getOctave.hasAttribute("octave")) {
+    octave = getOctave.getAttribute("octave");
+    console.log(octave);
+  }
+});
 
 document.body.addEventListener("keydown", (e) => {
   let typeKey = getKey(e);
   if (typeKey.hasAttribute("data-sound")) {
     let note = typeKey.getAttribute("data-sound");
-    synth.triggerAttackRelease(`${note}4`, "4n");
+    synth.triggerAttackRelease(`${note}${octave}`, "4n");
   } else {
     console.log("no note");
   }
@@ -62,23 +71,9 @@ for (let i = 0; i < clickKey.length; i++) {
   clickKey[i].addEventListener("click", function () {
     if (clickKey[i].hasAttribute("data-sound")) {
       let note = clickKey[i].getAttribute("data-sound");
-      synth.triggerAttackRelease(`${note}4`, "4n");
+      synth.triggerAttackRelease(`${note}${octave}`, "4n");
     } else {
       console.log("no note");
     }
   });
 }
-
-// octaves
-
-// document.body.addEventListener("keydown", (e) => {
-//   let octave = 4;
-//   let getOctave = getKey(e);
-//   if (getOctave.hasAttribute("octave-up") == true) {
-//     octave++;
-//     console.log(octave);
-//   } else if (getOctave.hasAttribute("octave-down") == true) {
-//     octave--;
-//     console.log(octave);
-//   }
-// });
