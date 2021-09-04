@@ -48,12 +48,12 @@ function pressKey(char) {
 const synth = new Tone.PolySynth().toDestination();
 
 document.body.addEventListener("keydown", (e) => {
-  let dataSound = getKey(e);
-  if (dataSound.hasAttribute("data-sound") == false) {
-    console.log("no note");
-  } else {
-    let note = dataSound.getAttribute("data-sound");
+  let typeKey = getKey(e);
+  if (typeKey.hasAttribute("data-sound")) {
+    let note = typeKey.getAttribute("data-sound");
     synth.triggerAttackRelease(`${note}4`, "4n");
+  } else {
+    console.log("no note");
   }
 });
 
@@ -63,6 +63,8 @@ for (let i = 0; i < clickKey.length; i++) {
     if (clickKey[i].hasAttribute("data-sound")) {
       let note = clickKey[i].getAttribute("data-sound");
       synth.triggerAttackRelease(`${note}4`, "4n");
+    } else {
+      console.log("no note");
     }
   });
 }
