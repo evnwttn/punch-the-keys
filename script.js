@@ -45,7 +45,24 @@ function pressKey(char) {
 
 // SYNTH
 
-const synth = new Tone.PolySynth().toDestination();
+const synth = new Tone.PolySynth(Tone.Synth, {
+  oscillator: {
+    type: "sawtooth",
+  },
+}).toDestination();
+
+// let oscType = ["sawtooth", "triangle", "square", "sine"];
+
+// let osc = oscType[`${oscSelect}`];
+
+document.body.addEventListener("keydown", (e) => {
+  let getOsc = getKey(e);
+  if (getOsc.hasAttribute("osc-up")) {
+    console.log("going up...");
+  } else if (getOsc.hasAttribute("osc-down")) {
+    console.log("going down...");
+  }
+});
 
 // OCTAVE FUNCTIONS
 
