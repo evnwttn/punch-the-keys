@@ -46,7 +46,13 @@ function pressKey(char) {
 // SYNTH
 
 let oscType = ["sawtooth", "triangle", "square", "sine"];
-let oscNum = 1;
+let oscNum = 0;
+
+let synth = new Tone.PolySynth(Tone.Synth, {
+  oscillator: {
+    type: `${oscType[oscNum]}`,
+  },
+}).toDestination();
 
 document.body.addEventListener("keydown", (e) => {
   let getOsc = getKey(e);
@@ -54,20 +60,14 @@ document.body.addEventListener("keydown", (e) => {
     if (oscNum <= 2) {
       oscNum++;
     }
-    console.log(oscType[oscNum]);
+    console.log("ya");
   } else if (getOsc.hasAttribute("osc-down")) {
     if (oscNum > 0) {
       oscNum--;
     }
-    console.log(oscType[oscNum]);
+    console.log("ya");
   }
 });
-
-const synth = new Tone.PolySynth(Tone.Synth, {
-  oscillator: {
-    type: `${oscType[oscNum]}`,
-  },
-}).toDestination();
 
 // OCTAVE FUNCTIONS
 
