@@ -97,26 +97,26 @@ document.body.addEventListener("keydown", (e) => {
 
 Array.from(document.querySelectorAll(".gdt")).map((clickOctave) =>
   clickOctave.addEventListener("click", () => {
-    handleOctaveElement(clickOctave[i]);
+    handleOctaveElement(clickOctave);
   })
 );
 
 // KEY FUNCTIONS
 
-document.body.addEventListener("keydown", (e) => {
-  let typeKey = getKey(e);
-  if (typeKey.hasAttribute("data-sound")) {
-    let note = typeKey.getAttribute("data-sound");
+function handleKeys(elm) {
+  if (elm.hasAttribute("data-sound")) {
+    let note = elm.getAttribute("data-sound");
     synth.triggerAttackRelease(`${note}${octave}`, "4n");
   }
+}
+
+document.body.addEventListener("keydown", (e) => {
+  let typeKey = getKey(e);
+  handleKeys(typeKey);
 });
 
-const clickKey = document.querySelectorAll(".gdt");
-for (let i = 0; i < clickKey.length; i++) {
-  clickKey[i].addEventListener("click", function () {
-    if (clickKey[i].hasAttribute("data-sound")) {
-      let note = clickKey[i].getAttribute("data-sound");
-      synth.triggerAttackRelease(`${note}${octave}`, "4n");
-    }
-  });
-}
+Array.from(document.querySelectorAll(".gdt")).map((clickKey) =>
+  clickKey.addEventListener("click", () => {
+    handleKeys(clickKey);
+  })
+);
