@@ -95,7 +95,7 @@ document.body.addEventListener("keydown", (e) => {
   handleOctaveElement(getOctave);
 });
 
-document.querySelectorAll(".gdt").map((clickOctave) =>
+Array.from(document.querySelectorAll(".gdt")).map((clickOctave) =>
   clickOctave.addEventListener("click", () => {
     handleOctaveElement(clickOctave[i]);
   })
