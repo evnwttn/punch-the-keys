@@ -15,6 +15,7 @@ html {
 
 #ui * {
   display: inline-block;
+  text-transform: uppercase;
 }
 
 .keys {
@@ -56,7 +57,7 @@ html {
   border-radius: 0.3em;
   margin: 0.3em;
   padding: 0.2em;
-  width: 11em;
+  width: 12em;
   box-sizing: border-box;
   border: 1px solid #e0e0d9;
   box-shadow: 0 0.2em 0 0.05em #bff205;

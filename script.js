@@ -49,10 +49,6 @@ let uiVol = document.getElementById("ui-Vol");
 let uiOsc = document.getElementById("ui-Osc");
 let uiOct = document.getElementById("ui-Oct");
 
-// function updateUi() {
-//   uiOsc.innerHTML = `${synth}`;
-// }
-
 // TOGGLE OSCILLATOR / SYNTH
 
 let oscType = ["sawtooth", "triangle", "square", "sine"];
@@ -80,6 +76,7 @@ function toggleSynth(elm) {
       synth = makeSynth(oscType[oscNum]);
     }
   }
+  uiOsc.innerHTML = `[${oscType[oscNum]}]`;
 }
 
 let synth = makeSynth(oscType[oscNum]);
