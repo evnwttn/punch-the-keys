@@ -192,3 +192,9 @@ html {
   color: hsl(73, 99%, 45%);
   padding-left: 2em;
 }
+
+.multi-sharps {
+  position: absolute;
+  color: hsl(73, 99%, 45%);
+  padding-left: 1.7em;
+}
