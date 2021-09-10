@@ -43,7 +43,7 @@ function pressKey(char) {
   }, 200);
 }
 
-// SYNTH OSCILLATOR SELECT
+// TOGGLE OSCILLATOR / SYNTH
 
 let oscType = ["sawtooth", "triangle", "square", "sine"];
 let oscNum = 0;
@@ -53,7 +53,22 @@ function makeSynth(oscillatorType) {
     oscillator: {
       type: oscillatorType,
     },
+    volume: 0,
   }).toDestination();
+}
+
+function toggleVolume(elm) {
+  if (elm.hasAttribute("vol-up")) {
+    if (volLevel <= 29) {
+      volLevel++;
+      console.log(volLevel);
+    }
+  } else if (elm.hasAttribute("vol-down")) {
+    if (volLevel >= -29) {
+      volLevel--;
+      console.log(volLevel);
+    }
+  }
 }
 
 function toggleSynth(elm) {
@@ -83,7 +98,7 @@ Array.from(document.querySelectorAll(".gdt")).map((clickOsc) =>
   })
 );
 
-// OCTAVE FUNCTIONS
+// OCTAVE SELECTION
 
 let octave = 4;
 
@@ -108,7 +123,7 @@ Array.from(document.querySelectorAll(".gdt")).map((clickOctave) =>
   })
 );
 
-// KEY FUNCTIONS
+// KEY FUNCTION
 
 function handleKeys(elm) {
   if (elm.hasAttribute("data-sound")) {
