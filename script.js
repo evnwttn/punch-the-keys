@@ -126,9 +126,13 @@ let octave = 4;
 
 function handleOctaveElement(elm) {
   if (elm.hasAttribute("octave-up")) {
-    octave++;
+    if (octave <= 8) {
+      octave++;
+    }
   } else if (elm.hasAttribute("octave-down")) {
-    octave--;
+    if (octave >= 1) {
+      octave--;
+    }
   } else if (elm.hasAttribute("octave")) {
     octave = elm.getAttribute("octave");
   }
