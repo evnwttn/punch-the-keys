@@ -66,12 +66,12 @@ function makeSynth(oscillatorType) {
 
 function toggleSynth(elm) {
   if (elm.hasAttribute("osc-up")) {
-    if (oscNum <= oscType.length - 1) {
+    if (oscNum <= oscType.length - 2) {
       oscNum++;
       synth = makeSynth(oscType[oscNum]);
     }
   } else if (elm.hasAttribute("osc-down")) {
-    if (oscNum > 0) {
+    if (oscNum >= 1) {
       oscNum--;
       synth = makeSynth(oscType[oscNum]);
     }
