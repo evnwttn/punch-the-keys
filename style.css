@@ -13,21 +13,8 @@ html {
   max-width: 1885px;
 }
 
-#ui {
-  position: relative;
-  text-align: center;
-  font-family: "Lato", sans-serif;
-  color: #f7fcff;
-  float: left;
-  border-radius: 0.3em;
-  margin: 0.3em;
-  padding: 0.2em;
-  width: 20.5em;
-  height: 100%;
-  box-sizing: border-box;
-  border: 1px solid #e0e0d9;
-  box-shadow: 0 0.2em 0 0.05em #bff205;
-  border-bottom-color: #555;
+#ui * {
+  display: inline-block;
 }
 
 .keys {
@@ -56,6 +43,24 @@ html {
   position: relative;
   top: 0.2em;
   box-shadow: 0 0 0 0.05em #0a0140;
+}
+
+#ui {
+  position: fixed;
+  top: 0px;
+  right: 0px;
+  z-index: 100;
+  color: #f7fcff;
+  font-size: 15px;
+  font-family: "Lato", sans-serif;
+  border-radius: 0.3em;
+  margin: 0.3em;
+  padding: 0.2em;
+  width: 11em;
+  box-sizing: border-box;
+  border: 1px solid #e0e0d9;
+  box-shadow: 0 0.2em 0 0.05em #bff205;
+  border-bottom-color: #555;
 }
 
 .key-row > * {

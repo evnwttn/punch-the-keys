@@ -43,6 +43,18 @@ function pressKey(char) {
   }, 200);
 }
 
+// UI
+
+let uiVol = document.getElementById("ui-Vol");
+let uiOsc = document.getElementById("ui-Osc");
+let uiOct = document.getElementById("ui-Oct");
+
+function updateUi() {
+  uiVol.innerHTML = "yes";
+  uiOsc.innerHTML = "yes";
+  uiOct.innerHTML = "yes";
+}
+
 // TOGGLE OSCILLATOR / SYNTH
 
 let oscType = ["sawtooth", "triangle", "square", "sine"];
@@ -149,6 +161,7 @@ function handleKeys(elm) {
 document.body.addEventListener("keydown", (e) => {
   let typeKey = getKey(e);
   handleKeys(typeKey);
+  updateUi();
 });
 
 Array.from(document.querySelectorAll(".gdt")).map((clickKey) =>
