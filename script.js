@@ -56,24 +56,25 @@ function makeSynth(oscillatorType) {
   }).toDestination();
 }
 
-let synth = makeSynth(oscType[oscNum]);
-
-document.body.addEventListener("keydown", (e) => {
-  let getOsc = getKey(e);
-
-  if (getOsc.hasAttribute("osc-up")) {
+function toggleSynth(elm) {
+  if (elm.hasAttribute("osc-up")) {
     if (oscNum <= oscType.length - 1) {
       oscNum++;
       synth = makeSynth(oscType[oscNum]);
     }
-    console.log("ya");
-  } else if (getOsc.hasAttribute("osc-down")) {
+  } else if (elm.hasAttribute("osc-down")) {
     if (oscNum > 0) {
       oscNum--;
       synth = makeSynth(oscType[oscNum]);
     }
-    console.log("ya");
   }
+}
+
+let synth = makeSynth(oscType[oscNum]);
+
+document.body.addEventListener("keydown", (e) => {
+  let getOsc = getKey(e);
+  toggleSynth(getOsc);
 });
 
 // OCTAVE FUNCTIONS
