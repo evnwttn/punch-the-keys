@@ -43,7 +43,6 @@ html {
 
 #ui * {
   display: inline-block;
-  text-transform: uppercase;
 }
 
 #ui {
@@ -65,11 +64,12 @@ html {
 }
 
 #ui-Oct {
-  padding-left: 0.3em;
+  padding-left: 0.05em;
 }
 
 #ui-Osc {
-  padding-left: 0.3em;
+  padding-left: 0.05em;
+  text-transform: uppercase;
 }
 
 .key-row > * {
@@ -191,10 +191,12 @@ html {
   position: absolute;
   color: hsl(73, 99%, 45%);
   padding-left: 2em;
+  text-shadow: 1px 1px 8px #0000005e;
 }
 
 .multi-sharps {
   position: absolute;
   color: hsl(73, 99%, 45%);
   padding-left: 1.7em;
+  text-shadow: 1px 1px 8px #0000005e;
 }

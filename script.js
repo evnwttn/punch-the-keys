@@ -117,7 +117,7 @@ function toggleVolume(elm) {
       synth = makeSynth(oscType[oscNum]);
     }
   }
-  uiVol.innerHTML = `[V${volLevel}]`;
+  uiVol.innerHTML = `[${volLevel}db]`;
 }
 
 // OCTAVE SELECTION
