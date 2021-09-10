@@ -43,7 +43,7 @@ function pressKey(char) {
   }, 200);
 }
 
-// SYNTH
+// SYNTH OSCILLATOR SELECT
 
 let oscType = ["sawtooth", "triangle", "square", "sine"];
 let oscNum = 0;
@@ -76,6 +76,12 @@ document.body.addEventListener("keydown", (e) => {
   let getOsc = getKey(e);
   toggleSynth(getOsc);
 });
+
+Array.from(document.querySelectorAll(".gdt")).map((clickOsc) =>
+  clickOsc.addEventListener("click", () => {
+    toggleSynth(clickOsc);
+  })
+);
 
 // OCTAVE FUNCTIONS
 
