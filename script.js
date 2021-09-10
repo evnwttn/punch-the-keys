@@ -47,28 +47,15 @@ function pressKey(char) {
 
 let oscType = ["sawtooth", "triangle", "square", "sine"];
 let oscNum = 0;
+let volLevel = 0;
 
 function makeSynth(oscillatorType) {
   return new Tone.PolySynth(Tone.Synth, {
     oscillator: {
       type: oscillatorType,
     },
-    volume: 0,
+    volume: volLevel,
   }).toDestination();
-}
-
-function toggleVolume(elm) {
-  if (elm.hasAttribute("vol-up")) {
-    if (volLevel <= 29) {
-      volLevel++;
-      console.log(volLevel);
-    }
-  } else if (elm.hasAttribute("vol-down")) {
-    if (volLevel >= -29) {
-      volLevel--;
-      console.log(volLevel);
-    }
-  }
 }
 
 function toggleSynth(elm) {
@@ -97,6 +84,33 @@ Array.from(document.querySelectorAll(".gdt")).map((clickOsc) =>
     toggleSynth(clickOsc);
   })
 );
+
+// VOLUME
+
+document.body.addEventListener("keydown", (e) => {
+  let volToggle = getKey(e);
+  toggleVolume(volToggle);
+});
+
+Array.from(document.querySelectorAll(".gdt")).map((clickVol) =>
+  clickVol.addEventListener("click", () => {
+    toggleVolume(clickVol);
+  })
+);
+
+function toggleVolume(elm) {
+  if (elm.hasAttribute("vol-up")) {
+    if (volLevel <= 29) {
+      volLevel++;
+      synth = makeSynth(oscType[oscNum]);
+    }
+  } else if (elm.hasAttribute("vol-down")) {
+    if (volLevel >= -29) {
+      volLevel--;
+      synth = makeSynth(oscType[oscNum]);
+    }
+  }
+}
 
 // OCTAVE SELECTION
 
