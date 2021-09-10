@@ -10,3 +10,4 @@ https://evnwttn.github.io/punch-the-keys/
 <br /> Q - U // sharps/flats (black keys)
 <br /> 1 - 0 // octave selection (low - high)
 <br />- & + // toggle octave down & up 
+<br />[ & ] // toggle synth oscillator (sawtooth, triangle, square, sine)
