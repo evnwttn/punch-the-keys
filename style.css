@@ -13,6 +13,23 @@ html {
   max-width: 1885px;
 }
 
+#ui {
+  position: relative;
+  text-align: center;
+  font-family: "Lato", sans-serif;
+  color: #f7fcff;
+  float: left;
+  border-radius: 0.3em;
+  margin: 0.3em;
+  padding: 0.2em;
+  width: 20.5em;
+  height: 100%;
+  box-sizing: border-box;
+  border: 1px solid #e0e0d9;
+  box-shadow: 0 0.2em 0 0.05em #bff205;
+  border-bottom-color: #555;
+}
+
 .keys {
   text-align: center;
   margin-top: 9%;
