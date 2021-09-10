@@ -49,11 +49,9 @@ let uiVol = document.getElementById("ui-Vol");
 let uiOsc = document.getElementById("ui-Osc");
 let uiOct = document.getElementById("ui-Oct");
 
-function updateUi() {
-  uiVol.innerHTML = "yes";
-  uiOsc.innerHTML = "yes";
-  uiOct.innerHTML = "yes";
-}
+// function updateUi() {
+//   uiOsc.innerHTML = `${synth}`;
+// }
 
 // TOGGLE OSCILLATOR / SYNTH
 
@@ -122,6 +120,7 @@ function toggleVolume(elm) {
       synth = makeSynth(oscType[oscNum]);
     }
   }
+  uiVol.innerHTML = `[V${volLevel}]`;
 }
 
 // OCTAVE SELECTION
@@ -136,6 +135,7 @@ function handleOctaveElement(elm) {
   } else if (elm.hasAttribute("octave")) {
     octave = elm.getAttribute("octave");
   }
+  uiOct.innerHTML = `[O${octave}]`;
 }
 
 document.body.addEventListener("keydown", (e) => {
@@ -161,7 +161,6 @@ function handleKeys(elm) {
 document.body.addEventListener("keydown", (e) => {
   let typeKey = getKey(e);
   handleKeys(typeKey);
-  updateUi();
 });
 
 Array.from(document.querySelectorAll(".gdt")).map((clickKey) =>
