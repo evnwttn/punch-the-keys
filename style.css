@@ -92,16 +92,19 @@ html {
 #readMe-icon:hover + #readMe-text {
   visibility: visible;
   position: fixed;
-  background-color: black;
+  background-image: linear-gradient(#a9a9a9, #0d0d0d);
   top: 1em;
   left: 1.5em;
   z-index: 100;
   color: #f7fcff;
   font-size: 15px;
   font-family: "Lato", sans-serif;
+  text-transform: uppercase;
+  padding-left: 0.5em;
+  padding-top: 0.25em;
   border-radius: 0.3em;
-  width: 17em;
-  height: 10em;
+  width: 18em;
+  height: 8.3em;
   box-sizing: border-box;
   border: 1px solid #e0e0d9;
   box-shadow: 0 0.13em 0 0.022em #bff205;
