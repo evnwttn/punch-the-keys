@@ -63,6 +63,27 @@ html {
   border-bottom-color: #555;
 }
 
+#readMe {
+  position: fixed;
+  top: 2.5px;
+  left: 2.5px;
+  z-index: 100;
+  color: #f7fcff;
+  font-size: 30px;
+  font-family: "Lato", sans-serif;
+  border-radius: 0.3em;
+  width: 1.1em;
+  height: 1.06em;
+  box-sizing: border-box;
+  border: 1px solid #e0e0d9;
+  box-shadow: 0 0.13em 0 0.022em #bff205;
+  border-bottom-color: #555;
+}
+
+#readMe-icon {
+  transform: rotate(180deg);
+}
+
 #ui-Oct {
   padding-left: 0.05em;
 }
