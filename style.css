@@ -82,10 +82,30 @@ html {
 
 #readMe-icon {
   transform: rotate(180deg);
+  cursor: default;
 }
 
-#ui-Oct {
-  padding-left: 0.05em;
+#readMe-text {
+  visibility: hidden;
+}
+
+#readMe-icon:hover + #readMe-text {
+  visibility: visible;
+  position: fixed;
+  background-color: black;
+  top: 1em;
+  left: 1.5em;
+  z-index: 100;
+  color: #f7fcff;
+  font-size: 15px;
+  font-family: "Lato", sans-serif;
+  border-radius: 0.3em;
+  width: 17em;
+  height: 10em;
+  box-sizing: border-box;
+  border: 1px solid #e0e0d9;
+  box-shadow: 0 0.13em 0 0.022em #bff205;
+  border-bottom-color: #555;
 }
 
 #ui-Osc {
