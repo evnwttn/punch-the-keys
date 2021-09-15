@@ -174,6 +174,7 @@ Array.from(document.querySelectorAll(".gdt")).map((clickKey) =>
 
 const defaultRows = [
   [
+    /* ROW 1 */
     { keyCode: 27, classes: "word-top align-esq gdt", value: "ESC" },
     { keyCode: 112, classes: "func gdt", value: "F1" },
     { keyCode: 113, classes: "func gdt", value: "F2" },
@@ -192,78 +193,91 @@ const defaultRows = [
     { keyCode: 46, classes: "word-top gdt", value: "DELETE" },
   ],
   [
+    /* ROW 2 */
     { keyCode: 192, classes: "double gdt", value: ["~", "`"] },
     {
       keyCode: 49,
       octave: "0",
       classes: "double gdt multi",
-      value: "!" & "1",
+      value: ["!", "1"],
+      multi: "0",
     },
     {
       keyCode: 50,
-      dataOctave: "1",
+      octave: "1",
       classes: "double gdt multi",
-      value: "@" & "2",
+      value: ["@", "2"],
+      multi: "1",
     },
     {
       keyCode: 51,
-      dataOctave: "2",
+      octave: "2",
       classes: "double gdt multi",
-      value: "#" & "3",
+      value: ["#", "3"],
+      multi: "2",
     },
     {
       keyCode: 52,
-      dataOctave: "3",
+      octave: "3",
       classes: "double gdt multi",
-      value: "$" & "4",
+      value: ["$", "4"],
+      multi: "3",
     },
     {
       keyCode: 53,
-      dataOctave: "4",
+      octave: "4",
       classes: "double gdt multi",
-      value: "%" & "5",
+      value: ["%", "5"],
+      multi: "4",
     },
     {
       keyCode: 54,
-      dataOctave: "5",
+      octave: "5",
       classes: "double gdt multi",
-      value: "^" & "6",
+      value: ["^", "6"],
+      multi: "5",
     },
     {
       keyCode: 55,
-      dataOctave: "6",
+      octave: "6",
       classes: "double gdt multi",
-      value: "&" & "7",
+      value: ["&", "7"],
+      multi: "6",
     },
     {
       keyCode: 56,
-      dataOctave: "7",
+      octave: "7",
       classes: "double gdt multi",
-      value: "*" & "8",
+      value: ["*", "8"],
+      multi: "7",
     },
     {
       keyCode: 57,
-      dataOctave: "8",
+      octave: "8",
       classes: "double gdt multi",
-      value: "(" & "9",
+      value: ["(", "9"],
+      multi: "8",
     },
     {
       keyCode: 48,
-      dataOctave: "9",
+      octave: "9",
       classes: "double gdt multi",
-      value: ")" & "0",
+      value: [")", "0"],
+      multi: "9",
     },
     {
       keyCode: 189,
-      octaveUp: true,
+      octaveDown: true,
       classes: "double gdt multi",
-      value: "_" & "-",
+      value: ["_", "-"],
+      multi: "&#10688;",
     },
     {
       keyCode: 187,
-      octaveDown: true,
+      octaveUp: true,
       classes: "double gdt multi",
-      value: "+" & "=",
+      value: ["+", "="],
+      multi: "&#10689;",
     },
     {
       keyCode: 8,
@@ -272,6 +286,7 @@ const defaultRows = [
     },
   ],
   [
+    /* ROW 3 */
     { keyCode: 9, classes: "word backspacetab align-tab gdt", value: "TAB" },
     { keyCode: 81, classes: "letter gdt", value: "Q" },
     {
@@ -279,12 +294,14 @@ const defaultRows = [
       sound: "C#",
       classes: "letter gdt multi-sharps",
       value: "W",
+      multi: "C#",
     },
     {
       keyCode: 69,
       sound: "D#",
       classes: "letter gdt multi-sharps",
       value: "E",
+      multi: "D#",
     },
     { keyCode: 82, classes: "letter gdt", value: "R" },
     {
@@ -292,40 +309,39 @@ const defaultRows = [
       sound: "F#",
       classes: "letter gdt multi-sharps",
       value: "T",
+      multi: "F#",
     },
     {
       keyCode: 89,
       sound: "G#",
       classes: "letter gdt multi-sharps",
       value: "Y",
+      multi: "G#",
     },
     {
       keyCode: 85,
       sound: "A#",
       classes: "letter gdt multi-sharps",
       value: "U",
+      multi: "A#",
     },
     { keyCode: 73, classes: "letter gdt", value: "I" },
     { keyCode: 79, classes: "letter gdt", value: "O" },
     { keyCode: 80, classes: "letter gdt", value: "P" },
-    { keyCode: 219, classes: "double gdt multi", value: "{" & "[" },
-    { keyCode: 221, classes: "double gdt multi", value: "}" & "]" },
-    { keyCode: 220, classes: "double gdt", value: "|" & "&#92;" },
+    {
+      keyCode: 219,
+      oscDown: true,
+      classes: "double gdt multi",
+      value: ["{", "["],
+      multi: "&#8818;",
+    },
+    {
+      keyCode: 221,
+      oscUp: true,
+      classes: "double gdt multi",
+      value: ["}", "]"],
+      multi: "&#8819;",
+    },
+    { keyCode: 220, classes: "double gdt", value: ["|", "&#92;"] },
   ],
 ];
-
-// <div data-key="9" class="word backspacetab align-tab gdt"><span>TAB</span></div>
-// <div class="letter gdt" data-char="Q">Q</div>
-// <div class="letter gdt" data-sound="C#" data-char="W"><div class="multi-sharps">C#</div>W</div>
-// <div class="letter gdt" data-sound="D#" data-char="E"><div class="multi-sharps">D#</div>E</div>
-// <div class="letter gdt" data-char="R">R</div>
-// <div class="letter gdt" data-sound="F#" data-char="T"><div class="multi-sharps">F#</div>T</div>
-// <div class="letter gdt" data-sound="G#" data-char="Y"><div class="multi-sharps">G#</div>Y</div>
-// <div class="letter gdt" data-sound="A#" data-char="U"><div class="multi-sharps">A#</div>U</div>
-// <div class="letter gdt" data-char="I">I</div>
-// <div class="letter gdt" data-char="O">O</div>
-// <div class="letter gdt" data-char="P">P</div>
-// <div data-key="219" osc-down="true" class="double gdt"><div class="multi">&#8818;</div><div>{</div><div>[</div></div>
-// <div data-key="221" osc-up="true" class="double gdt"><div class="multi">&#8819;</div><div>}</div><div>]</div></div>
-// <div data-key="220" class="double gdt"><div>|</div><div>\</div></div>
-// </div>
