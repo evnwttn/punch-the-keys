@@ -193,16 +193,16 @@ const defaultRows = [
   ],
   [
     { keyCode: 192, classes: "double gdt", value: "~" & "`" },
-    { keyCode: 49, octave: 0, classes: "double gdt multi", value: "!" & "1" },
-    { keyCode: 50, octave: 1, classes: "double gdt multi", value: "@" & "2" },
-    { keyCode: 51, octave: 2, classes: "double gdt multi", value: "#" & "3" },
-    { keyCode: 52, octave: 3, classes: "double gdt multi", value: "$" & "4" },
-    { keyCode: 53, octave: 4, classes: "double gdt multi", value: "%" & "5" },
-    { keyCode: 54, octave: 5, classes: "double gdt multi", value: "^" & "6" },
-    { keyCode: 55, octave: 6, classes: "double gdt multi", value: "&" & "7" },
-    { keyCode: 56, octave: 7, classes: "double gdt multi", value: "*" & "8" },
-    { keyCode: 57, octave: 8, classes: "double gdt multi", value: "(" & "9" },
-    { keyCode: 48, octave: 9, classes: "double gdt multi", value: ")" & "0" },
+    { keyCode: 49, octave: "0", classes: "double gdt multi", value: "!" & "1" },
+    { keyCode: 50, octave: "1", classes: "double gdt multi", value: "@" & "2" },
+    { keyCode: 51, octave: "2", classes: "double gdt multi", value: "#" & "3" },
+    { keyCode: 52, octave: "3", classes: "double gdt multi", value: "$" & "4" },
+    { keyCode: 53, octave: "4", classes: "double gdt multi", value: "%" & "5" },
+    { keyCode: 54, octave: "5", classes: "double gdt multi", value: "^" & "6" },
+    { keyCode: 55, octave: "6", classes: "double gdt multi", value: "&" & "7" },
+    { keyCode: 56, octave: "7", classes: "double gdt multi", value: "*" & "8" },
+    { keyCode: 57, octave: "8", classes: "double gdt multi", value: "(" & "9" },
+    { keyCode: 48, octave: "9", classes: "double gdt multi", value: ")" & "0" },
     {
       keyCode: 189,
       octaveUp: true,
@@ -221,4 +221,61 @@ const defaultRows = [
       value: "&#8592;",
     },
   ],
+  [
+    { keyCode: 9, classes: "word backspacetab align-tab gdt", value: "TAB" },
+    { keyCode: 81, classes: "letter gdt", value: "Q" },
+    {
+      keyCode: 87,
+      sound: "C#",
+      classes: "letter gdt multi-sharps",
+      value: "W",
+    },
+    {
+      keyCode: 69,
+      sound: "D#",
+      classes: "letter gdt multi-sharps",
+      value: "E",
+    },
+    { keyCode: 82, classes: "letter gdt", value: "R" },
+    {
+      keyCode: 84,
+      sound: "F#",
+      classes: "letter gdt multi-sharps",
+      value: "T",
+    },
+    {
+      keyCode: 89,
+      sound: "G#",
+      classes: "letter gdt multi-sharps",
+      value: "Y",
+    },
+    {
+      keyCode: 85,
+      sound: "A#",
+      classes: "letter gdt multi-sharps",
+      value: "U",
+    },
+    { keyCode: 73, classes: "letter gdt", value: "I" },
+    { keyCode: 79, classes: "letter gdt", value: "O" },
+    { keyCode: 80, classes: "letter gdt", value: "P" },
+    { keyCode: 219, classes: "double gdt multi", value: "{" & "[" },
+    { keyCode: 221, classes: "double gdt multi", value: "}" & "]" },
+    { keyCode: 220, classes: "double gdt", value: "|" & "&#92;" },
+  ],
 ];
+
+// <div data-key="9" class="word backspacetab align-tab gdt"><span>TAB</span></div>
+// <div class="letter gdt" data-char="Q">Q</div>
+// <div class="letter gdt" data-sound="C#" data-char="W"><div class="multi-sharps">C#</div>W</div>
+// <div class="letter gdt" data-sound="D#" data-char="E"><div class="multi-sharps">D#</div>E</div>
+// <div class="letter gdt" data-char="R">R</div>
+// <div class="letter gdt" data-sound="F#" data-char="T"><div class="multi-sharps">F#</div>T</div>
+// <div class="letter gdt" data-sound="G#" data-char="Y"><div class="multi-sharps">G#</div>Y</div>
+// <div class="letter gdt" data-sound="A#" data-char="U"><div class="multi-sharps">A#</div>U</div>
+// <div class="letter gdt" data-char="I">I</div>
+// <div class="letter gdt" data-char="O">O</div>
+// <div class="letter gdt" data-char="P">P</div>
+// <div data-key="219" osc-down="true" class="double gdt"><div class="multi">&#8818;</div><div>{</div><div>[</div></div>
+// <div data-key="221" osc-up="true" class="double gdt"><div class="multi">&#8819;</div><div>}</div><div>]</div></div>
+// <div data-key="220" class="double gdt"><div>|</div><div>\</div></div>
+// </div>
