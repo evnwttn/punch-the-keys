@@ -169,3 +169,26 @@ Array.from(document.querySelectorAll(".gdt")).map((clickKey) =>
     handleKeys(clickKey);
   })
 );
+
+/* --- */
+
+const defaultRows = [
+  [
+    { keyCode: 27, classes: "word-top align-esq gdt", value: "ESC" },
+    { keyCode: 112, classes: "func gdt", value: "F1" },
+    { keyCode: 113, classes: "func gdt", value: "F2" },
+    { keyCode: 114, classes: "func gdt", value: "F3" },
+    { keyCode: 115, classes: "func gdt", value: "F4" },
+    { keyCode: 116, classes: "func gdt", value: "F5" },
+    { keyCode: 117, classes: "func gdt", value: "F6" },
+    { keyCode: 118, classes: "func gdt", value: "F7" },
+    { keyCode: 119, classes: "func gdt", value: "F8" },
+    { keyCode: 120, classes: "func gdt", value: "F9" },
+    { keyCode: 121, classes: "func gdt", value: "F10" },
+    { keyCode: 122, classes: "func gdt", value: "F11" },
+    { keyCode: 123, classes: "func gdt", value: "F12" },
+    { keyCode: 45, classes: "word-top gdt", value: "INSERT" },
+    { keyCode: 44, classes: "word-top gdt", value: "PRTSC" },
+    { keyCode: 46, classes: "word-top gdt", value: "DELETE" },
+  ],
+];
