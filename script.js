@@ -65,12 +65,12 @@ function makeSynth(oscillatorType) {
 }
 
 function toggleSynth(elm) {
-  if (elm.hasAttribute("osc-up")) {
+  if (elm.hasAttribute("data-oscUp")) {
     if (oscNum <= oscType.length - 2) {
       oscNum++;
       synth = makeSynth(oscType[oscNum]);
     }
-  } else if (elm.hasAttribute("osc-down")) {
+  } else if (elm.hasAttribute("data-oscDown")) {
     if (oscNum >= 1) {
       oscNum--;
       synth = makeSynth(oscType[oscNum]);
@@ -106,12 +106,12 @@ Array.from(document.querySelectorAll(".gdt")).map((clickVol) =>
 );
 
 function toggleVolume(elm) {
-  if (elm.hasAttribute("vol-up")) {
+  if (elm.hasAttribute("data-volUp")) {
     if (volLevel <= 29) {
       volLevel++;
       synth = makeSynth(oscType[oscNum]);
     }
-  } else if (elm.hasAttribute("vol-down")) {
+  } else if (elm.hasAttribute("data-volDown")) {
     if (volLevel >= -29) {
       volLevel--;
       synth = makeSynth(oscType[oscNum]);
@@ -125,16 +125,16 @@ function toggleVolume(elm) {
 let octave = 4;
 
 function handleOctaveElement(elm) {
-  if (elm.hasAttribute("octave-up")) {
+  if (elm.hasAttribute("data-OctaveUp")) {
     if (octave <= 8) {
       octave++;
     }
-  } else if (elm.hasAttribute("octave-down")) {
+  } else if (elm.hasAttribute("data-octaveDown")) {
     if (octave >= 1) {
       octave--;
     }
-  } else if (elm.hasAttribute("octave")) {
-    octave = elm.getAttribute("octave");
+  } else if (elm.hasAttribute("data-octave")) {
+    octave = elm.getAttribute("data-octave");
   }
   uiOct.innerHTML = `[O${octave}]`;
 }
@@ -192,17 +192,67 @@ const defaultRows = [
     { keyCode: 46, classes: "word-top gdt", value: "DELETE" },
   ],
   [
-    { keyCode: 192, classes: "double gdt", value: "~" & "`" },
-    { keyCode: 49, octave: "0", classes: "double gdt multi", value: "!" & "1" },
-    { keyCode: 50, octave: "1", classes: "double gdt multi", value: "@" & "2" },
-    { keyCode: 51, octave: "2", classes: "double gdt multi", value: "#" & "3" },
-    { keyCode: 52, octave: "3", classes: "double gdt multi", value: "$" & "4" },
-    { keyCode: 53, octave: "4", classes: "double gdt multi", value: "%" & "5" },
-    { keyCode: 54, octave: "5", classes: "double gdt multi", value: "^" & "6" },
-    { keyCode: 55, octave: "6", classes: "double gdt multi", value: "&" & "7" },
-    { keyCode: 56, octave: "7", classes: "double gdt multi", value: "*" & "8" },
-    { keyCode: 57, octave: "8", classes: "double gdt multi", value: "(" & "9" },
-    { keyCode: 48, octave: "9", classes: "double gdt multi", value: ")" & "0" },
+    { keyCode: 192, classes: "double gdt", value: ["~", "`"] },
+    {
+      keyCode: 49,
+      octave: "0",
+      classes: "double gdt multi",
+      value: "!" & "1",
+    },
+    {
+      keyCode: 50,
+      dataOctave: "1",
+      classes: "double gdt multi",
+      value: "@" & "2",
+    },
+    {
+      keyCode: 51,
+      dataOctave: "2",
+      classes: "double gdt multi",
+      value: "#" & "3",
+    },
+    {
+      keyCode: 52,
+      dataOctave: "3",
+      classes: "double gdt multi",
+      value: "$" & "4",
+    },
+    {
+      keyCode: 53,
+      dataOctave: "4",
+      classes: "double gdt multi",
+      value: "%" & "5",
+    },
+    {
+      keyCode: 54,
+      dataOctave: "5",
+      classes: "double gdt multi",
+      value: "^" & "6",
+    },
+    {
+      keyCode: 55,
+      dataOctave: "6",
+      classes: "double gdt multi",
+      value: "&" & "7",
+    },
+    {
+      keyCode: 56,
+      dataOctave: "7",
+      classes: "double gdt multi",
+      value: "*" & "8",
+    },
+    {
+      keyCode: 57,
+      dataOctave: "8",
+      classes: "double gdt multi",
+      value: "(" & "9",
+    },
+    {
+      keyCode: 48,
+      dataOctave: "9",
+      classes: "double gdt multi",
+      value: ")" & "0",
+    },
     {
       keyCode: 189,
       octaveUp: true,
