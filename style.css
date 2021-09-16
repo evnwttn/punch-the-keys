@@ -33,6 +33,18 @@ html {
   margin: 0.2em;
 }
 
+#ptfk {
+  font-weight: 800;
+  font-size: 3.8em;
+  text-transform: uppercase;
+  letter-spacing: 0.5em;
+}
+
+#ptfk .word {
+  display: inline-block;
+  line-height: 1em;
+}
+
 .key-row > div[data-pressed],
 .key-row > div:active {
   color: #aaa;
