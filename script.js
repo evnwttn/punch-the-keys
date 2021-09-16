@@ -373,6 +373,7 @@ const defaultRows = [
     { keyCode: 13, classes: "word capsenter align-enter gdt", value: "ENTER" },
   ],
   [
+    /* ROW 5 */
     { keyCode: 16, classes: "word shift align-shiftl gdt", value: "SHIFT" },
     { keyCode: 90, classes: "letter gdt", value: "Z" },
     { keyCode: 88, classes: "letter gdt", value: "X" },
@@ -390,5 +391,18 @@ const defaultRows = [
       classes: "word shift align-shiftr gdt",
       value: "SHIFT",
     },
+  ],
+  [
+    /* ROW 6 */
+    { keyCode: 17, classes: "word bottomctrl gdt", value: "CTRL" },
+    { keyCode: 255, classes: "word bottom gdt", value: "FN" },
+    { keyCode: 91, classes: "word bottom gdt", value: "☆" },
+    { keyCode: 18, classes: "word bottom gdt", value: "ALT" },
+    { keyCode: 32, classes: "word space gdt", value: "" },
+    { keyCode: 18, right: true, classes: "word bottom gdt", value: "ALT" },
+    { keyCode: 17, right: true, classes: "word bottomctrl gdt", value: "CTRL" },
+    { keyCode: 37, classes: "arrow gdt", value: "&#9664;" },
+    { keyCode: 38, classes: "stack gdt", value: ["&#9650;", "&#9660;"] },
+    { keyCode: 39, classes: "arrow gdt", value: ">&#9654;" },
   ],
 ];
