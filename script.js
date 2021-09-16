@@ -4,10 +4,10 @@ anime
   .timeline({ loop: false })
   .add({
     targets: "#ptfk .word",
-    scale: [14, 1],
+    scale: [7, 1],
     opacity: [0, 1],
     easing: "easeOutCirc",
-    duration: 800,
+    duration: 1000,
     delay: (el, i) => 800 * i,
   })
   .add({
