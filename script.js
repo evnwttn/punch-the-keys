@@ -344,4 +344,32 @@ const defaultRows = [
     },
     { keyCode: 220, classes: "double gdt", value: ["|", "&#92;"] },
   ],
+  [
+    /* ROW 4 */
+    { keyCode: 20, classes: "word capsenter align-caps gdt", value: "CAPSLCK" },
+    { keyCode: 65, sound: "C", classes: "letter gdt", value: "A", multi: "C" },
+    { keyCode: 83, sound: "D", classes: "letter gdt", value: "S", multi: "D" },
+    { keyCode: 68, sound: "E", classes: "letter gdt", value: "D", multi: "E" },
+    { keyCode: 70, sound: "F", classes: "letter gdt", value: "F", multi: "F" },
+    { keyCode: 71, sound: "G", classes: "letter gdt", value: "G", multi: "G" },
+    { keyCode: 72, sound: "A", classes: "letter gdt", value: "H", multi: "A" },
+    { keyCode: 74, sound: "B", classes: "letter gdt", value: "J", multi: "B" },
+    { keyCode: 75, sound: "C", classes: "letter gdt", value: "K", multi: "C" },
+    { keyCode: 76, classes: "letter gdt", value: "L" },
+    {
+      keyCode: 186,
+      volDown: true,
+      classes: "double gdt",
+      value: [":", ";"],
+      multi: "&#9661;",
+    },
+    {
+      keyCode: 222,
+      volUp: true,
+      classes: "double gdt",
+      value: ["&#34;", "&#39;"],
+      multi: "&#9651;",
+    },
+    { keycode: 13, classes: "word capsenter align-enter gdt", value: "ENTER" },
+  ],
 ];
