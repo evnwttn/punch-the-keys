@@ -23,8 +23,11 @@ anime
 smile = document.querySelector("#readMe-icon");
 smile.addEventListener("click", function () {
   readMe = document.querySelector("#readMe-text");
-  readMe.classList.add("on");
-  console.log("did it work?");
+  if (readMe.classList.contains("on")) {
+    readMe.classList.remove("on");
+  } else {
+    readMe.classList.add("on");
+  }
 });
 
 // KEYBOARD
