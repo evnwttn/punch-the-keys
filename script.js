@@ -18,6 +18,8 @@ anime
     delay: 1000,
   });
 
+// UI
+
 // KEYBOARD
 
 document.body.addEventListener("keydown", (e) => {
