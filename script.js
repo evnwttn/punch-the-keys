@@ -22,9 +22,9 @@ anime
 
 smile = document.querySelector("#readMe-icon");
 readMe = document.querySelector("#readMe-text");
-const zzz = window.localStorage.getItem("readMe");
+const readMeStorage = window.localStorage.getItem("readMe");
 
-if ((zzz = "activate")) {
+if (readMeStorage == "activate") {
   readMe.classList.add("on");
 }
 
