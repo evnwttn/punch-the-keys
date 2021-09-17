@@ -20,6 +20,13 @@ anime
 
 // UI
 
+smile = document.querySelector("#readMe-icon");
+smile.addEventListener("click", function () {
+  readMe = document.querySelector("#readMe-text");
+  readMe.classList.add("on");
+  console.log("did it work?");
+});
+
 // KEYBOARD
 
 document.body.addEventListener("keydown", (e) => {

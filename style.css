@@ -120,7 +120,7 @@ html {
   visibility: hidden;
 }
 
-#readMe-icon:active + #readMe-text {
+#readMe-text.on {
   visibility: visible;
   position: fixed;
   background-image: linear-gradient(#a9a9a9, #0d0d0d);
