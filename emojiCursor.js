@@ -126,7 +126,7 @@ function emojiCursor(options) {
         cursor.y - lastPos.y
       );
 
-      if (distBetweenPoints > 1) {
+      if (distBetweenPoints < 1) {
         addParticle(
           cursor.x,
           cursor.y,
