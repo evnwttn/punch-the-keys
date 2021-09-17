@@ -191,7 +191,7 @@ function emojiCursor(options) {
 
   document.body.addEventListener("keydown", (e) => {
     let noteListen = getKey(e);
-    createNote(noteListen);
+    createSmile(noteListen);
   });
 
   Array.from(document.querySelectorAll(".gdt")).map((noteListen) =>
@@ -199,6 +199,16 @@ function emojiCursor(options) {
       createNote(noteListen);
     })
   );
+
+  function createSmile(elm) {
+    if (elm.hasAttribute("data-sound")) {
+      addParticle(
+        20,
+        50,
+        canvImages[Math.floor(Math.random() * possibleEmoji.length)]
+      );
+    }
+  }
 
   function createNote(elm) {
     if (elm.hasAttribute("data-sound")) {
