@@ -1,3 +1,7 @@
+// CURSOR
+
+new emojiCursor();
+
 // TITLE
 
 anime
