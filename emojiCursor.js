@@ -187,13 +187,18 @@ function emojiCursor(options) {
     };
   }
 
+  // ON CLICK PARTICLES
+
+  document.body.addEventListener("keydown", (e) => {
+    let noteListen = getKey(e);
+    createNote(noteListen);
+  });
+
   Array.from(document.querySelectorAll(".gdt")).map((noteListen) =>
     noteListen.addEventListener("click", () => {
       createNote(noteListen);
     })
   );
-
-  // ON CLICK PARTICLES
 
   function createNote(elm) {
     if (elm.hasAttribute("data-sound")) {
