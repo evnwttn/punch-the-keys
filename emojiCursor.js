@@ -60,18 +60,6 @@ function emojiCursor(options) {
     loop();
   }
 
-  // ON CLICK PARTICLES
-
-  document.addEventListener("click", (e) => {
-    console.log("yes");
-
-    addParticle(
-      cursor.x,
-      cursor.y,
-      canvImages[Math.floor(Math.random() * possibleEmoji.length)]
-    );
-  });
-
   // Bind events that are needed
   function bindEvents() {
     element.addEventListener("mousemove", onMouseMove, { passive: true });
@@ -197,6 +185,24 @@ function emojiCursor(options) {
         this.canv.height * scale
       );
     };
+  }
+
+  Array.from(document.querySelectorAll(".gdt")).map((noteListen) =>
+    noteListen.addEventListener("click", () => {
+      createNote(noteListen);
+    })
+  );
+
+  // ON CLICK PARTICLES
+
+  function createNote(elm) {
+    if (elm.hasAttribute("data-sound")) {
+      addParticle(
+        cursor.x,
+        cursor.y,
+        canvImages[Math.floor(Math.random() * possibleEmoji.length)]
+      );
+    }
   }
 
   init();

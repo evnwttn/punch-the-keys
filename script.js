@@ -1,7 +1,3 @@
-// CURSOR
-
-new emojiCursor();
-
 // TITLE
 
 anime
@@ -213,6 +209,10 @@ Array.from(document.querySelectorAll(".gdt")).map((clickKey) =>
     handleKeys(clickKey);
   })
 );
+
+// CURSOR
+
+new emojiCursor();
 
 /* --- */
 
