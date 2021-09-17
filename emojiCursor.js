@@ -60,6 +60,18 @@ function emojiCursor(options) {
     loop();
   }
 
+  // ON CLICK PARTICLES
+
+  document.addEventListener("click", (e) => {
+    console.log("yes");
+
+    addParticle(
+      cursor.x,
+      cursor.y,
+      canvImages[Math.floor(Math.random() * possibleEmoji.length)]
+    );
+  });
+
   // Bind events that are needed
   function bindEvents() {
     element.addEventListener("mousemove", onMouseMove, { passive: true });
