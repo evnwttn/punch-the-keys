@@ -21,12 +21,20 @@ anime
 // UI
 
 smile = document.querySelector("#readMe-icon");
+readMe = document.querySelector("#readMe-text");
+const zzz = window.localStorage.getItem("readMe");
+
+if ((zzz = "activate")) {
+  readMe.classList.add("on");
+}
+
 smile.addEventListener("click", function () {
-  readMe = document.querySelector("#readMe-text");
   if (readMe.classList.contains("on")) {
     readMe.classList.remove("on");
+    window.localStorage.setItem("readMe", "off");
   } else {
     readMe.classList.add("on");
+    window.localStorage.setItem("readMe", "activate");
   }
 });
 
