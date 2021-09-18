@@ -453,9 +453,13 @@ const defaultRows = [
 
 // ------- //
 
-// const altContainer = document.getElementById('alt-container');
+const altContainer = document.getElementById("alt-container");
+const altContainerII = document.getElementById("alt-container-ii");
 
-// const betterAltContainer = document.getElementById('better-alt-container');
+function addKeyboard(keyboardName, parentContainer, rows) {
+  const parentDiv = document.createElement("div");
+  parentDiv.classList.add("keys");
+}
 
 // function addKeyboard(keyboardName, parentContainer, rows) {
 //   const parentDiv = document.createElement("div");
