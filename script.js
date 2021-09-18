@@ -470,7 +470,7 @@ function addKeyboard(keyboardName, parentContainer, rows) {
 
       keyDiv.setAttribute("data-key", key.keyCode);
       key.classes.split(" ").forEach((klass) => {
-        keyDiv.classList.add(klass);
+        keyDiv.classList.add(klass); // figure out whats going on here
       });
 
       keyDiv.setAttribute("data-key", key.keyCode);
@@ -478,33 +478,33 @@ function addKeyboard(keyboardName, parentContainer, rows) {
       const keySpan = document.createElement("span");
       keySpan.innerText = key.value;
 
-      keyDiv.appendChild(keySpan);
-      rowDiv.appendChild(keyDiv);
+      keyDiv.appendChild(keySpan); // span under key
+      rowDiv.appendChild(keyDiv); // key under row
     });
 
-    parentDiv.appendChild(rowDiv);
+    parentDiv.appendChild(rowDiv); // row under parent
   });
-  // here
+
+  parentDiv.setAttribute("id", `keyboard-${keyboardName}`);
+
+  function getKey(e) {
+    let location = e.location;
+    let selector;
+    if (location === KeyboardEvent.DOM_KEY_LOCATION_RIGHT) {
+      selector = ['[data-right="true"]', '[data-key="' + e.keyCode + '"]'].join(
+        ""
+      );
+    } else {
+      let code = e.keyCode || e.which;
+      selector = [
+        '[data-key="' + code + '"]',
+        '[data-char*="' + encodeURIComponent(String.fromCharCode(code)) + '"]',
+      ].join(",");
+    }
+    return parentContainer.querySelector(selector);
+  }
+  //here
 }
-
-//   parentDiv.setAttribute("id", `keyboard-${keyboardName}`);
-
-//   function getKey(e) {
-//     let location = e.location;
-//     let selector;
-//     if (location === KeyboardEvent.DOM_KEY_LOCATION_RIGHT) {
-//       selector = ['[data-right="true"]', '[data-key="' + e.keyCode + '"]'].join(
-//         ""
-//       );
-//     } else {
-//       let code = e.keyCode || e.which;
-//       selector = [
-//         '[data-key="' + code + '"]',
-//         '[data-char*="' + encodeURIComponent(String.fromCharCode(code)) + '"]',
-//       ].join(",");
-//     }
-//     return parentContainer.querySelector(selector);
-//   }
 
 //   parentContainer.addEventListener("keydown", (e) => {
 //     console.log({ e });
