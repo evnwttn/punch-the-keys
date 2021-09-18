@@ -503,28 +503,26 @@ function addKeyboard(keyboardName, parentContainer, rows) {
     }
     return parentContainer.querySelector(selector);
   }
-  //here
+
+  parentContainer.addEventListener("keydown", (e) => {
+    console.log({ e });
+    e.preventDefault();
+    let key = getKey(e);
+    if (!key) {
+      return console.warn("No key for", e.keyCode);
+    }
+    key.setAttribute("data-pressed", "on");
+  });
+
+  parentContainer.addEventListener("keyup", (e) => {
+    e.preventDefault();
+    let key = getKey(e);
+    key && key.removeAttribute("data-pressed");
+  });
+
+  parentContainer.setAttribute("taxindex", 0);
+  parentContainer.appendChild(parentDiv);
 }
-
-//   parentContainer.addEventListener("keydown", (e) => {
-//     console.log({ e });
-//     e.preventDefault();
-//     let key = getKey(e);
-//     if (!key) {
-//       return console.warn("No key for", e.keyCode);
-//     }
-//     key.setAttribute("data-pressed", "on");
-//   });
-
-//   parentContainer.addEventListener("keyup", (e) => {
-//     e.preventDefault();
-//     let key = getKey(e);
-//     key && key.removeAttribute("data-pressed");
-//   });
-
-//   parentContainer.setAttribute("taxindex", 0);
-//   parentContainer.appendChild(parentDiv);
-// }
 
 // addKeyboard("bob", altContainer, defaultRows);
 // addKeyboard("adam", betterAltContainer, defaultRows);
