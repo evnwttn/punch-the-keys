@@ -459,37 +459,33 @@ const altContainerII = document.getElementById("alt-container-ii");
 function addKeyboard(keyboardName, parentContainer, rows) {
   const parentDiv = document.createElement("div");
   parentDiv.classList.add("keys");
+
+  rows.forEach((row, index) => {
+    const rowDiv = document.createElement("div");
+    rowDiv.classList.add("key-row");
+    rowDiv.classList.add(`row-${index + 1}`);
+
+    row.forEach((key, index) => {
+      const keyDiv = document.createElement("div");
+
+      keyDiv.setAttribute("data-key", key.keyCode);
+      key.classes.split(" ").forEach((klass) => {
+        keyDiv.classList.add(klass);
+      });
+
+      keyDiv.setAttribute("data-key", key.keyCode);
+
+      const keySpan = document.createElement("span");
+      keySpan.innerText = key.value;
+
+      keyDiv.appendChild(keySpan);
+      rowDiv.appendChild(keyDiv);
+    });
+
+    parentDiv.appendChild(rowDiv);
+  });
+  // here
 }
-
-// function addKeyboard(keyboardName, parentContainer, rows) {
-//   const parentDiv = document.createElement("div");
-//   parentDiv.classList.add("keys");
-
-//   rows.forEach((row, index) => {
-//     const rowDiv = document.createElement("div");
-//     rowDiv.classList.add("key-row");
-//     rowDiv.classList.add(`row-${index + 1}`);
-
-//     row.forEach((key, index) => {
-//       const keyDiv = document.createElement("div");
-
-//       keyDiv.setAttribute("data-key", key.keyCode);
-//       key.classes.split(" ").forEach((klass) => {
-//         keyDiv.classList.add(klass);
-//       });
-
-//       keyDiv.setAttribute("data-key", key.keyCode);
-
-//       const keySpan = document.createElement("span");
-//       keySpan.innerText = key.value;
-
-//       keyDiv.appendChild(keySpan);
-
-//       rowDiv.appendChild(keyDiv);
-//     })
-
-//     parentDiv.appendChild(rowDiv);
-//   });
 
 //   parentDiv.setAttribute("id", `keyboard-${keyboardName}`);
 
