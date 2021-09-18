@@ -214,7 +214,7 @@ Array.from(document.querySelectorAll(".gdt")).map((clickKey) =>
 
 new emojiCursor();
 
-/* --- */
+/* THE GREAT SCHISM */
 
 const defaultRows = [
   [
@@ -450,3 +450,81 @@ const defaultRows = [
     { keyCode: 39, classes: "arrow gdt", value: ">&#9654;" },
   ],
 ];
+
+// ------- //
+
+// const altContainer = document.getElementById('alt-container');
+
+// const betterAltContainer = document.getElementById('better-alt-container');
+
+// function addKeyboard(keyboardName, parentContainer, rows) {
+//   const parentDiv = document.createElement("div");
+//   parentDiv.classList.add("keys");
+
+//   rows.forEach((row, index) => {
+//     const rowDiv = document.createElement("div");
+//     rowDiv.classList.add("key-row");
+//     rowDiv.classList.add(`row-${index + 1}`);
+
+//     row.forEach((key, index) => {
+//       const keyDiv = document.createElement("div");
+
+//       keyDiv.setAttribute("data-key", key.keyCode);
+//       key.classes.split(" ").forEach((klass) => {
+//         keyDiv.classList.add(klass);
+//       });
+
+//       keyDiv.setAttribute("data-key", key.keyCode);
+
+//       const keySpan = document.createElement("span");
+//       keySpan.innerText = key.value;
+
+//       keyDiv.appendChild(keySpan);
+
+//       rowDiv.appendChild(keyDiv);
+//     })
+
+//     parentDiv.appendChild(rowDiv);
+//   });
+
+//   parentDiv.setAttribute("id", `keyboard-${keyboardName}`);
+
+//   function getKey(e) {
+//     let location = e.location;
+//     let selector;
+//     if (location === KeyboardEvent.DOM_KEY_LOCATION_RIGHT) {
+//       selector = ['[data-right="true"]', '[data-key="' + e.keyCode + '"]'].join(
+//         ""
+//       );
+//     } else {
+//       let code = e.keyCode || e.which;
+//       selector = [
+//         '[data-key="' + code + '"]',
+//         '[data-char*="' + encodeURIComponent(String.fromCharCode(code)) + '"]',
+//       ].join(",");
+//     }
+//     return parentContainer.querySelector(selector);
+//   }
+
+//   parentContainer.addEventListener("keydown", (e) => {
+//     console.log({ e });
+//     e.preventDefault();
+//     let key = getKey(e);
+//     if (!key) {
+//       return console.warn("No key for", e.keyCode);
+//     }
+//     key.setAttribute("data-pressed", "on");
+//   });
+
+//   parentContainer.addEventListener("keyup", (e) => {
+//     e.preventDefault();
+//     let key = getKey(e);
+//     key && key.removeAttribute("data-pressed");
+//   });
+
+//   parentContainer.setAttribute("taxindex", 0);
+//   parentContainer.appendChild(parentDiv);
+// }
+
+// addKeyboard("bob", altContainer, defaultRows);
+// addKeyboard("adam", betterAltContainer, defaultRows);
