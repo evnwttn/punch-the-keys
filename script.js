@@ -525,6 +525,18 @@ function addKeyboard(keyboardName, parentContainer, rows) {
 }
 
 // addKeyboard("bob", altContainer, defaultRows);
-// addKeyboard("adam", betterAltContainer, defaultRows);
 
-console.log(defaultRows[1][1].classes);
+// for (let i = 0; i < defaultRows.length; i++) {
+//   if (mapRow.hasAttribute("classes") == true) {
+//     console.log("kllllyes");
+//   }
+// }
+
+// console.log(defaultRows[1][1].classes);
+
+for (let i = 0; i < defaultRows.length; i++) {
+  let array1 = defaultRows[i];
+  array1.forEach((element) => console.log(element));
+}
+
+// defaultRows.forEach((element) => console.log(element));
