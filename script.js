@@ -526,3 +526,5 @@ function addKeyboard(keyboardName, parentContainer, rows) {
 
 // addKeyboard("bob", altContainer, defaultRows);
 // addKeyboard("adam", betterAltContainer, defaultRows);
+
+console.log(defaultRows[1][1].classes);
