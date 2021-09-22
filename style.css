@@ -6,7 +6,12 @@ html {
   margin: 0;
   background-repeat: no-repeat;
   background-attachment: fixed;
-  overflow: hidden;
+}
+
+#add-keyboard {
+  padding: 1rem;
+  font-size: 1.4rem;
+  float: right;
 }
 
 #container {

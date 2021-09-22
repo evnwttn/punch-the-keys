@@ -242,86 +242,98 @@ const defaultRows = [
     {
       keyCode: 49,
       octave: "0",
-      classes: "double gdt multi",
+      classes: "double gdt",
       value: ["!", "1"],
       multi: "0",
+      multiClasses: ["multi"],
     },
     {
       keyCode: 50,
       octave: "1",
-      classes: "double gdt multi",
+      classes: "double gdt",
       value: ["@", "2"],
       multi: "1",
+      multiClasses: ["multi"],
     },
     {
       keyCode: 51,
       octave: "2",
-      classes: "double gdt multi",
+      classes: "double gdt",
       value: ["#", "3"],
       multi: "2",
+      multiClasses: ["multi"],
     },
     {
       keyCode: 52,
       octave: "3",
-      classes: "double gdt multi",
+      classes: "double gdt",
       value: ["$", "4"],
       multi: "3",
+      multiClasses: ["multi"],
     },
     {
       keyCode: 53,
       octave: "4",
-      classes: "double gdt multi",
+      classes: "double gdt",
       value: ["%", "5"],
       multi: "4",
+      multiClasses: ["multi"],
     },
     {
       keyCode: 54,
       octave: "5",
-      classes: "double gdt multi",
+      classes: "double gdt",
       value: ["^", "6"],
       multi: "5",
+      multiClasses: ["multi"],
     },
     {
       keyCode: 55,
       octave: "6",
-      classes: "double gdt multi",
+      classes: "double gdt",
       value: ["&", "7"],
       multi: "6",
+      multiClasses: ["multi"],
     },
     {
       keyCode: 56,
       octave: "7",
-      classes: "double gdt multi",
+      classes: "double gdt",
       value: ["*", "8"],
       multi: "7",
+      multiClasses: ["multi"],
     },
     {
       keyCode: 57,
       octave: "8",
-      classes: "double gdt multi",
+      classes: "double gdt",
       value: ["(", "9"],
       multi: "8",
+      multiClasses: ["multi"],
     },
     {
       keyCode: 48,
       octave: "9",
-      classes: "double gdt multi",
+      classes: "double gdt",
       value: [")", "0"],
       multi: "9",
+      multiClasses: ["multi"],
     },
     {
       keyCode: 189,
       octaveDown: true,
-      classes: "double gdt multi",
+      classes: "double gdt",
       value: ["_", "-"],
       multi: "&#10688;",
+      multiClasses: ["multi"],
     },
     {
       keyCode: 187,
       octaveUp: true,
-      classes: "double gdt multi",
+      classes: "double gdt",
       value: ["+", "="],
       multi: "&#10689;",
+      multiClasses: ["multi"],
     },
     {
       keyCode: 8,
@@ -336,38 +348,43 @@ const defaultRows = [
     {
       keyCode: 87,
       sound: "C#",
-      classes: "letter gdt multi-sharps",
+      classes: "letter gdt",
       value: "W",
       multi: "C#",
+      multiClasses: ["multi-sharps"],
     },
     {
       keyCode: 69,
       sound: "D#",
-      classes: "letter gdt multi-sharps",
+      classes: "letter gdt",
       value: "E",
       multi: "D#",
+      multiClasses: ["multi-sharps"],
     },
     { keyCode: 82, classes: "letter gdt", value: "R" },
     {
       keyCode: 84,
       sound: "F#",
-      classes: "letter gdt multi-sharps",
+      classes: "letter gdt",
       value: "T",
       multi: "F#",
+      multiClasses: ["multi-sharps"],
     },
     {
       keyCode: 89,
       sound: "G#",
-      classes: "letter gdt multi-sharps",
+      classes: "letter gdt",
       value: "Y",
       multi: "G#",
+      multiClasses: ["multi-sharps"],
     },
     {
       keyCode: 85,
       sound: "A#",
-      classes: "letter gdt multi-sharps",
+      classes: "letter gdt",
       value: "U",
       multi: "A#",
+      multiClasses: ["multi-sharps"],
     },
     { keyCode: 73, classes: "letter gdt", value: "I" },
     { keyCode: 79, classes: "letter gdt", value: "O" },
@@ -375,16 +392,18 @@ const defaultRows = [
     {
       keyCode: 219,
       oscDown: true,
-      classes: "double gdt multi",
+      classes: "double gdt",
       value: ["{", "["],
       multi: "&#8818;",
+      multiClasses: ["multi-sharps"],
     },
     {
       keyCode: 221,
       oscUp: true,
-      classes: "double gdt multi",
+      classes: "double gdt",
       value: ["}", "]"],
       multi: "&#8819;",
+      multiClasses: ["multi-sharps"],
     },
     { keyCode: 220, classes: "double gdt", value: ["|", "&#92;"] },
   ],
@@ -447,7 +466,7 @@ const defaultRows = [
     { keyCode: 17, right: true, classes: "word bottomctrl gdt", value: "CTRL" },
     { keyCode: 37, classes: "arrow gdt", value: "&#9664;" },
     { keyCode: 38, classes: "stack gdt", value: ["&#9650;", "&#9660;"] },
-    { keyCode: 39, classes: "arrow gdt", value: ">&#9654;" },
+    { keyCode: 39, classes: "arrow gdt", value: "&#9654;" },
   ],
 ];
 
@@ -470,13 +489,34 @@ function addKeyboard(keyboardName, parentContainer, rows) {
 
       keyDiv.setAttribute("data-key", key.keyCode);
       key.classes.split(" ").forEach((klass) => {
-        keyDiv.classList.add(klass); // figure out whats going on here
+        keyDiv.classList.add(klass);
       });
 
       keyDiv.setAttribute("data-key", key.keyCode);
 
       const keySpan = document.createElement("span");
-      keySpan.innerText = key.value;
+
+      /*
+      this is incorrect, should be creating a new div, and appending it as a child
+      to the keyDiv, and _then_ applying the multiClasses to the div that you create
+      if (row.multiClasses !== undefined) {
+        key.multiClasses.forEach((klass) => {
+          keySpan.classList.add(klass);
+        });
+      }
+      */
+
+      if (typeof key.value === 'string') {
+        keySpan.innerHTML = key.value;
+      } else if (Array.isArray(key.value)) {
+        key.value.forEach((value) => {
+          const valueDiv = document.createElement("div");
+          valueDiv.innerHTML = value;
+          keySpan.appendChild(valueDiv);
+        });
+      } else {
+        throw new Error(`unknown key.value!: ${key.value}`);
+      }
 
       keyDiv.appendChild(keySpan); // span under key
       rowDiv.appendChild(keyDiv); // key under row
@@ -524,11 +564,15 @@ function addKeyboard(keyboardName, parentContainer, rows) {
   parentContainer.appendChild(parentDiv);
 }
 
-// addKeyboard("bob", altContainer, defaultRows);
-
 for (let i = 0; i < defaultRows.length; i++) {
   let array1 = defaultRows[i];
   array1.forEach(function (element) {
     console.log(`keyCode:${element.keyCode} + classes:${element.classes}`);
   });
 }
+
+addKeyboard("bob", altContainer, defaultRows);
+
+document.getElementById('add-keyboard').onclick = (event) => {
+  addKeyboard("bob", altContainer, defaultRows);
+};

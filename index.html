@@ -12,8 +12,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
     <script src="emojiCursor.js"></script>
 
-
-
 </head>
 
 <body>
@@ -35,122 +33,119 @@
         <div id="ui-Oct">[O4]</div>
     </div>
 
-    <div id="alt-container"></div>
+    <div id="alt-container">
 
-    <div id="alt-container-ii"></div-id>
+    </div>
+
+    <div id="alt-container-ii">
+
+    </div>
 
     <div id="container">
+        <div class="keys">
+            <div class="key-row row-1"> <!-- ROW 1 -->
+                <div data-key="27" class="word-top align-esc gdt"><span>ESC</span></div>
+                <div data-key="112" class="func gdt"><span>F1</span></div>
+                <div data-key="113" class="func gdt"><span>F2</span></div>
+                <div data-key="114" class="func gdt"><span>F3</span></div>
+                <div data-key="115" class="func gdt"><span>F4</span></div>
+                <div data-key="116" class="func gdt"><span>F5</span></div>
+                <div data-key="117" class="func gdt"><span>F6</span></div>
+                <div data-key="118" class="func gdt"><span>F7</span></div>
+                <div data-key="119" class="func gdt"><span>F8</span></div>
+                <div data-key="120" class="func gdt"><span>F9</span></div>
+                <div data-key="121" class="func gdt"><span>F10</span></div>
+                <div data-key="122" class="func gdt"><span>F11</span></div>
+                <div data-key="123" class="func gdt"><span>F12</span></div>
+                <div data-key="45" class="word-top gdt"><span>INSERT</span></div>
+                <div data-key="44" class="word-top gdt"><span>PRTSC</span></div>
+                <div data-key="46" class="word-top gdt"><span>DELETE</span></div>
+            </div>
+            <div class="key-row row-2"> <!-- ROW 2 -->
+                <div data-key="192" class="double gdt"><div>~</div><div>`</div></div>
+                <div data-key="49" data-octave="0" class="double gdt"><div class="multi">0</div><div>!</div><div>1</div></div>
+                <div data-key="50" data-octave="1" class="double gdt"><div class="multi">1</div><div>@</div><div>2</div></div>
+                <div data-key="51" data-octave="2" class="double gdt"><div class="multi">2</div><div>#</div><div>3</div></div>
+                <div data-key="52" data-octave="3" class="double gdt"><div class="multi">3</div><div>$</div><div>4</div></div>
+                <div data-key="53" data-octave="4" class="double gdt"><div class="multi">4</div><div>%</div><div>5</div></div>
+                <div data-key="54" data-octave="5" class="double gdt"><div class="multi">5</div><div>^</div><div>6</div></div>
+                <div data-key="55" data-octave="6" class="double gdt"><div class="multi">6</div><div>&</div><div>7</div></div>
+                <div data-key="56" data-octave="7" class="double gdt"><div class="multi">7</div><div>*</div><div>8</div></div>
+                <div data-key="57" data-octave="8" class="double gdt"><div class="multi">8</div><div>(</div><div>9</div></div>
+                <div data-key="48" data-octave="9" class="double gdt"><div class="multi">9</div><div>)</div><div>0</div></div>
+                <div data-key="189" data-octaveDown="true" class="double gdt"><div class="multi">&#10688;</div><div>__</div><div>-</div></div>
+                <div data-key="187" data-octaveUp="true" class="double gdt"><div class="multi">&#10689;</div><div>+</div><div>=</div></div>
+                <div data-key="8" class="word backspacetab align-backspace gdt"><span>&#8592;</span></div>
+            </div>
 
-    <div class="keys">
+            <div class="key-row row-3"> <!-- ROW 3 -->
+                <div data-key="9" class="word backspacetab align-tab gdt"><span>TAB</span></div>
+                <div class="letter gdt" data-char="Q">Q</div>
+                <div class="letter gdt" data-sound="C#" data-char="W"><div class="multi-sharps">C#</div>W</div>
+                <div class="letter gdt" data-sound="D#" data-char="E"><div class="multi-sharps">D#</div>E</div>
+                <div class="letter gdt" data-char="R">R</div>
+                <div class="letter gdt" data-sound="F#" data-char="T"><div class="multi-sharps">F#</div>T</div>
+                <div class="letter gdt" data-sound="G#" data-char="Y"><div class="multi-sharps">G#</div>Y</div>
+                <div class="letter gdt" data-sound="A#" data-char="U"><div class="multi-sharps">A#</div>U</div>
+                <div class="letter gdt" data-char="I">I</div>
+                <div class="letter gdt" data-char="O">O</div>
+                <div class="letter gdt" data-char="P">P</div>
+                <div data-key="219" data-oscDown="true" class="double gdt"><div class="multi">&#8818;</div><div>{</div><div>[</div></div>
+                <div data-key="221" data-oscUp="true" class="double gdt"><div class="multi">&#8819;</div><div>}</div><div>]</div></div>
+                <div data-key="220" class="double gdt"><div>|</div><div>\</div></div>
+            </div>
+            <div class="key-row row-4"> <!-- ROW 4 -->
+                <div data-key="20" class="word capsenter align-caps gdt"><span>CAPSLK</span></div>
+                <div class="letter gdt" data-sound="C" data-char="A"><div class="multi">C</div>A</div>
+                <div class="letter gdt" data-sound="D" data-char="S"><div class="multi">D</div>S</div>
+                <div class="letter gdt" data-sound="E" data-char="D"><div class="multi">E</div>D</div>
+                <div class="letter gdt" data-sound="F" data-char="F"><div class="multi">F</div>F</div>
+                <div class="letter gdt" data-sound="G" data-char="G"><div class="multi">G</div>G</div>
+                <div class="letter gdt" data-sound="A" data-char="H"><div class="multi">A</div>H</div>
+                <div class="letter gdt" data-sound="B" data-char="J"><div class="multi">B</div>J</div>
+                <div class="letter gdt" data-sound="C" data-char="K"><div class="multi">C</div>K</div>
+                <div class="letter gdt" data-char="L">L</div>
+                <div data-key="186" data-volDown="true" class="double gdt"><div class="multi">&#9661;</div><div>:</div><div>;</div></div>
+                <div data-key="222" data-volUp="true" class="double gdt"><div class="multi">&#9651;</div><div>"</div><div>'</div></div>
+                <div data-key="13" class="word capsenter align-enter gdt"><span>ENTER</span></div>
+            </div>
+            <div class="key-row row-5"> <!-- ROW 5 -->
+                <div data-key="16" class="word shift align-shiftl gdt"><span>SHIFT</span></div>
+                <div class="letter gdt" data-char="Z">Z</div>
+                <div class="letter gdt" data-char="X">X</div>
+                <div class="letter gdt" data-char="C">C</div>
+                <div class="letter gdt" data-char="V">V</div>
+                <div class="letter gdt" data-char="B">B</div>
+                <div class="letter gdt" data-char="N">N</div>
+                <div class="letter gdt" data-char="M">M</div>
+                <div data-key="188" class="double gdt"><div>&#60;</div><div>,</div></div>
+                <div data-key="190" class="double gdt"><div>&#62;</div><div>.</div></div>
+                <div data-key="191" class="double gdt"><div>?</div><div>/</div></div>
+                <div data-key="16" data-right="true" class="word shift align-shiftr gdt"><span>SHIFT</span></div>
+            </div>
+            <div class="key-row row-6"> <!-- ROW 6 -->
+                <div data-key="17" class="word bottomctrl gdt"><span>CTRL</span></div>
+                <div data-key="255" class="word bottom gdt"><span>FN</span></div>
+                <div data-key="91" class="word bottom gdt"><span>☆</span></div>
+                <div data-key="18" class="word bottom gdt"><span>ALT</span></div>
+                <div data-key="32" class="word space gdt"><span></span></div>
+                <div data-key="18" data-right="true" class="word bottom gdt"><span>ALT</span></div>
+                <div data-key="17" data-right="true" class="word bottom gdt"><span>CTRL</span></div>
+                <div data-key="37" class="arrow gdt"><span>&#9664;</span></div>
+                <div data-key="38" class="stack gdt"><div>&#9650;</div><div>&#9660;</div></div>
+                <div data-key="39" class="arrow gdt"><span>&#9654;</span></div>
+            </div>
+        </div>
         
-        <div class="key-row row-1"> <!-- ROW 1 -->
-            <div data-key="27" class="word-top align-esc gdt"><span>ESC</span></div>
-            <div data-key="112" class="func gdt"><span>F1</span></div>
-            <div data-key="113" class="func gdt"><span>F2</span></div>
-            <div data-key="114" class="func gdt"><span>F3</span></div>
-            <div data-key="115" class="func gdt"><span>F4</span></div>
-            <div data-key="116" class="func gdt"><span>F5</span></div>
-            <div data-key="117" class="func gdt"><span>F6</span></div>
-            <div data-key="118" class="func gdt"><span>F7</span></div>
-            <div data-key="119" class="func gdt"><span>F8</span></div>
-            <div data-key="120" class="func gdt"><span>F9</span></div>
-            <div data-key="121" class="func gdt"><span>F10</span></div>
-            <div data-key="122" class="func gdt"><span>F11</span></div>
-            <div data-key="123" class="func gdt"><span>F12</span></div>
-            <div data-key="45" class="word-top gdt"><span>INSERT</span></div>
-            <div data-key="44" class="word-top gdt"><span>PRTSC</span></div>
-            <div data-key="46" class="word-top gdt"><span>DELETE</span></div>
-        </div>
-        <div class="key-row row-2"> <!-- ROW 2 -->
-            <div data-key="192" class="double gdt"><div>~</div><div>`</div></div>
-            <div data-key="49" data-octave="0" class="double gdt"><div class="multi">0</div><div>!</div><div>1</div></div>
-            <div data-key="50" data-octave="1" class="double gdt"><div class="multi">1</div><div>@</div><div>2</div></div>
-            <div data-key="51" data-octave="2" class="double gdt"><div class="multi">2</div><div>#</div><div>3</div></div>
-            <div data-key="52" data-octave="3" class="double gdt"><div class="multi">3</div><div>$</div><div>4</div></div>
-            <div data-key="53" data-octave="4" class="double gdt"><div class="multi">4</div><div>%</div><div>5</div></div>
-            <div data-key="54" data-octave="5" class="double gdt"><div class="multi">5</div><div>^</div><div>6</div></div>
-            <div data-key="55" data-octave="6" class="double gdt"><div class="multi">6</div><div>&</div><div>7</div></div>
-            <div data-key="56" data-octave="7" class="double gdt"><div class="multi">7</div><div>*</div><div>8</div></div>
-            <div data-key="57" data-octave="8" class="double gdt"><div class="multi">8</div><div>(</div><div>9</div></div>
-            <div data-key="48" data-octave="9" class="double gdt"><div class="multi">9</div><div>)</div><div>0</div></div>
-            <div data-key="189" data-octaveDown="true" class="double gdt"><div class="multi">&#10688;</div><div>__</div><div>-</div></div>
-            <div data-key="187" data-octaveUp="true" class="double gdt"><div class="multi">&#10689;</div><div>+</div><div>=</div></div>
-            <div data-key="8" class="word backspacetab align-backspace gdt"><span>&#8592;</span></div>
-        </div>
-
-        <div class="key-row row-3"> <!-- ROW 3 -->
-            <div data-key="9" class="word backspacetab align-tab gdt"><span>TAB</span></div>
-            <div class="letter gdt" data-char="Q">Q</div>
-            <div class="letter gdt" data-sound="C#" data-char="W"><div class="multi-sharps">C#</div>W</div>
-            <div class="letter gdt" data-sound="D#" data-char="E"><div class="multi-sharps">D#</div>E</div>
-            <div class="letter gdt" data-char="R">R</div>
-            <div class="letter gdt" data-sound="F#" data-char="T"><div class="multi-sharps">F#</div>T</div>
-            <div class="letter gdt" data-sound="G#" data-char="Y"><div class="multi-sharps">G#</div>Y</div>
-            <div class="letter gdt" data-sound="A#" data-char="U"><div class="multi-sharps">A#</div>U</div>
-            <div class="letter gdt" data-char="I">I</div>
-            <div class="letter gdt" data-char="O">O</div>
-            <div class="letter gdt" data-char="P">P</div>
-            <div data-key="219" data-oscDown="true" class="double gdt"><div class="multi">&#8818;</div><div>{</div><div>[</div></div>
-            <div data-key="221" data-oscUp="true" class="double gdt"><div class="multi">&#8819;</div><div>}</div><div>]</div></div>
-            <div data-key="220" class="double gdt"><div>|</div><div>\</div></div>
-        </div>
-        <div class="key-row row-4"> <!-- ROW 4 -->
-            <div data-key="20" class="word capsenter align-caps gdt"><span>CAPSLK</span></div>
-            <div class="letter gdt" data-sound="C" data-char="A"><div class="multi">C</div>A</div>
-            <div class="letter gdt" data-sound="D" data-char="S"><div class="multi">D</div>S</div>
-            <div class="letter gdt" data-sound="E" data-char="D"><div class="multi">E</div>D</div>
-            <div class="letter gdt" data-sound="F" data-char="F"><div class="multi">F</div>F</div>
-            <div class="letter gdt" data-sound="G" data-char="G"><div class="multi">G</div>G</div>
-            <div class="letter gdt" data-sound="A" data-char="H"><div class="multi">A</div>H</div>
-            <div class="letter gdt" data-sound="B" data-char="J"><div class="multi">B</div>J</div>
-            <div class="letter gdt" data-sound="C" data-char="K"><div class="multi">C</div>K</div>
-            <div class="letter gdt" data-char="L">L</div>
-            <div data-key="186" data-volDown="true" class="double gdt"><div class="multi">&#9661;</div><div>:</div><div>;</div></div>
-            <div data-key="222" data-volUp="true" class="double gdt"><div class="multi">&#9651;</div><div>"</div><div>'</div></div>
-            <div data-key="13" class="word capsenter align-enter gdt"><span>ENTER</span></div>
-        </div>
-        <div class="key-row row-5"> <!-- ROW 5 -->
-            <div data-key="16" class="word shift align-shiftl gdt"><span>SHIFT</span></div>
-            <div class="letter gdt" data-char="Z">Z</div>
-            <div class="letter gdt" data-char="X">X</div>
-            <div class="letter gdt" data-char="C">C</div>
-            <div class="letter gdt" data-char="V">V</div>
-            <div class="letter gdt" data-char="B">B</div>
-            <div class="letter gdt" data-char="N">N</div>
-            <div class="letter gdt" data-char="M">M</div>
-            <div data-key="188" class="double gdt"><div>&#60;</div><div>,</div></div>
-            <div data-key="190" class="double gdt"><div>&#62;</div><div>.</div></div>
-            <div data-key="191" class="double gdt"><div>?</div><div>/</div></div>
-            <div data-key="16" data-right="true" class="word shift align-shiftr gdt"><span>SHIFT</span></div>
-        </div>
-        <div class="key-row row-6"> <!-- ROW 6 -->
-            <div data-key="17" class="word bottomctrl gdt"><span>CTRL</span></div>
-            <div data-key="255" class="word bottom gdt"><span>FN</span></div>
-            <div data-key="91" class="word bottom gdt"><span>☆</span></div>
-            <div data-key="18" class="word bottom gdt"><span>ALT</span></div>
-            <div data-key="32" class="word space gdt"><span></span></div>
-            <div data-key="18" data-right="true" class="word bottom gdt"><span>ALT</span></div>
-            <div data-key="17" data-right="true" class="word bottom gdt"><span>CTRL</span></div>
-            <div data-key="37" class="arrow gdt"><span>&#9664;</span></div>
-            <div data-key="38" class="stack gdt"><div>&#9650;</div><div>&#9660;</div></div>
-            <div data-key="39" class="arrow gdt"><span>&#9654;</span></div>
-        </div>
-    
-        
+        <!-- <div id="ptfk">
+            <span class="word"><div id="punch">PUNCH</div></span>
+            <span class="word"><div id="the">THE</div></span>
+            <span class="word"><div id="keys">KEYS</div></span>
+        </div> -->
     </div>
-    
-    <!-- <div id="ptfk">
-        <span class="word"><div id="punch">PUNCH</div></span>
-        <span class="word"><div id="the">THE</div></span>
-        <span class="word"><div id="keys">KEYS</div></span>
-    </div> -->
 
-
-        </div>
-
+    <button id="add-keyboard">Add Keyboard</button>
 
     <script src="script.js"></script>
-
 </body>
-
 </html>
