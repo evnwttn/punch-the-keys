@@ -499,6 +499,7 @@ function addKeyboard(keyboardName, parentContainer, rows) {
       /*
       this is incorrect, should be creating a new div, and appending it as a child
       to the keyDiv, and _then_ applying the multiClasses to the div that you create
+      
       if (row.multiClasses !== undefined) {
         key.multiClasses.forEach((klass) => {
           keySpan.classList.add(klass);
@@ -506,7 +507,7 @@ function addKeyboard(keyboardName, parentContainer, rows) {
       }
       */
 
-      if (typeof key.value === 'string') {
+      if (typeof key.value === "string") {
         keySpan.innerHTML = key.value;
       } else if (Array.isArray(key.value)) {
         key.value.forEach((value) => {
@@ -520,6 +521,15 @@ function addKeyboard(keyboardName, parentContainer, rows) {
 
       keyDiv.appendChild(keySpan); // span under key
       rowDiv.appendChild(keyDiv); // key under row
+    });
+
+    row.forEach((key, index) => {
+      if (row.multiClasses !== undefined) {
+        const multiX = document.createElement("div");
+        multiX.classList.add("multi");
+        keyDiv.appendChild(multiX);
+      }
+      console.log(key.multiClasses);
     });
 
     parentDiv.appendChild(rowDiv); // row under parent
@@ -564,15 +574,15 @@ function addKeyboard(keyboardName, parentContainer, rows) {
   parentContainer.appendChild(parentDiv);
 }
 
-for (let i = 0; i < defaultRows.length; i++) {
-  let array1 = defaultRows[i];
-  array1.forEach(function (element) {
-    console.log(`keyCode:${element.keyCode} + classes:${element.classes}`);
-  });
-}
+// for (let i = 0; i < defaultRows.length; i++) {
+//   let array1 = defaultRows[i];
+//   array1.forEach(function (element) {
+//     console.log(`keyCode:${element.keyCode} + classes:${element.classes}`);
+//   });
+// }
 
 addKeyboard("bob", altContainer, defaultRows);
 
-document.getElementById('add-keyboard').onclick = (event) => {
+document.getElementById("add-keyboard").onclick = (event) => {
   addKeyboard("bob", altContainer, defaultRows);
 };
