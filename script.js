@@ -496,6 +496,16 @@ function addKeyboard(keyboardName, parentContainer, rows) {
 
       const keySpan = document.createElement("span");
 
+      if (key.multiClasses !== undefined) {
+        const multiX = document.createElement("div");
+        keyDiv.appendChild(multiX);
+        key.multiClasses.forEach((klass) => {
+          multiX.classList.add(klass);
+        });
+        multiX.innerHTML = `${key.multi}`;
+        console.log(key.multiClasses);
+      }
+
       /*
       this is incorrect, should be creating a new div, and appending it as a child
       to the keyDiv, and _then_ applying the multiClasses to the div that you create
@@ -521,13 +531,6 @@ function addKeyboard(keyboardName, parentContainer, rows) {
 
       keyDiv.appendChild(keySpan); // span under key
       rowDiv.appendChild(keyDiv); // key under row
-    });
-
-    row.forEach((key, index) => {
-      if (key.multiClasses !== undefined) {
-        const multiX = document.createElement("div");
-        console.log(key.multiClasses);
-      }
     });
 
     parentDiv.appendChild(rowDiv); // row under parent
