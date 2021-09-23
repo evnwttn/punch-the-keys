@@ -524,12 +524,10 @@ function addKeyboard(keyboardName, parentContainer, rows) {
     });
 
     row.forEach((key, index) => {
-      if (row.multiClasses !== undefined) {
+      if (key.multiClasses !== undefined) {
         const multiX = document.createElement("div");
-        multiX.classList.add("multi");
-        keyDiv.appendChild(multiX);
+        console.log(key.multiClasses);
       }
-      console.log(key.multiClasses);
     });
 
     parentDiv.appendChild(rowDiv); // row under parent
