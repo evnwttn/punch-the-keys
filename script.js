@@ -410,14 +410,70 @@ const defaultRows = [
   [
     /* ROW 4 */
     { keyCode: 20, classes: "word capsenter align-caps gdt", value: "CAPSLCK" },
-    { keyCode: 65, sound: "C", classes: "letter gdt", value: "A", multi: "C" },
-    { keyCode: 83, sound: "D", classes: "letter gdt", value: "S", multi: "D" },
-    { keyCode: 68, sound: "E", classes: "letter gdt", value: "D", multi: "E" },
-    { keyCode: 70, sound: "F", classes: "letter gdt", value: "F", multi: "F" },
-    { keyCode: 71, sound: "G", classes: "letter gdt", value: "G", multi: "G" },
-    { keyCode: 72, sound: "A", classes: "letter gdt", value: "H", multi: "A" },
-    { keyCode: 74, sound: "B", classes: "letter gdt", value: "J", multi: "B" },
-    { keyCode: 75, sound: "C", classes: "letter gdt", value: "K", multi: "C" },
+    {
+      keyCode: 65,
+      sound: "C",
+      classes: "letter gdt",
+      value: "A",
+      multi: "C",
+      multiClasses: ["multi"],
+    },
+    {
+      keyCode: 83,
+      sound: "D",
+      classes: "letter gdt",
+      value: "S",
+      multi: "D",
+      multiClasses: ["multi"],
+    },
+    {
+      keyCode: 68,
+      sound: "E",
+      classes: "letter gdt",
+      value: "D",
+      multi: "E",
+      multiClasses: ["multi"],
+    },
+    {
+      keyCode: 70,
+      sound: "F",
+      classes: "letter gdt",
+      value: "F",
+      multi: "F",
+      multiClasses: ["multi"],
+    },
+    {
+      keyCode: 71,
+      sound: "G",
+      classes: "letter gdt",
+      value: "G",
+      multi: "G",
+      multiClasses: ["multi"],
+    },
+    {
+      keyCode: 72,
+      sound: "A",
+      classes: "letter gdt",
+      value: "H",
+      multi: "A",
+      multiClasses: ["multi"],
+    },
+    {
+      keyCode: 74,
+      sound: "B",
+      classes: "letter gdt",
+      value: "J",
+      multi: "B",
+      multiClasses: ["multi"],
+    },
+    {
+      keyCode: 75,
+      sound: "C",
+      classes: "letter gdt",
+      value: "K",
+      multi: "C",
+      multiClasses: ["multi"],
+    },
     { keyCode: 76, classes: "letter gdt", value: "L" },
     {
       keyCode: 186,
@@ -425,6 +481,7 @@ const defaultRows = [
       classes: "double gdt",
       value: [":", ";"],
       multi: "&#9661;",
+      multiClasses: ["multi"],
     },
     {
       keyCode: 222,
@@ -432,6 +489,7 @@ const defaultRows = [
       classes: "double gdt",
       value: ["&#34;", "&#39;"],
       multi: "&#9651;",
+      multiClasses: ["multi"],
     },
     { keyCode: 13, classes: "word capsenter align-enter gdt", value: "ENTER" },
   ],
@@ -498,11 +556,12 @@ function addKeyboard(keyboardName, parentContainer, rows) {
 
       if (key.multiClasses !== undefined) {
         const multiX = document.createElement("div");
+        multiZ = key.sound || key.octave || key.multi;
         keyDiv.appendChild(multiX);
         key.multiClasses.forEach((klass) => {
           multiX.classList.add(klass);
         });
-        multiX.innerHTML = `${key.multi}`;
+        multiX.innerHTML = `${multiZ}`;
         console.log(key.multiClasses);
       }
 
