@@ -565,16 +565,11 @@ function addKeyboard(keyboardName, parentContainer, rows) {
         console.log(key.multiClasses);
       }
 
-      /*
-      this is incorrect, should be creating a new div, and appending it as a child
-      to the keyDiv, and _then_ applying the multiClasses to the div that you create
-      
-      if (row.multiClasses !== undefined) {
-        key.multiClasses.forEach((klass) => {
-          keySpan.classList.add(klass);
-        });
-      }
-      */
+      // tomorrow -> double check / clean up multi/multi sharps.
+      // make sure correct styles are used for each multi
+      // troubleshoot bottom row spacing issues
+      // make sure js is exact replica physically
+      // begin bringing sound functionality over
 
       if (typeof key.value === "string") {
         keySpan.innerHTML = key.value;
