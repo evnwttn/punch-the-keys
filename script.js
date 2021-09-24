@@ -250,6 +250,7 @@ const defaultRows = [
       classes: "double gdt",
       value: ["!", "1"],
       multi: "0",
+      octave: "0",
       multiClasses: ["multi"],
     },
     {
@@ -556,6 +557,7 @@ function addKeyboard(keyboardName, parentContainer, rows) {
       keyDiv.setAttribute("value", key.value);
       keyDiv.setAttribute("multi", key.multi);
       keyDiv.setAttribute("multiClasses", key.multiClasses);
+      keyDiv.setAttribute("octave", key.octave);
       keyDiv.setAttribute("octaveUp", key.octaveUp);
       keyDiv.setAttribute("octaveDown", key.octaveDown);
       keyDiv.setAttribute("oscUp", key.oscUp);
@@ -713,6 +715,8 @@ function addKeyboard(keyboardName, parentContainer, rows) {
       if (octave >= 1) {
         octave--;
       }
+    } else if (elm.getAttribute("octave") !== "undefined") {
+      octave = elm.getAttribute("octave");
     }
     uiOct.innerHTML = `[0${octave}]`;
   }
@@ -724,24 +728,17 @@ function addKeyboard(keyboardName, parentContainer, rows) {
 
   // KEY FUNCTION
 
-  // function handleKeys(elm) {
-  //   if (elm.hasAttribute("sound")) {
-  //     console.log("yeah");
-  //     let note = elm.getAttribute("sound");
-  //     synth.triggerAttackRelease(`${note}${octave}`, "4n");
-  //   }
-  // }
+  parentContainer.addEventListener("keydown", (e) => {
+    let key = getKey(e);
+    handleKeys(key);
+  });
 
-  // parentContainer.addEventListener("keydown", (e) => {
-  //   let typeKey = getKey(e);
-  //   handleKeys(typeKey);
-  // });
-
-  // Array.from(parentContainer.querySelectorAll(".gdt")).map((clickKey) =>
-  //   clickKey.addEventListener("click", () => {
-  //     handleKeys(clickKey);
-  //   })
-  // );
+  function handleKeys(elm) {
+    if (elm.getAttribute("sound") !== "undefined") {
+      let note = elm.getAttribute("sound");
+      synth.triggerAttackRelease(`${note}${octave}`, "4n");
+    }
+  }
 
   // KEYBOARD
 
