@@ -200,10 +200,11 @@ html {
 
 .stack {
   padding-top: 0.2em;
+  width: 4em;
 }
 
 .bottomctrl {
-  width: 6.2em;
+  width: 4em;
   padding-right: 2.8em;
   padding-top: 0.8em;
 }
@@ -251,6 +252,7 @@ html {
 
 .arrow {
   padding-top: 0.8em;
+  width: 4em;
 }
 
 .func {
