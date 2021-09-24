@@ -552,6 +552,7 @@ function addKeyboard(keyboardName, parentContainer, rows) {
 
       keyDiv.setAttribute("data-key", key.keyCode);
       keyDiv.setAttribute("classes", key.classes);
+      keyDiv.setAttribute("sound", key.sound);
       keyDiv.setAttribute("value", key.value);
       keyDiv.setAttribute("multi", key.multi);
       keyDiv.setAttribute("multiClasses", key.multiClasses);
@@ -656,12 +657,12 @@ function addKeyboard(keyboardName, parentContainer, rows) {
   // }
 
   // function toggleSynth(elm) {
-  //   if (elm.hasAttribute("data-oscUp")) {
+  //   if (elm.hasAttribute("octaveUp")) {
   //     if (oscNum <= oscType.length - 2) {
   //       oscNum++;
   //       synth = makeSynth(oscType[oscNum]);
   //     }
-  //   } else if (elm.hasAttribute("data-oscDown")) {
+  //   } else if (elm.hasAttribute("octaveDown")) {
   //     if (oscNum >= 1) {
   //       oscNum--;
   //       synth = makeSynth(oscType[oscNum]);
@@ -672,16 +673,10 @@ function addKeyboard(keyboardName, parentContainer, rows) {
 
   // let synth = makeSynth(oscType[oscNum]);
 
-  parentContainer.addEventListener("keydown", (e) => {
-    let getOsc = getKey(e);
-    console.log(getOsc);
-    theThing(getOsc);
-    // toggleSynth(getOsc);
-  });
-
-  function theThing(elm) {
-    console.log(elm.class);
-  }
+  // parentContainer.addEventListener("keydown", (e) => {
+  //   let getOsc = getKey(e);
+  //   // toggleSynth(getOsc);
+  // });
 
   // Array.from(parentContainer.querySelectorAll(".gdt")).map((clickOsc) =>
   //   clickOsc.addEventListener("click", () => {
