@@ -9,9 +9,19 @@ html {
 }
 
 #add-keyboard {
-  padding: 1rem;
+  padding: 3rem;
+  border: none;
+  background: none;
   font-size: 1.4rem;
   float: right;
+  font-family: "Lato", sans-serif;
+  font-weight: 800;
+  font-size: 1.5em;
+  text-transform: uppercase;
+  letter-spacing: 0.8em;
+  text-align: center;
+  color: #f7fcff;
+  transform: skew(-7deg);
 }
 
 #container {

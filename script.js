@@ -748,8 +748,6 @@ function addKeyboard(keyboardName, parentContainer, rows) {
   // THIS IS THE END
 }
 
-addKeyboard("bob", altContainer, defaultRows);
-
 document.getElementById("add-keyboard").onclick = (event) => {
   addKeyboard("bob", altContainer, defaultRows);
 };
