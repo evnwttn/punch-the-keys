@@ -700,50 +700,27 @@ function addKeyboard(keyboardName, parentContainer, rows) {
     uiVol.innerHTML = `[${volLevel}db]`;
   }
 
-  // function toggleVolume(elm) {
-  //   if (elm.hasAttribute("data-volUp")) {
-  //     if (volLevel <= 29) {
-  //       volLevel++;
-  //       synth = makeSynth(oscType[oscNum]);
-  //     }
-  //   } else if (elm.hasAttribute("data-volDown")) {
-  //     if (volLevel >= -29) {
-  //       volLevel--;
-  //       synth = makeSynth(oscType[oscNum]);
-  //     }
-  //   }
-  //   uiVol.innerHTML = `[${volLevel}db]`;
-  // }
-
   // OCTAVE SELECTION
 
-  // let octave = 4;
+  let octave = 4;
 
-  // function handleOctaveElement(elm) {
-  //   if (elm.hasAttribute("data-OctaveUp")) {
-  //     if (octave <= 8) {
-  //       octave++;
-  //     }
-  //   } else if (elm.hasAttribute("data-octaveDown")) {
-  //     if (octave >= 1) {
-  //       octave--;
-  //     }
-  //   } else if (elm.hasAttribute("data-octave")) {
-  //     octave = elm.getAttribute("data-octave");
-  //   }
-  //   uiOct.innerHTML = `[O${octave}]`;
-  // }
+  function toggleOctave(elm) {
+    if (elm.getAttribute("octaveUp") === "true") {
+      if (octave <= 8) {
+        octave++;
+      }
+    } else if (elm.getAttribute("octaveDown") === "true") {
+      if (octave >= 1) {
+        octave--;
+      }
+    }
+    uiOct.innerHTML = `[0${octave}]`;
+  }
 
-  // parentContainer.addEventListener("keydown", (e) => {
-  //   let getOctave = getKey(e);
-  //   handleOctaveElement(getOctave);
-  // });
-
-  // Array.from(parentContainer.querySelectorAll(".gdt")).map((clickOctave) =>
-  //   clickOctave.addEventListener("click", () => {
-  //     handleOctaveElement(clickOctave);
-  //   })
-  // );
+  parentContainer.addEventListener("keydown", (e) => {
+    let key = getKey(e);
+    toggleOctave(key);
+  });
 
   // KEY FUNCTION
 
