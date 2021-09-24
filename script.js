@@ -162,57 +162,57 @@ let uiOct = document.getElementById("ui-Oct");
 
 // OCTAVE SELECTION
 
-let octave = 4;
+// let octave = 4;
 
-function handleOctaveElement(elm) {
-  if (elm.hasAttribute("data-OctaveUp")) {
-    if (octave <= 8) {
-      octave++;
-    }
-  } else if (elm.hasAttribute("data-octaveDown")) {
-    if (octave >= 1) {
-      octave--;
-    }
-  } else if (elm.hasAttribute("data-octave")) {
-    octave = elm.getAttribute("data-octave");
-  }
-  uiOct.innerHTML = `[O${octave}]`;
-}
+// function handleOctaveElement(elm) {
+//   if (elm.hasAttribute("data-OctaveUp")) {
+//     if (octave <= 8) {
+//       octave++;
+//     }
+//   } else if (elm.hasAttribute("data-octaveDown")) {
+//     if (octave >= 1) {
+//       octave--;
+//     }
+//   } else if (elm.hasAttribute("data-octave")) {
+//     octave = elm.getAttribute("data-octave");
+//   }
+//   uiOct.innerHTML = `[O${octave}]`;
+// }
 
-document.body.addEventListener("keydown", (e) => {
-  let getOctave = getKey(e);
-  handleOctaveElement(getOctave);
-});
+// document.body.addEventListener("keydown", (e) => {
+//   let getOctave = getKey(e);
+//   handleOctaveElement(getOctave);
+// });
 
-Array.from(document.querySelectorAll(".gdt")).map((clickOctave) =>
-  clickOctave.addEventListener("click", () => {
-    handleOctaveElement(clickOctave);
-  })
-);
+// Array.from(document.querySelectorAll(".gdt")).map((clickOctave) =>
+//   clickOctave.addEventListener("click", () => {
+//     handleOctaveElement(clickOctave);
+//   })
+// );
 
 // KEY FUNCTION
 
-function handleKeys(elm) {
-  if (elm.hasAttribute("data-sound")) {
-    let note = elm.getAttribute("data-sound");
-    synth.triggerAttackRelease(`${note}${octave}`, "4n");
-  }
-}
+// function handleKeys(elm) {
+//   if (elm.hasAttribute("data-sound")) {
+//     let note = elm.getAttribute("data-sound");
+//     synth.triggerAttackRelease(`${note}${octave}`, "4n");
+//   }
+// }
 
-document.body.addEventListener("keydown", (e) => {
-  let typeKey = getKey(e);
-  handleKeys(typeKey);
-});
+// document.body.addEventListener("keydown", (e) => {
+//   let typeKey = getKey(e);
+//   handleKeys(typeKey);
+// });
 
-Array.from(document.querySelectorAll(".gdt")).map((clickKey) =>
-  clickKey.addEventListener("click", () => {
-    handleKeys(clickKey);
-  })
-);
+// Array.from(document.querySelectorAll(".gdt")).map((clickKey) =>
+//   clickKey.addEventListener("click", () => {
+//     handleKeys(clickKey);
+//   })
+// );
 
 // CURSOR
 
-new emojiCursor();
+// new emojiCursor();
 
 /* THE GREAT SCHISM */
 
@@ -704,6 +704,56 @@ function addKeyboard(keyboardName, parentContainer, rows) {
     }
     uiVol.innerHTML = `[${volLevel}db]`;
   }
+
+  // OCTAVE SELECTION
+
+  let octave = 4;
+
+  function handleOctaveElement(elm) {
+    if (elm.hasAttribute("data-OctaveUp")) {
+      if (octave <= 8) {
+        octave++;
+      }
+    } else if (elm.hasAttribute("data-octaveDown")) {
+      if (octave >= 1) {
+        octave--;
+      }
+    } else if (elm.hasAttribute("data-octave")) {
+      octave = elm.getAttribute("data-octave");
+    }
+    uiOct.innerHTML = `[O${octave}]`;
+  }
+
+  parentContainer.addEventListener("keydown", (e) => {
+    let getOctave = getKey(e);
+    handleOctaveElement(getOctave);
+  });
+
+  Array.from(parentContainer.querySelectorAll(".gdt")).map((clickOctave) =>
+    clickOctave.addEventListener("click", () => {
+      handleOctaveElement(clickOctave);
+    })
+  );
+
+  // KEY FUNCTION
+
+  function handleKeys(elm) {
+    if (elm.hasAttribute("data-sound")) {
+      let note = elm.getAttribute("data-sound");
+      synth.triggerAttackRelease(`${note}${octave}`, "4n");
+    }
+  }
+
+  parentContainer.addEventListener("keydown", (e) => {
+    let typeKey = getKey(e);
+    handleKeys(typeKey);
+  });
+
+  Array.from(parentContainer.querySelectorAll(".gdt")).map((clickKey) =>
+    clickKey.addEventListener("click", () => {
+      handleKeys(clickKey);
+    })
+  );
 
   // THIS IS THE END
 }
