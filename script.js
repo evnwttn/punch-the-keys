@@ -555,21 +555,14 @@ function addKeyboard(keyboardName, parentContainer, rows) {
       const keySpan = document.createElement("span");
 
       if (key.multiClasses !== undefined) {
-        const multiX = document.createElement("div");
-        multiZ = key.sound || key.octave || key.multi;
-        keyDiv.appendChild(multiX);
+        const multiDiv = document.createElement("div");
+        multiText = key.sound || key.octave || key.multi;
+        keyDiv.appendChild(multiDiv);
         key.multiClasses.forEach((klass) => {
-          multiX.classList.add(klass);
+          multiDiv.classList.add(klass);
         });
-        multiX.innerHTML = `${multiZ}`;
-        console.log(key.multiClasses);
+        multiDiv.innerHTML = `${multiText}`;
       }
-
-      // tomorrow -> double check / clean up multi/multi sharps.
-      // make sure correct styles are used for each multi
-      // troubleshoot bottom row spacing issues
-      // make sure js is exact replica physically
-      // begin bringing sound functionality over
 
       if (typeof key.value === "string") {
         keySpan.innerHTML = key.value;
