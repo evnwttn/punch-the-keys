@@ -637,41 +637,46 @@ function addKeyboard(keyboardName, parentContainer, rows) {
 
   // UI
 
-  // let uiVol = document.getElementById("ui-Vol");
-  // let uiOsc = document.getElementById("ui-Osc");
-  // let uiOct = document.getElementById("ui-Oct");
+  let uiVol = document.getElementById("ui-Vol");
+  let uiOsc = document.getElementById("ui-Osc");
+  let uiOct = document.getElementById("ui-Oct");
 
   // TOGGLE OSCILLATOR / SYNTH
 
-  // let oscType = ["sawtooth", "triangle", "square", "sine"];
-  // let oscNum = 0;
-  // let volLevel = 0;
+  let oscType = ["sawtooth", "triangle", "square", "sine"];
+  let oscNum = 0;
+  let volLevel = 0;
 
-  // function makeSynth(oscillatorType) {
-  //   return new Tone.PolySynth(Tone.Synth, {
-  //     oscillator: {
-  //       type: oscillatorType,
-  //     },
-  //     volume: volLevel,
-  //   }).toDestination();
-  // }
+  function makeSynth(oscillatorType) {
+    return new Tone.PolySynth(Tone.Synth, {
+      oscillator: {
+        type: oscillatorType,
+      },
+      volume: volLevel,
+    }).toDestination();
+  }
 
-  // function toggleSynth(elm) {
-  //   if (elm.hasAttribute("octaveUp")) {
-  //     if (oscNum <= oscType.length - 2) {
-  //       oscNum++;
-  //       synth = makeSynth(oscType[oscNum]);
-  //     }
-  //   } else if (elm.hasAttribute("octaveDown")) {
-  //     if (oscNum >= 1) {
-  //       oscNum--;
-  //       synth = makeSynth(oscType[oscNum]);
-  //     }
-  //   }
-  //   uiOsc.innerHTML = `[${oscType[oscNum]}]`;
-  // }
+  let synth = makeSynth(oscType[oscNum]);
 
-  // let synth = makeSynth(oscType[oscNum]);
+  function toggleSynth(elm) {
+    if (elm.getAttribute("oscUp") === "true") {
+      if (oscNum <= oscType.length - 2) {
+        oscNum++;
+        synth = makeSynth(oscType[oscNum]);
+      }
+    } else if (elm.getAttribute("oscDown") === "true") {
+      if (oscNum >= 1) {
+        oscNum--;
+        synth = makeSynth(oscType[oscNum]);
+      }
+    }
+    uiOsc.innerHTML = `[${oscType[oscNum]}]`;
+  }
+
+  parentContainer.addEventListener("keydown", (e) => {
+    let key = getKey(e);
+    toggleSynth(key);
+  });
 
   // parentContainer.addEventListener("keydown", (e) => {
   //   let getOsc = getKey(e);
