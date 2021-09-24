@@ -216,6 +216,125 @@ let uiOct = document.getElementById("ui-Oct");
 
 /* THE GREAT SCHISM */
 
+let oscType = ["sawtooth", "triangle", "square", "sine"];
+let oscNum = 0;
+let volLevel = 0;
+
+function makeSynth(oscillatorType) {
+  return new Tone.PolySynth(Tone.Synth, {
+    oscillator: {
+      type: oscillatorType,
+    },
+    volume: volLevel,
+  }).toDestination();
+}
+
+function toggleSynth(elm) {
+  if (elm.hasAttribute("data-oscUp")) {
+    if (oscNum <= oscType.length - 2) {
+      oscNum++;
+      synth = makeSynth(oscType[oscNum]);
+    }
+  } else if (elm.hasAttribute("data-oscDown")) {
+    if (oscNum >= 1) {
+      oscNum--;
+      synth = makeSynth(oscType[oscNum]);
+    }
+  }
+  uiOsc.innerHTML = `[${oscType[oscNum]}]`;
+}
+
+let synth = makeSynth(oscType[oscNum]);
+
+parentContainer.addEventListener("keydown", (e) => {
+  let getOsc = getKey(e);
+  toggleSynth(getOsc);
+});
+
+Array.from(parentContainer.querySelectorAll(".gdt")).map((clickOsc) =>
+  clickOsc.addEventListener("click", () => {
+    toggleSynth(clickOsc);
+  })
+);
+
+// VOLUME
+
+parentContainer.addEventListener("keydown", (e) => {
+  let volToggle = getKey(e);
+  toggleVolume(volToggle);
+});
+
+Array.from(parentContainer.querySelectorAll(".gdt")).map((clickVol) =>
+  clickVol.addEventListener("click", () => {
+    toggleVolume(clickVol);
+  })
+);
+
+function toggleVolume(elm) {
+  if (elm.hasAttribute("data-volUp")) {
+    if (volLevel <= 29) {
+      volLevel++;
+      synth = makeSynth(oscType[oscNum]);
+    }
+  } else if (elm.hasAttribute("data-volDown")) {
+    if (volLevel >= -29) {
+      volLevel--;
+      synth = makeSynth(oscType[oscNum]);
+    }
+  }
+  uiVol.innerHTML = `[${volLevel}db]`;
+}
+
+// OCTAVE SELECTION
+
+let octave = 4;
+
+function handleOctaveElement(elm) {
+  if (elm.hasAttribute("data-OctaveUp")) {
+    if (octave <= 8) {
+      octave++;
+    }
+  } else if (elm.hasAttribute("data-octaveDown")) {
+    if (octave >= 1) {
+      octave--;
+    }
+  } else if (elm.hasAttribute("data-octave")) {
+    octave = elm.getAttribute("data-octave");
+  }
+  uiOct.innerHTML = `[O${octave}]`;
+}
+
+parentContainer.addEventListener("keydown", (e) => {
+  let getOctave = getKey(e);
+  handleOctaveElement(getOctave);
+});
+
+Array.from(parentContainer.querySelectorAll(".gdt")).map((clickOctave) =>
+  clickOctave.addEventListener("click", () => {
+    handleOctaveElement(clickOctave);
+  })
+);
+
+// KEY FUNCTION
+
+function handleKeys(elm) {
+  if (elm.hasAttribute("data-sound")) {
+    let note = elm.getAttribute("data-sound");
+    synth.triggerAttackRelease(`${note}${octave}`, "4n");
+  }
+}
+
+parentContainer.addEventListener("keydown", (e) => {
+  let typeKey = getKey(e);
+  handleKeys(typeKey);
+});
+
+Array.from(parentContainer.querySelectorAll(".gdt")).map((clickKey) =>
+  clickKey.addEventListener("click", () => {
+    handleKeys(clickKey);
+  })
+);
+
 const defaultRows = [
   [
     /* ROW 1 */
@@ -618,9 +737,6 @@ function addKeyboard(keyboardName, parentContainer, rows) {
     key && key.removeAttribute("data-pressed");
   });
 
-  parentContainer.setAttribute("taxindex", 0);
-  parentContainer.appendChild(parentDiv);
-
   function pressKey(char) {
     let key = parentContainer.querySelector(
       '[data-char*="' + char.toUpperCase() + '"]'
@@ -636,124 +752,8 @@ function addKeyboard(keyboardName, parentContainer, rows) {
 
   // KEYBOARD
 
-  let oscType = ["sawtooth", "triangle", "square", "sine"];
-  let oscNum = 0;
-  let volLevel = 0;
-
-  function makeSynth(oscillatorType) {
-    return new Tone.PolySynth(Tone.Synth, {
-      oscillator: {
-        type: oscillatorType,
-      },
-      volume: volLevel,
-    }).toDestination();
-  }
-
-  function toggleSynth(elm) {
-    if (elm.hasAttribute("data-oscUp")) {
-      if (oscNum <= oscType.length - 2) {
-        oscNum++;
-        synth = makeSynth(oscType[oscNum]);
-      }
-    } else if (elm.hasAttribute("data-oscDown")) {
-      if (oscNum >= 1) {
-        oscNum--;
-        synth = makeSynth(oscType[oscNum]);
-      }
-    }
-    uiOsc.innerHTML = `[${oscType[oscNum]}]`;
-  }
-
-  let synth = makeSynth(oscType[oscNum]);
-
-  parentContainer.addEventListener("keydown", (e) => {
-    let getOsc = getKey(e);
-    toggleSynth(getOsc);
-  });
-
-  Array.from(parentContainer.querySelectorAll(".gdt")).map((clickOsc) =>
-    clickOsc.addEventListener("click", () => {
-      toggleSynth(clickOsc);
-    })
-  );
-
-  // VOLUME
-
-  parentContainer.addEventListener("keydown", (e) => {
-    let volToggle = getKey(e);
-    toggleVolume(volToggle);
-  });
-
-  Array.from(parentContainer.querySelectorAll(".gdt")).map((clickVol) =>
-    clickVol.addEventListener("click", () => {
-      toggleVolume(clickVol);
-    })
-  );
-
-  function toggleVolume(elm) {
-    if (elm.hasAttribute("data-volUp")) {
-      if (volLevel <= 29) {
-        volLevel++;
-        synth = makeSynth(oscType[oscNum]);
-      }
-    } else if (elm.hasAttribute("data-volDown")) {
-      if (volLevel >= -29) {
-        volLevel--;
-        synth = makeSynth(oscType[oscNum]);
-      }
-    }
-    uiVol.innerHTML = `[${volLevel}db]`;
-  }
-
-  // OCTAVE SELECTION
-
-  let octave = 4;
-
-  function handleOctaveElement(elm) {
-    if (elm.hasAttribute("data-OctaveUp")) {
-      if (octave <= 8) {
-        octave++;
-      }
-    } else if (elm.hasAttribute("data-octaveDown")) {
-      if (octave >= 1) {
-        octave--;
-      }
-    } else if (elm.hasAttribute("data-octave")) {
-      octave = elm.getAttribute("data-octave");
-    }
-    uiOct.innerHTML = `[O${octave}]`;
-  }
-
-  parentContainer.addEventListener("keydown", (e) => {
-    let getOctave = getKey(e);
-    handleOctaveElement(getOctave);
-  });
-
-  Array.from(parentContainer.querySelectorAll(".gdt")).map((clickOctave) =>
-    clickOctave.addEventListener("click", () => {
-      handleOctaveElement(clickOctave);
-    })
-  );
-
-  // KEY FUNCTION
-
-  function handleKeys(elm) {
-    if (elm.hasAttribute("data-sound")) {
-      let note = elm.getAttribute("data-sound");
-      synth.triggerAttackRelease(`${note}${octave}`, "4n");
-    }
-  }
-
-  parentContainer.addEventListener("keydown", (e) => {
-    let typeKey = getKey(e);
-    handleKeys(typeKey);
-  });
-
-  Array.from(parentContainer.querySelectorAll(".gdt")).map((clickKey) =>
-    clickKey.addEventListener("click", () => {
-      handleKeys(clickKey);
-    })
-  );
+  parentContainer.setAttribute("taxindex", 0);
+  parentContainer.appendChild(parentDiv);
 
   // THIS IS THE END
 }
