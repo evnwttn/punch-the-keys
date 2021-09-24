@@ -608,6 +608,15 @@ function addKeyboard(keyboardName, parentContainer, rows) {
   }
 
   parentContainer.addEventListener("keydown", (e) => {
+    let zestyBoy = getKey(e);
+    zestTest(zesty);
+  });
+
+  function zestTest(elm) {
+    console.log("it is zesty");
+  }
+
+  parentContainer.addEventListener("keydown", (e) => {
     e.preventDefault();
     let key = getKey(e);
     if (!key) {
@@ -624,144 +633,131 @@ function addKeyboard(keyboardName, parentContainer, rows) {
 
   // UI
 
-  let uiVol = document.getElementById("ui-Vol");
-  let uiOsc = document.getElementById("ui-Osc");
-  let uiOct = document.getElementById("ui-Oct");
+  // let uiVol = document.getElementById("ui-Vol");
+  // let uiOsc = document.getElementById("ui-Osc");
+  // let uiOct = document.getElementById("ui-Oct");
 
   // TOGGLE OSCILLATOR / SYNTH
 
-  let oscType = ["sawtooth", "triangle", "square", "sine"];
-  let oscNum = 0;
-  let volLevel = 0;
+  // let oscType = ["sawtooth", "triangle", "square", "sine"];
+  // let oscNum = 0;
+  // let volLevel = 0;
 
-  function makeSynth(oscillatorType) {
-    return new Tone.PolySynth(Tone.Synth, {
-      oscillator: {
-        type: oscillatorType,
-      },
-      volume: volLevel,
-    }).toDestination();
-  }
+  // function makeSynth(oscillatorType) {
+  //   return new Tone.PolySynth(Tone.Synth, {
+  //     oscillator: {
+  //       type: oscillatorType,
+  //     },
+  //     volume: volLevel,
+  //   }).toDestination();
+  // }
 
-  function toggleSynth(elm) {
-    if (elm.hasAttribute("data-oscUp")) {
-      if (oscNum <= oscType.length - 2) {
-        oscNum++;
-        synth = makeSynth(oscType[oscNum]);
-      }
-    } else if (elm.hasAttribute("data-oscDown")) {
-      if (oscNum >= 1) {
-        oscNum--;
-        synth = makeSynth(oscType[oscNum]);
-      }
-    }
-    uiOsc.innerHTML = `[${oscType[oscNum]}]`;
-  }
+  // function toggleSynth(elm) {
+  //   if (elm.hasAttribute("data-oscUp")) {
+  //     if (oscNum <= oscType.length - 2) {
+  //       oscNum++;
+  //       synth = makeSynth(oscType[oscNum]);
+  //     }
+  //   } else if (elm.hasAttribute("data-oscDown")) {
+  //     if (oscNum >= 1) {
+  //       oscNum--;
+  //       synth = makeSynth(oscType[oscNum]);
+  //     }
+  //   }
+  //   uiOsc.innerHTML = `[${oscType[oscNum]}]`;
+  // }
 
-  let synth = makeSynth(oscType[oscNum]);
+  // let synth = makeSynth(oscType[oscNum]);
 
-  parentContainer.addEventListener("keydown", (e) => {
-    let getOsc = getKey(e);
-    toggleSynth(getOsc);
-  });
+  // parentContainer.addEventListener("keydown", (e) => {
+  //   let getOsc = getKey(e);
+  //   toggleSynth(getOsc);
+  // });
 
-  Array.from(parentContainer.querySelectorAll(".gdt")).map((clickOsc) =>
-    clickOsc.addEventListener("click", () => {
-      toggleSynth(clickOsc);
-    })
-  );
+  // Array.from(parentContainer.querySelectorAll(".gdt")).map((clickOsc) =>
+  //   clickOsc.addEventListener("click", () => {
+  //     toggleSynth(clickOsc);
+  //   })
+  // );
 
   // VOLUME
 
-  parentContainer.addEventListener("keydown", (e) => {
-    let volToggle = getKey(e);
-    toggleVolume(volToggle);
-  });
+  // parentContainer.addEventListener("keydown", (e) => {
+  //   let volToggle = getKey(e);
+  //   toggleVolume(volToggle);
+  // });
 
-  Array.from(parentContainer.querySelectorAll(".gdt")).map((clickVol) =>
-    clickVol.addEventListener("click", () => {
-      toggleVolume(clickVol);
-    })
-  );
+  // Array.from(parentContainer.querySelectorAll(".gdt")).map((clickVol) =>
+  //   clickVol.addEventListener("click", () => {
+  //     toggleVolume(clickVol);
+  //   })
+  // );
 
-  function toggleVolume(elm) {
-    if (elm.hasAttribute("data-volUp")) {
-      if (volLevel <= 29) {
-        volLevel++;
-        synth = makeSynth(oscType[oscNum]);
-      }
-    } else if (elm.hasAttribute("data-volDown")) {
-      if (volLevel >= -29) {
-        volLevel--;
-        synth = makeSynth(oscType[oscNum]);
-      }
-    }
-    uiVol.innerHTML = `[${volLevel}db]`;
-  }
+  // function toggleVolume(elm) {
+  //   if (elm.hasAttribute("data-volUp")) {
+  //     if (volLevel <= 29) {
+  //       volLevel++;
+  //       synth = makeSynth(oscType[oscNum]);
+  //     }
+  //   } else if (elm.hasAttribute("data-volDown")) {
+  //     if (volLevel >= -29) {
+  //       volLevel--;
+  //       synth = makeSynth(oscType[oscNum]);
+  //     }
+  //   }
+  //   uiVol.innerHTML = `[${volLevel}db]`;
+  // }
 
   // OCTAVE SELECTION
 
-  let octave = 4;
+  // let octave = 4;
 
-  function handleOctaveElement(elm) {
-    if (elm.hasAttribute("data-OctaveUp")) {
-      if (octave <= 8) {
-        octave++;
-      }
-    } else if (elm.hasAttribute("data-octaveDown")) {
-      if (octave >= 1) {
-        octave--;
-      }
-    } else if (elm.hasAttribute("data-octave")) {
-      octave = elm.getAttribute("data-octave");
-    }
-    uiOct.innerHTML = `[O${octave}]`;
-  }
+  // function handleOctaveElement(elm) {
+  //   if (elm.hasAttribute("data-OctaveUp")) {
+  //     if (octave <= 8) {
+  //       octave++;
+  //     }
+  //   } else if (elm.hasAttribute("data-octaveDown")) {
+  //     if (octave >= 1) {
+  //       octave--;
+  //     }
+  //   } else if (elm.hasAttribute("data-octave")) {
+  //     octave = elm.getAttribute("data-octave");
+  //   }
+  //   uiOct.innerHTML = `[O${octave}]`;
+  // }
 
-  parentContainer.addEventListener("keydown", (e) => {
-    let getOctave = getKey(e);
-    handleOctaveElement(getOctave);
-  });
+  // parentContainer.addEventListener("keydown", (e) => {
+  //   let getOctave = getKey(e);
+  //   handleOctaveElement(getOctave);
+  // });
 
-  Array.from(parentContainer.querySelectorAll(".gdt")).map((clickOctave) =>
-    clickOctave.addEventListener("click", () => {
-      handleOctaveElement(clickOctave);
-    })
-  );
+  // Array.from(parentContainer.querySelectorAll(".gdt")).map((clickOctave) =>
+  //   clickOctave.addEventListener("click", () => {
+  //     handleOctaveElement(clickOctave);
+  //   })
+  // );
 
   // KEY FUNCTION
 
-  function handleKeys(elm) {
-    if (elm.hasAttribute("sound")) {
-      console.log("yeah");
-      let note = elm.getAttribute("sound");
-      synth.triggerAttackRelease(`${note}${octave}`, "4n");
-    }
-  }
-
-  parentContainer.addEventListener("keydown", (e) => {
-    let typeKey = getKey(e);
-    handleKeys(typeKey);
-  });
-
-  Array.from(parentContainer.querySelectorAll(".gdt")).map((clickKey) =>
-    clickKey.addEventListener("click", () => {
-      handleKeys(clickKey);
-    })
-  );
-
-  // function pressKey(char) {
-  //   let key = parentContainer.querySelector(
-  //     '[data-char*="' + char.toUpperCase() + '"]'
-  //   );
-  //   if (!key) {
-  //     return console.warn("No key for", char);
+  // function handleKeys(elm) {
+  //   if (elm.hasAttribute("sound")) {
+  //     console.log("yeah");
+  //     let note = elm.getAttribute("sound");
+  //     synth.triggerAttackRelease(`${note}${octave}`, "4n");
   //   }
-  //   key.setAttribute("data-pressed", "on");
-  //   setTimeout(function () {
-  //     key.removeAttribute("data-pressed");
-  //   }, 200);
   // }
+
+  // parentContainer.addEventListener("keydown", (e) => {
+  //   let typeKey = getKey(e);
+  //   handleKeys(typeKey);
+  // });
+
+  // Array.from(parentContainer.querySelectorAll(".gdt")).map((clickKey) =>
+  //   clickKey.addEventListener("click", () => {
+  //     handleKeys(clickKey);
+  //   })
+  // );
 
   // KEYBOARD
 
