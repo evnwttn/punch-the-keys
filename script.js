@@ -40,175 +40,180 @@ smile.addEventListener("click", function () {
 
 // KEYBOARD
 
-document.body.addEventListener("keydown", (e) => {
-  e.preventDefault();
-  let key = getKey(e);
-  if (!key) {
-    return console.warn("No key for", e.keyCode);
+let zesty;
+if (zesty === true) {
+  document.body.addEventListener("keydown", (e) => {
+    e.preventDefault();
+    let key = getKey(e);
+    if (!key) {
+      return console.warn("No key for", e.keyCode);
+    }
+    key.setAttribute("data-pressed", "on");
+  });
+
+  document.body.addEventListener("keyup", (e) => {
+    e.preventDefault();
+    let key = getKey(e);
+    key && key.removeAttribute("data-pressed");
+  });
+
+  function getKey(e) {
+    let location = e.location;
+    let selector;
+    if (location === KeyboardEvent.DOM_KEY_LOCATION_RIGHT) {
+      selector = ['[data-right="true"]', '[data-key="' + e.keyCode + '"]'].join(
+        ""
+      );
+    } else {
+      let code = e.keyCode || e.which;
+      selector = [
+        '[data-key="' + code + '"]',
+        '[data-char*="' + encodeURIComponent(String.fromCharCode(code)) + '"]',
+      ].join(",");
+    }
+    return document.querySelector(selector);
   }
-  key.setAttribute("data-pressed", "on");
-});
 
-document.body.addEventListener("keyup", (e) => {
-  e.preventDefault();
-  let key = getKey(e);
-  key && key.removeAttribute("data-pressed");
-});
-
-function getKey(e) {
-  let location = e.location;
-  let selector;
-  if (location === KeyboardEvent.DOM_KEY_LOCATION_RIGHT) {
-    selector = ['[data-right="true"]', '[data-key="' + e.keyCode + '"]'].join(
-      ""
+  function pressKey(char) {
+    let key = document.querySelector(
+      '[data-char*="' + char.toUpperCase() + '"]'
     );
-  } else {
-    let code = e.keyCode || e.which;
-    selector = [
-      '[data-key="' + code + '"]',
-      '[data-char*="' + encodeURIComponent(String.fromCharCode(code)) + '"]',
-    ].join(",");
-  }
-  return document.querySelector(selector);
-}
-
-function pressKey(char) {
-  let key = document.querySelector('[data-char*="' + char.toUpperCase() + '"]');
-  if (!key) {
-    return console.warn("No key for", char);
-  }
-  key.setAttribute("data-pressed", "on");
-  setTimeout(function () {
-    key.removeAttribute("data-pressed");
-  }, 200);
-}
-
-// UI
-
-let uiVol = document.getElementById("ui-Vol");
-let uiOsc = document.getElementById("ui-Osc");
-let uiOct = document.getElementById("ui-Oct");
-
-// TOGGLE OSCILLATOR / SYNTH
-
-let oscType = ["sawtooth", "triangle", "square", "sine"];
-let oscNum = 0;
-let volLevel = 0;
-
-function makeSynth(oscillatorType) {
-  return new Tone.PolySynth(Tone.Synth, {
-    oscillator: {
-      type: oscillatorType,
-    },
-    volume: volLevel,
-  }).toDestination();
-}
-
-function toggleSynth(elm) {
-  if (elm.hasAttribute("data-oscUp")) {
-    if (oscNum <= oscType.length - 2) {
-      oscNum++;
-      synth = makeSynth(oscType[oscNum]);
+    if (!key) {
+      return console.warn("No key for", char);
     }
-  } else if (elm.hasAttribute("data-oscDown")) {
-    if (oscNum >= 1) {
-      oscNum--;
-      synth = makeSynth(oscType[oscNum]);
+    key.setAttribute("data-pressed", "on");
+    setTimeout(function () {
+      key.removeAttribute("data-pressed");
+    }, 200);
+  }
+
+  // UI
+
+  let uiVol = document.getElementById("ui-Vol");
+  let uiOsc = document.getElementById("ui-Osc");
+  let uiOct = document.getElementById("ui-Oct");
+
+  // TOGGLE OSCILLATOR / SYNTH
+
+  let oscType = ["sawtooth", "triangle", "square", "sine"];
+  let oscNum = 0;
+  let volLevel = 0;
+
+  function makeSynth(oscillatorType) {
+    return new Tone.PolySynth(Tone.Synth, {
+      oscillator: {
+        type: oscillatorType,
+      },
+      volume: volLevel,
+    }).toDestination();
+  }
+
+  function toggleSynth(elm) {
+    if (elm.hasAttribute("data-oscUp")) {
+      if (oscNum <= oscType.length - 2) {
+        oscNum++;
+        synth = makeSynth(oscType[oscNum]);
+      }
+    } else if (elm.hasAttribute("data-oscDown")) {
+      if (oscNum >= 1) {
+        oscNum--;
+        synth = makeSynth(oscType[oscNum]);
+      }
+    }
+    uiOsc.innerHTML = `[${oscType[oscNum]}]`;
+  }
+
+  let synth = makeSynth(oscType[oscNum]);
+
+  document.body.addEventListener("keydown", (e) => {
+    let getOsc = getKey(e);
+    toggleSynth(getOsc);
+  });
+
+  Array.from(document.querySelectorAll(".gdt")).map((clickOsc) =>
+    clickOsc.addEventListener("click", () => {
+      toggleSynth(clickOsc);
+    })
+  );
+
+  // VOLUME
+
+  document.body.addEventListener("keydown", (e) => {
+    let volToggle = getKey(e);
+    toggleVolume(volToggle);
+  });
+
+  Array.from(document.querySelectorAll(".gdt")).map((clickVol) =>
+    clickVol.addEventListener("click", () => {
+      toggleVolume(clickVol);
+    })
+  );
+
+  function toggleVolume(elm) {
+    if (elm.hasAttribute("data-volUp")) {
+      if (volLevel <= 29) {
+        volLevel++;
+        synth = makeSynth(oscType[oscNum]);
+      }
+    } else if (elm.hasAttribute("data-volDown")) {
+      if (volLevel >= -29) {
+        volLevel--;
+        synth = makeSynth(oscType[oscNum]);
+      }
+    }
+    uiVol.innerHTML = `[${volLevel}db]`;
+  }
+
+  // OCTAVE SELECTION
+
+  let octave = 4;
+
+  function handleOctaveElement(elm) {
+    if (elm.hasAttribute("data-OctaveUp")) {
+      if (octave <= 8) {
+        octave++;
+      }
+    } else if (elm.hasAttribute("data-octaveDown")) {
+      if (octave >= 1) {
+        octave--;
+      }
+    } else if (elm.hasAttribute("data-octave")) {
+      octave = elm.getAttribute("data-octave");
+    }
+    uiOct.innerHTML = `[O${octave}]`;
+  }
+
+  document.body.addEventListener("keydown", (e) => {
+    let getOctave = getKey(e);
+    handleOctaveElement(getOctave);
+  });
+
+  Array.from(document.querySelectorAll(".gdt")).map((clickOctave) =>
+    clickOctave.addEventListener("click", () => {
+      handleOctaveElement(clickOctave);
+    })
+  );
+
+  // KEY FUNCTION
+
+  function handleKeys(elm) {
+    if (elm.hasAttribute("data-sound")) {
+      let note = elm.getAttribute("data-sound");
+      synth.triggerAttackRelease(`${note}${octave}`, "4n");
     }
   }
-  uiOsc.innerHTML = `[${oscType[oscNum]}]`;
+
+  document.body.addEventListener("keydown", (e) => {
+    let typeKey = getKey(e);
+    handleKeys(typeKey);
+  });
+
+  Array.from(document.querySelectorAll(".gdt")).map((clickKey) =>
+    clickKey.addEventListener("click", () => {
+      handleKeys(clickKey);
+    })
+  );
 }
-
-let synth = makeSynth(oscType[oscNum]);
-
-document.body.addEventListener("keydown", (e) => {
-  let getOsc = getKey(e);
-  toggleSynth(getOsc);
-});
-
-Array.from(document.querySelectorAll(".gdt")).map((clickOsc) =>
-  clickOsc.addEventListener("click", () => {
-    toggleSynth(clickOsc);
-  })
-);
-
-// VOLUME
-
-document.body.addEventListener("keydown", (e) => {
-  let volToggle = getKey(e);
-  toggleVolume(volToggle);
-});
-
-Array.from(document.querySelectorAll(".gdt")).map((clickVol) =>
-  clickVol.addEventListener("click", () => {
-    toggleVolume(clickVol);
-  })
-);
-
-function toggleVolume(elm) {
-  if (elm.hasAttribute("data-volUp")) {
-    if (volLevel <= 29) {
-      volLevel++;
-      synth = makeSynth(oscType[oscNum]);
-    }
-  } else if (elm.hasAttribute("data-volDown")) {
-    if (volLevel >= -29) {
-      volLevel--;
-      synth = makeSynth(oscType[oscNum]);
-    }
-  }
-  uiVol.innerHTML = `[${volLevel}db]`;
-}
-
-// OCTAVE SELECTION
-
-let octave = 4;
-
-function handleOctaveElement(elm) {
-  if (elm.hasAttribute("data-OctaveUp")) {
-    if (octave <= 8) {
-      octave++;
-    }
-  } else if (elm.hasAttribute("data-octaveDown")) {
-    if (octave >= 1) {
-      octave--;
-    }
-  } else if (elm.hasAttribute("data-octave")) {
-    octave = elm.getAttribute("data-octave");
-  }
-  uiOct.innerHTML = `[O${octave}]`;
-}
-
-document.body.addEventListener("keydown", (e) => {
-  let getOctave = getKey(e);
-  handleOctaveElement(getOctave);
-});
-
-Array.from(document.querySelectorAll(".gdt")).map((clickOctave) =>
-  clickOctave.addEventListener("click", () => {
-    handleOctaveElement(clickOctave);
-  })
-);
-
-// KEY FUNCTION
-
-function handleKeys(elm) {
-  if (elm.hasAttribute("data-sound")) {
-    let note = elm.getAttribute("data-sound");
-    synth.triggerAttackRelease(`${note}${octave}`, "4n");
-  }
-}
-
-document.body.addEventListener("keydown", (e) => {
-  let typeKey = getKey(e);
-  handleKeys(typeKey);
-});
-
-Array.from(document.querySelectorAll(".gdt")).map((clickKey) =>
-  clickKey.addEventListener("click", () => {
-    handleKeys(clickKey);
-  })
-);
 
 // CURSOR
 
@@ -603,7 +608,6 @@ function addKeyboard(keyboardName, parentContainer, rows) {
   }
 
   parentContainer.addEventListener("keydown", (e) => {
-    console.log({ e });
     e.preventDefault();
     let key = getKey(e);
     if (!key) {
@@ -618,22 +622,150 @@ function addKeyboard(keyboardName, parentContainer, rows) {
     key && key.removeAttribute("data-pressed");
   });
 
-  function pressKey(char) {
-    let key = parentContainer.querySelector(
-      '[data-char*="' + char.toUpperCase() + '"]'
-    );
-    if (!key) {
-      return console.warn("No key for", char);
-    }
-    key.setAttribute("data-pressed", "on");
-    setTimeout(function () {
-      key.removeAttribute("data-pressed");
-    }, 200);
+  // UI
+
+  let uiVol = document.getElementById("ui-Vol");
+  let uiOsc = document.getElementById("ui-Osc");
+  let uiOct = document.getElementById("ui-Oct");
+
+  // TOGGLE OSCILLATOR / SYNTH
+
+  let oscType = ["sawtooth", "triangle", "square", "sine"];
+  let oscNum = 0;
+  let volLevel = 0;
+
+  function makeSynth(oscillatorType) {
+    return new Tone.PolySynth(Tone.Synth, {
+      oscillator: {
+        type: oscillatorType,
+      },
+      volume: volLevel,
+    }).toDestination();
   }
+
+  function toggleSynth(elm) {
+    if (elm.hasAttribute("data-oscUp")) {
+      if (oscNum <= oscType.length - 2) {
+        oscNum++;
+        synth = makeSynth(oscType[oscNum]);
+      }
+    } else if (elm.hasAttribute("data-oscDown")) {
+      if (oscNum >= 1) {
+        oscNum--;
+        synth = makeSynth(oscType[oscNum]);
+      }
+    }
+    uiOsc.innerHTML = `[${oscType[oscNum]}]`;
+  }
+
+  let synth = makeSynth(oscType[oscNum]);
+
+  parentContainer.addEventListener("keydown", (e) => {
+    let getOsc = getKey(e);
+    toggleSynth(getOsc);
+  });
+
+  Array.from(parentContainer.querySelectorAll(".gdt")).map((clickOsc) =>
+    clickOsc.addEventListener("click", () => {
+      toggleSynth(clickOsc);
+    })
+  );
+
+  // VOLUME
+
+  parentContainer.addEventListener("keydown", (e) => {
+    let volToggle = getKey(e);
+    toggleVolume(volToggle);
+  });
+
+  Array.from(parentContainer.querySelectorAll(".gdt")).map((clickVol) =>
+    clickVol.addEventListener("click", () => {
+      toggleVolume(clickVol);
+    })
+  );
+
+  function toggleVolume(elm) {
+    if (elm.hasAttribute("data-volUp")) {
+      if (volLevel <= 29) {
+        volLevel++;
+        synth = makeSynth(oscType[oscNum]);
+      }
+    } else if (elm.hasAttribute("data-volDown")) {
+      if (volLevel >= -29) {
+        volLevel--;
+        synth = makeSynth(oscType[oscNum]);
+      }
+    }
+    uiVol.innerHTML = `[${volLevel}db]`;
+  }
+
+  // OCTAVE SELECTION
+
+  let octave = 4;
+
+  function handleOctaveElement(elm) {
+    if (elm.hasAttribute("data-OctaveUp")) {
+      if (octave <= 8) {
+        octave++;
+      }
+    } else if (elm.hasAttribute("data-octaveDown")) {
+      if (octave >= 1) {
+        octave--;
+      }
+    } else if (elm.hasAttribute("data-octave")) {
+      octave = elm.getAttribute("data-octave");
+    }
+    uiOct.innerHTML = `[O${octave}]`;
+  }
+
+  parentContainer.addEventListener("keydown", (e) => {
+    let getOctave = getKey(e);
+    handleOctaveElement(getOctave);
+  });
+
+  Array.from(parentContainer.querySelectorAll(".gdt")).map((clickOctave) =>
+    clickOctave.addEventListener("click", () => {
+      handleOctaveElement(clickOctave);
+    })
+  );
+
+  // KEY FUNCTION
+
+  function handleKeys(elm) {
+    if (elm.hasAttribute("sound")) {
+      console.log("yeah");
+      let note = elm.getAttribute("sound");
+      synth.triggerAttackRelease(`${note}${octave}`, "4n");
+    }
+  }
+
+  parentContainer.addEventListener("keydown", (e) => {
+    let typeKey = getKey(e);
+    handleKeys(typeKey);
+  });
+
+  Array.from(parentContainer.querySelectorAll(".gdt")).map((clickKey) =>
+    clickKey.addEventListener("click", () => {
+      handleKeys(clickKey);
+    })
+  );
+
+  // function pressKey(char) {
+  //   let key = parentContainer.querySelector(
+  //     '[data-char*="' + char.toUpperCase() + '"]'
+  //   );
+  //   if (!key) {
+  //     return console.warn("No key for", char);
+  //   }
+  //   key.setAttribute("data-pressed", "on");
+  //   setTimeout(function () {
+  //     key.removeAttribute("data-pressed");
+  //   }, 200);
+  // }
 
   // KEYBOARD
 
-  parentContainer.setAttribute("taxindex", 0);
+  parentContainer.setAttribute("tabindex", 0);
   parentContainer.appendChild(parentDiv);
 
   // THIS IS THE END
