@@ -678,29 +678,27 @@ function addKeyboard(keyboardName, parentContainer, rows) {
     toggleSynth(key);
   });
 
-  // parentContainer.addEventListener("keydown", (e) => {
-  //   let getOsc = getKey(e);
-  //   // toggleSynth(getOsc);
-  // });
-
-  // Array.from(parentContainer.querySelectorAll(".gdt")).map((clickOsc) =>
-  //   clickOsc.addEventListener("click", () => {
-  //     toggleSynth(clickOsc);
-  //   })
-  // );
-
   // VOLUME
 
-  // parentContainer.addEventListener("keydown", (e) => {
-  //   let volToggle = getKey(e);
-  //   toggleVolume(volToggle);
-  // });
+  parentContainer.addEventListener("keydown", (e) => {
+    let volToggle = getKey(e);
+    toggleVolume(volToggle);
+  });
 
-  // Array.from(parentContainer.querySelectorAll(".gdt")).map((clickVol) =>
-  //   clickVol.addEventListener("click", () => {
-  //     toggleVolume(clickVol);
-  //   })
-  // );
+  function toggleVolume(elm) {
+    if (elm.getAttribute("volUp") === "true") {
+      if (volLevel <= 29) {
+        volLevel++;
+        synth = makeSynth(oscType[oscNum]);
+      }
+    } else if (elm.getAttribute("volDown") === "true") {
+      if (volLevel >= -29) {
+        volLevel--;
+        synth = makeSynth(oscType[oscNum]);
+      }
+    }
+    uiVol.innerHTML = `[${volLevel}db]`;
+  }
 
   // function toggleVolume(elm) {
   //   if (elm.hasAttribute("data-volUp")) {
