@@ -40,48 +40,48 @@ smile.addEventListener("click", function () {
 
 // KEYBOARD
 
-document.body.addEventListener("keydown", (e) => {
-  e.preventDefault();
-  let key = getKey(e);
-  if (!key) {
-    return console.warn("No key for", e.keyCode);
-  }
-  key.setAttribute("data-pressed", "on");
-});
+// document.body.addEventListener("keydown", (e) => {
+//   e.preventDefault();
+//   let key = getKey(e);
+//   if (!key) {
+//     return console.warn("No key for", e.keyCode);
+//   }
+//   key.setAttribute("data-pressed", "on");
+// });
 
-document.body.addEventListener("keyup", (e) => {
-  e.preventDefault();
-  let key = getKey(e);
-  key && key.removeAttribute("data-pressed");
-});
+// document.body.addEventListener("keyup", (e) => {
+//   e.preventDefault();
+//   let key = getKey(e);
+//   key && key.removeAttribute("data-pressed");
+// });
 
-function getKey(e) {
-  let location = e.location;
-  let selector;
-  if (location === KeyboardEvent.DOM_KEY_LOCATION_RIGHT) {
-    selector = ['[data-right="true"]', '[data-key="' + e.keyCode + '"]'].join(
-      ""
-    );
-  } else {
-    let code = e.keyCode || e.which;
-    selector = [
-      '[data-key="' + code + '"]',
-      '[data-char*="' + encodeURIComponent(String.fromCharCode(code)) + '"]',
-    ].join(",");
-  }
-  return document.querySelector(selector);
-}
+// function getKey(e) {
+//   let location = e.location;
+//   let selector;
+//   if (location === KeyboardEvent.DOM_KEY_LOCATION_RIGHT) {
+//     selector = ['[data-right="true"]', '[data-key="' + e.keyCode + '"]'].join(
+//       ""
+//     );
+//   } else {
+//     let code = e.keyCode || e.which;
+//     selector = [
+//       '[data-key="' + code + '"]',
+//       '[data-char*="' + encodeURIComponent(String.fromCharCode(code)) + '"]',
+//     ].join(",");
+//   }
+//   return document.querySelector(selector);
+// }
 
-function pressKey(char) {
-  let key = document.querySelector('[data-char*="' + char.toUpperCase() + '"]');
-  if (!key) {
-    return console.warn("No key for", char);
-  }
-  key.setAttribute("data-pressed", "on");
-  setTimeout(function () {
-    key.removeAttribute("data-pressed");
-  }, 200);
-}
+// function pressKey(char) {
+//   let key = document.querySelector('[data-char*="' + char.toUpperCase() + '"]');
+//   if (!key) {
+//     return console.warn("No key for", char);
+//   }
+//   key.setAttribute("data-pressed", "on");
+//   setTimeout(function () {
+//     key.removeAttribute("data-pressed");
+//   }, 200);
+// }
 
 // UI
 
@@ -620,14 +620,20 @@ function addKeyboard(keyboardName, parentContainer, rows) {
 
   parentContainer.setAttribute("taxindex", 0);
   parentContainer.appendChild(parentDiv);
-}
 
-// for (let i = 0; i < defaultRows.length; i++) {
-//   let array1 = defaultRows[i];
-//   array1.forEach(function (element) {
-//     console.log(`keyCode:${element.keyCode} + classes:${element.classes}`);
-//   });
-// }
+  function pressKey(char) {
+    let key = parentContainer.querySelector(
+      '[data-char*="' + char.toUpperCase() + '"]'
+    );
+    if (!key) {
+      return console.warn("No key for", char);
+    }
+    key.setAttribute("data-pressed", "on");
+    setTimeout(function () {
+      key.removeAttribute("data-pressed");
+    }, 200);
+  }
+}
 
 addKeyboard("bob", altContainer, defaultRows);
 
