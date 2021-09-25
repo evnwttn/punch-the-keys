@@ -637,13 +637,12 @@ function addKeyboard(keyboardName, parentContainer, rows) {
     key && key.removeAttribute("data-pressed");
   });
 
-  parentContainer.onclick = (e) => {
-    // let key = e.path[1];
+  parentContainer.addEventListener("click", (e) => {
     let key = e.target;
-    if (key.getAttribute("multi") !== null || undefined) {
-      console.log(key.getAttribute("multi"));
+    if (key.classList.contains("gdt")) {
+      console.log("get click'd");
     }
-  };
+  });
 
   // UI
 

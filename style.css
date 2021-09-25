@@ -41,6 +41,7 @@ html {
   background-attachment: fixed;
   background-size: cover;
   background-position: center;
+  z-index: 2400;
 }
 
 .key-row {
@@ -282,6 +283,7 @@ html {
   color: hsl(73, 99%, 45%);
   padding-left: 2em;
   text-shadow: 1px 1px 8px #0000005e;
+  pointer-events: none;
 }
 
 .multi-sharps {
@@ -289,4 +291,9 @@ html {
   color: hsl(73, 99%, 45%);
   padding-left: 1.7em;
   text-shadow: 1px 1px 8px #0000005e;
+  pointer-events: none;
+}
+
+span {
+  pointer-events: none;
 }
