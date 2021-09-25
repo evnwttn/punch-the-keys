@@ -639,12 +639,10 @@ function addKeyboard(keyboardName, parentContainer, rows) {
     key && key.removeAttribute("data-pressed");
   });
 
-  Array.from(parentContainer).map((clickKey) =>
-    clickKey.addEventListener("click", () => {
-      let key = getKey(e);
-      console.log(`this is ${e}`);
-    })
-  );
+  parentContainer.addEventListener("click", (e) => {
+    let key = getKey(e);
+    console.log(`this is ${e}`);
+  });
 
   // UI
 
