@@ -523,7 +523,7 @@ const defaultRows = [
     /* ROW 6 */
     { keyCode: 17, classes: "word bottomctrl gdt", value: "CTRL" },
     { keyCode: 255, classes: "word bottom gdt", value: "FN" },
-    { keyCode: 91, classes: "word bottom gdt", value: "☆" },
+    { keyCode: 91, classes: "word bottom gdt", value: "&#9734;" },
     { keyCode: 18, classes: "word bottom gdt", value: "ALT" },
     { keyCode: 32, classes: "word space gdt", value: "" },
     { keyCode: 18, right: true, classes: "word bottom gdt", value: "ALT" },

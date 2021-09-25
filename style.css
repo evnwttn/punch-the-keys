@@ -8,6 +8,10 @@ html {
   background-attachment: fixed;
 }
 
+html *:focus {
+  outline: none;
+}
+
 #add-keyboard {
   padding: 3rem;
   border: none;
