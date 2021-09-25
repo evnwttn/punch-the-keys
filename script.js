@@ -639,13 +639,12 @@ function addKeyboard(keyboardName, parentContainer, rows) {
 
   parentContainer.addEventListener("click", (e) => {
     let key = e.target;
-    toggleSynth(key);
-    toggleOctave(key);
-    toggleVolume(key);
-    handleKeys(key);
-    // if (key.classList.contains("gdt")) {
-    //   console.log(key);
-    // }
+    if (key.hasAttribute("data-key") === true) {
+      toggleSynth(key);
+      toggleOctave(key);
+      toggleVolume(key);
+      handleKeys(key);
+    }
   });
 
   // UI
