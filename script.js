@@ -637,14 +637,9 @@ function addKeyboard(keyboardName, parentContainer, rows) {
     key && key.removeAttribute("data-pressed");
   });
 
-  // parentContainer.addEventListener("click", (e) => {
-  //   // let key = getKey(e);
-  //   console.log(Array.from(parentContainer));
-  // });
-
   parentContainer.onclick = (e) => {
-    let key = getKey(e);
-    console.log(e.path[0]);
+    let key = e.path[1];
+    console.log(key);
   };
 
   // UI
