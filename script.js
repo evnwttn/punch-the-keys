@@ -754,8 +754,6 @@ function addKeyboard(keyboardName, parentContainer, rows) {
 
   parentContainer.setAttribute("tabindex", 0);
   parentContainer.appendChild(parentDiv);
-
-  // THIS IS THE END
 }
 
 document.getElementById("add-keyboard").onclick = (event) => {
