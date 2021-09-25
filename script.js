@@ -639,9 +639,13 @@ function addKeyboard(keyboardName, parentContainer, rows) {
 
   parentContainer.addEventListener("click", (e) => {
     let key = e.target;
-    if (key.classList.contains("gdt")) {
-      console.log("get click'd");
-    }
+    toggleSynth(key);
+    toggleOctave(key);
+    toggleVolume(key);
+    handleKeys(key);
+    // if (key.classList.contains("gdt")) {
+    //   console.log(key);
+    // }
   });
 
   // UI
