@@ -638,8 +638,11 @@ function addKeyboard(keyboardName, parentContainer, rows) {
   });
 
   parentContainer.onclick = (e) => {
-    let key = e.path[1];
-    console.log(key);
+    // let key = e.path[1];
+    let key = e.target;
+    if (key.getAttribute("multi") !== null || undefined) {
+      console.log(key.getAttribute("multi"));
+    }
   };
 
   // UI
