@@ -605,8 +605,6 @@ function addKeyboard(keyboardName, parentContainer, rows) {
 
   parentDiv.setAttribute("id", `keyboard-${keyboardName}`);
 
-  // CLICKITY CLICK CLICK
-
   function getKey(e) {
     let location = e.location;
     let selector;
@@ -639,10 +637,15 @@ function addKeyboard(keyboardName, parentContainer, rows) {
     key && key.removeAttribute("data-pressed");
   });
 
-  parentContainer.addEventListener("click", (e) => {
+  // parentContainer.addEventListener("click", (e) => {
+  //   // let key = getKey(e);
+  //   console.log(Array.from(parentContainer));
+  // });
+
+  parentContainer.onclick = (e) => {
     let key = getKey(e);
-    console.log(`this is ${e}`);
-  });
+    console.log(e.path[0]);
+  };
 
   // UI
 
