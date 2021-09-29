@@ -13,8 +13,8 @@ function playWW() {
   request.send();
   request.onload = function () {
     let westWorld = request.response;
-    let notes = westWorld.tracks[0].notes;
-    console.log(westWorld);
+    let channel1 = westWorld.tracks[0].notes;
+    let channel2 = westWorld.tracks[1].notes;
     Tone.Transport.bpm.value = westWorld.header.tempos[0].bpm;
     const synth = new Tone.Synth().toMaster();
     const part = new Tone.Part(function (time, value) {
@@ -24,9 +24,8 @@ function playWW() {
         time,
         value.velocity
       );
-    }, notes).start();
+    }, channel1).start();
     Tone.Transport.start();
-    console.log(notes);
   };
 }
 
