@@ -1,38 +1,3 @@
-// WW
-
-document.getElementById("ww").onclick = (event) => {
-  playWW();
-};
-
-function playWW() {
-  let requestURL =
-    "https://raw.githubusercontent.com/evnwttn/punch-the-keys/pure-js/audio/westworld.json";
-  let request = new XMLHttpRequest();
-  request.open("GET", requestURL);
-  request.responseType = "json";
-  request.send();
-  request.onload = function () {
-    let westWorld = request.response;
-    let channel1 = westWorld.tracks[0].notes;
-    let channel2 = westWorld.tracks[1].notes;
-    Tone.Transport.bpm.value = westWorld.header.tempos[0].bpm;
-    const synth = new Tone.PolySynth().toDestination();
-    const part = new Tone.Part(
-      function (time, value) {
-        synth.triggerAttackRelease(
-          value.name,
-          value.duration,
-          time,
-          value.velocity
-        );
-      },
-      channel1,
-      channel2
-    ).start();
-    Tone.Transport.start();
-  };
-}
-
 // TITLE
 
 anime
@@ -538,7 +503,7 @@ const defaultRows = [
     /* ROW 5 */
     { keyCode: 16, classes: "word shift align-shiftl gdt", value: "SHIFT" },
     { keyCode: 90, classes: "letter gdt", value: "Z" },
-    { keyCode: 88, classes: "letter gdt", value: "X" },
+    { keyCode: 88, classes: "letter gdt", value: "X", westWorld: true },
     { keyCode: 67, classes: "letter gdt", value: "C" },
     { keyCode: 86, classes: "letter gdt", value: "V" },
     { keyCode: 66, classes: "letter gdt", value: "B" },
@@ -600,6 +565,7 @@ function addKeyboard(keyboardName, parentContainer, rows) {
       keyDiv.setAttribute("volUp", key.volUp);
       keyDiv.setAttribute("volDown", key.volDown);
       keyDiv.setAttribute("right", key.right);
+      keyDiv.setAttribute("westWorld", key.westWorld);
 
       key.classes.split(" ").forEach((klass) => {
         keyDiv.classList.add(klass);
@@ -783,6 +749,49 @@ function addKeyboard(keyboardName, parentContainer, rows) {
       let note = elm.getAttribute("sound");
       synth.triggerAttackRelease(`${note}${octave}`, "4n");
     }
+  }
+
+  // DEMO
+
+  parentContainer.addEventListener("keydown", (e) => {
+    let key = getKey(e);
+    playWestWorld(key);
+  });
+
+  function playWestWorld(elm) {
+    if (elm.getAttribute("westWorld") !== "undefined") {
+      console.log("sup btiches");
+      playWW();
+    }
+  }
+
+  function playWW() {
+    let requestURL =
+      "https://raw.githubusercontent.com/evnwttn/punch-the-keys/pure-js/audio/westworld.json";
+    let request = new XMLHttpRequest();
+    request.open("GET", requestURL);
+    request.responseType = "json";
+    request.send();
+    request.onload = function () {
+      let westWorld = request.response;
+      let channel1 = westWorld.tracks[0].notes;
+      let channel2 = westWorld.tracks[1].notes;
+      Tone.Transport.bpm.value = westWorld.header.tempos[0].bpm;
+      const synth = new Tone.PolySynth().toDestination();
+      const part = new Tone.Part(
+        function (time, value) {
+          synth.triggerAttackRelease(
+            value.name,
+            value.duration,
+            time,
+            value.velocity
+          );
+        },
+        channel1,
+        channel2
+      ).start();
+      Tone.Transport.start();
+    };
   }
 
   // KEYBOARD
