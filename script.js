@@ -16,15 +16,19 @@ function playWW() {
     let channel1 = westWorld.tracks[0].notes;
     let channel2 = westWorld.tracks[1].notes;
     Tone.Transport.bpm.value = westWorld.header.tempos[0].bpm;
-    const synth = new Tone.Synth().toMaster();
-    const part = new Tone.Part(function (time, value) {
-      synth.triggerAttackRelease(
-        value.name,
-        value.duration,
-        time,
-        value.velocity
-      );
-    }, channel1).start();
+    const synth = new Tone.PolySynth().toDestination();
+    const part = new Tone.Part(
+      function (time, value) {
+        synth.triggerAttackRelease(
+          value.name,
+          value.duration,
+          time,
+          value.velocity
+        );
+      },
+      channel1,
+      channel2
+    ).start();
     Tone.Transport.start();
   };
 }
