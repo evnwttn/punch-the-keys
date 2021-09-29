@@ -14,6 +14,18 @@ function playWW() {
   request.onload = function () {
     let westWorld = request.response;
     let notes = westWorld.tracks[0].notes;
+    console.log(westWorld);
+    Tone.Transport.bpm.value = westWorld.header.tempos[0].bpm;
+    const synth = new Tone.Synth().toMaster();
+    const part = new Tone.Part(function (time, value) {
+      synth.triggerAttackRelease(
+        value.name,
+        value.duration,
+        time,
+        value.velocity
+      );
+    }, notes).start();
+    Tone.Transport.start();
     console.log(notes);
   };
 }
