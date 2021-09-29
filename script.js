@@ -1,14 +1,15 @@
 // WW
 
-var myJSON;
-
-function getLocalJSON(json_url) {
-  var json_script = document.createElement("script");
-  json_script.type = "text/javascript";
-  json_script.src = json_url;
-  json_script.id = "json_script";
-  document.getElementsByTagName("head")[0].appendChild(json_script);
-}
+let requestURL =
+  "https://raw.githubusercontent.com/evnwttn/punch-the-keys/pure-js/audio/westworld.json";
+let request = new XMLHttpRequest();
+request.open("GET", requestURL);
+request.responseType = "json";
+request.send();
+request.onload = function () {
+  const westWorld = request.response;
+  console.log(westWorld);
+};
 
 // TITLE
 
