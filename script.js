@@ -20,200 +20,68 @@ anime
 
 // UI
 
-smile = document.querySelector("#readMe-icon");
-readMe = document.querySelector("#readMe-text");
-const readMeStorage = window.localStorage.getItem("readMe");
+/**
+ * TODO: ensure the localStorage is unique per-instance
+ */
+class Readme {
+  constructor() {
+    this.isOpen = window.localStorage.getItem("read-me") === "on";
 
-if (readMeStorage == "activate") {
-  readMe.classList.add("on");
-}
+    this.parentDiv = document.createElement('div');
+    this.parentDiv.className = 'read-me';
 
-smile.addEventListener("click", function () {
-  if (readMe.classList.contains("on")) {
-    readMe.classList.remove("on");
-    window.localStorage.setItem("readMe", "off");
-  } else {
-    readMe.classList.add("on");
-    window.localStorage.setItem("readMe", "activate");
-  }
-});
+    this.iconDiv = document.createElement('div');
+    this.iconDiv.className = "read-me-icon"
+    this.iconDiv.innerHTML = '&#9786';
+    this.iconDiv.addEventListener('click', () => {
+      this.onClick();
+    });
 
-// KEYBOARD
+    this.textDiv = document.createElement('div');
+    this.textDiv.className = "read-me-text"
+    this.textDiv.innerHTML = `1 - 0 &#8702; octaves
+<br />&#10688; & &#10689; &#8702; toggle octave
+<br />W - U &#8702; black keys
+<br />&#8818; & &#8819; &#8702; toggle oscillator
+<br />A - K &#8702; white keys
+<br />&#9651; & &#9661; &#8702; toggle volume`
 
-let zesty;
-if (zesty === true) {
-  document.body.addEventListener("keydown", (e) => {
-    e.preventDefault();
-    let key = getKey(e);
-    if (!key) {
-      return console.warn("No key for", e.keyCode);
-    }
-    key.setAttribute("data-pressed", "on");
-  });
+    this.parentDiv.appendChild(this.iconDiv);
+    this.parentDiv.appendChild(this.textDiv);
 
-  document.body.addEventListener("keyup", (e) => {
-    e.preventDefault();
-    let key = getKey(e);
-    key && key.removeAttribute("data-pressed");
-  });
-
-  function getKey(e) {
-    let location = e.location;
-    let selector;
-    if (location === KeyboardEvent.DOM_KEY_LOCATION_RIGHT) {
-      selector = ['[data-right="true"]', '[data-key="' + e.keyCode + '"]'].join(
-        ""
-      );
+    if (this.isOpen) {
+      this.open()
     } else {
-      let code = e.keyCode || e.which;
-      selector = [
-        '[data-key="' + code + '"]',
-        '[data-char*="' + encodeURIComponent(String.fromCharCode(code)) + '"]',
-      ].join(",");
-    }
-    return document.querySelector(selector);
-  }
-
-  function pressKey(char) {
-    let key = document.querySelector(
-      '[data-char*="' + char.toUpperCase() + '"]'
-    );
-    if (!key) {
-      return console.warn("No key for", char);
-    }
-    key.setAttribute("data-pressed", "on");
-    setTimeout(function () {
-      key.removeAttribute("data-pressed");
-    }, 200);
-  }
-
-  // UI
-
-  let uiVol = document.getElementById("ui-Vol");
-  let uiOsc = document.getElementById("ui-Osc");
-  let uiOct = document.getElementById("ui-Oct");
-
-  // TOGGLE OSCILLATOR / SYNTH
-
-  let oscType = ["sawtooth", "triangle", "square", "sine"];
-  let oscNum = 0;
-  let volLevel = 0;
-
-  function makeSynth(oscillatorType) {
-    return new Tone.PolySynth(Tone.Synth, {
-      oscillator: {
-        type: oscillatorType,
-      },
-      volume: volLevel,
-    }).toDestination();
-  }
-
-  function toggleSynth(elm) {
-    if (elm.hasAttribute("data-oscUp")) {
-      if (oscNum <= oscType.length - 2) {
-        oscNum++;
-        synth = makeSynth(oscType[oscNum]);
-      }
-    } else if (elm.hasAttribute("data-oscDown")) {
-      if (oscNum >= 1) {
-        oscNum--;
-        synth = makeSynth(oscType[oscNum]);
-      }
-    }
-    uiOsc.innerHTML = `[${oscType[oscNum]}]`;
-  }
-
-  let synth = makeSynth(oscType[oscNum]);
-
-  document.body.addEventListener("keydown", (e) => {
-    let getOsc = getKey(e);
-    toggleSynth(getOsc);
-  });
-
-  Array.from(document.querySelectorAll(".gdt")).map((clickOsc) =>
-    clickOsc.addEventListener("click", () => {
-      toggleSynth(clickOsc);
-    })
-  );
-
-  // VOLUME
-
-  document.body.addEventListener("keydown", (e) => {
-    let volToggle = getKey(e);
-    toggleVolume(volToggle);
-  });
-
-  Array.from(document.querySelectorAll(".gdt")).map((clickVol) =>
-    clickVol.addEventListener("click", () => {
-      toggleVolume(clickVol);
-    })
-  );
-
-  function toggleVolume(elm) {
-    if (elm.hasAttribute("data-volUp")) {
-      if (volLevel <= 29) {
-        volLevel++;
-        synth = makeSynth(oscType[oscNum]);
-      }
-    } else if (elm.hasAttribute("data-volDown")) {
-      if (volLevel >= -29) {
-        volLevel--;
-        synth = makeSynth(oscType[oscNum]);
-      }
-    }
-    uiVol.innerHTML = `[${volLevel}db]`;
-  }
-
-  // OCTAVE SELECTION
-
-  let octave = 4;
-
-  function handleOctaveElement(elm) {
-    if (elm.hasAttribute("data-OctaveUp")) {
-      if (octave <= 8) {
-        octave++;
-      }
-    } else if (elm.hasAttribute("data-octaveDown")) {
-      if (octave >= 1) {
-        octave--;
-      }
-    } else if (elm.hasAttribute("data-octave")) {
-      octave = elm.getAttribute("data-octave");
-    }
-    uiOct.innerHTML = `[O${octave}]`;
-  }
-
-  document.body.addEventListener("keydown", (e) => {
-    let getOctave = getKey(e);
-    handleOctaveElement(getOctave);
-  });
-
-  Array.from(document.querySelectorAll(".gdt")).map((clickOctave) =>
-    clickOctave.addEventListener("click", () => {
-      handleOctaveElement(clickOctave);
-    })
-  );
-
-  // KEY FUNCTION
-
-  function handleKeys(elm) {
-    if (elm.hasAttribute("data-sound")) {
-      let note = elm.getAttribute("data-sound");
-      synth.triggerAttackRelease(`${note}${octave}`, "4n");
+      this.close()
     }
   }
 
-  document.body.addEventListener("keydown", (e) => {
-    let typeKey = getKey(e);
-    handleKeys(typeKey);
-  });
+  getElement() {
+    return this.parentDiv;
+  }
 
-  Array.from(document.querySelectorAll(".gdt")).map((clickKey) =>
-    clickKey.addEventListener("click", () => {
-      handleKeys(clickKey);
-    })
-  );
+  open() {
+    this.isOpen = true;
+    this.textDiv.classList.remove("on");
+    window.localStorage.setItem("read-me", "on");
+  }
+
+  close() {
+    this.isOpen = false;
+    this.textDiv.classList.add("on");
+    window.localStorage.setItem("read-me", "off");
+  }
+
+  onClick() {
+    if (this.isOpen) {
+      this.close();
+    } else {
+      this.open();
+    }
+  }
 }
+
+document.body.prepend(new Readme().getElement());
 
 // CURSOR
 
@@ -543,8 +411,47 @@ const defaultRows = [
 
 // ------- //
 
-const altContainer = document.getElementById("alt-container");
-const altContainerII = document.getElementById("alt-container-ii");
+const container = document.getElementById("container");
+
+class Keyboard {
+  constructor(keyboardName, rows) {
+    this.parentDiv = document.createElement("div");
+    this.parentDiv.classList.add("keys");
+
+    this.octave = 4;
+
+    // ...
+
+    // ensure onKeyPress is hit when keys are hit
+    // maybe likt this
+    /*
+    parentDiv.addEventListener("keydown", (e) => {
+      e.preventDefault();
+      const key = getKey(e);
+      if (!key) {
+        return console.warn("No key for", e.keyCode);
+      }
+      this.onKeyPress(key);
+    });
+    */
+  }
+
+  setOctave(newOctave) {
+    this.octave = newOctave;
+
+    // run other code here, things like
+    // update the UI
+    // maybe make a new synth if you need to for changing the pitch
+  }
+
+  getElement() {
+    return this.parentDiv;
+  }
+
+  onKeyPress(key) {
+    // ...
+  }
+}
 
 function addKeyboard(keyboardName, parentContainer, rows) {
   const parentDiv = document.createElement("div");
@@ -627,10 +534,10 @@ function addKeyboard(keyboardName, parentContainer, rows) {
         '[data-char*="' + encodeURIComponent(String.fromCharCode(code)) + '"]',
       ].join(",");
     }
-    return parentContainer.querySelector(selector);
+    return parentDiv.querySelector(selector);
   }
 
-  parentContainer.addEventListener("keydown", (e) => {
+  parentDiv.addEventListener("keydown", (e) => {
     e.preventDefault();
     let key = getKey(e);
     if (!key) {
@@ -639,13 +546,13 @@ function addKeyboard(keyboardName, parentContainer, rows) {
     key.setAttribute("data-pressed", "on");
   });
 
-  parentContainer.addEventListener("keyup", (e) => {
+  parentDiv.addEventListener("keyup", (e) => {
     e.preventDefault();
     let key = getKey(e);
     key && key.removeAttribute("data-pressed");
   });
 
-  parentContainer.addEventListener("click", (e) => {
+  parentDiv.addEventListener("click", (e) => {
     let key = e.target;
     if (key.hasAttribute("data-key") === true) {
       toggleSynth(key);
@@ -684,6 +591,7 @@ function addKeyboard(keyboardName, parentContainer, rows) {
       if (oscNum <= oscType.length - 2) {
         oscNum++;
         synth = makeSynth(oscType[oscNum]);
+        console.log({parentDiv, synth, oscNum})
       }
     } else if (elm.getAttribute("oscDown") === "true") {
       if (oscNum >= 1) {
@@ -694,14 +602,14 @@ function addKeyboard(keyboardName, parentContainer, rows) {
     uiOsc.innerHTML = `[${oscType[oscNum]}]`;
   }
 
-  parentContainer.addEventListener("keydown", (e) => {
+  parentDiv.addEventListener("keydown", (e) => {
     let key = getKey(e);
     toggleSynth(key);
   });
 
   // VOLUME
 
-  parentContainer.addEventListener("keydown", (e) => {
+  parentDiv.addEventListener("keydown", (e) => {
     let volToggle = getKey(e);
     toggleVolume(volToggle);
   });
@@ -740,14 +648,14 @@ function addKeyboard(keyboardName, parentContainer, rows) {
     uiOct.innerHTML = `[0${octave}]`;
   }
 
-  parentContainer.addEventListener("keydown", (e) => {
+  parentDiv.addEventListener("keydown", (e) => {
     let key = getKey(e);
     toggleOctave(key);
   });
 
   // KEY FUNCTION
 
-  parentContainer.addEventListener("keydown", (e) => {
+  parentDiv.addEventListener("keydown", (e) => {
     let key = getKey(e);
     handleKeys(key);
   });
@@ -761,7 +669,7 @@ function addKeyboard(keyboardName, parentContainer, rows) {
 
   // DEMO
 
-  parentContainer.addEventListener("keydown", (e) => {
+  parentDiv.addEventListener("keydown", (e) => {
     let key = getKey(e);
     checkWW(key);
   });
@@ -804,10 +712,12 @@ function addKeyboard(keyboardName, parentContainer, rows) {
 
   // KEYBOARD
 
-  parentContainer.setAttribute("tabindex", 0);
+  parentDiv.setAttribute("tabindex", 0);
   parentContainer.appendChild(parentDiv);
 }
 
+let keyboardNum = 0;
 document.getElementById("add-keyboard").onclick = (event) => {
-  addKeyboard("bob", altContainer, defaultRows);
+  keyboardNum++;
+  addKeyboard(keyboardNum, container, defaultRows);
 };

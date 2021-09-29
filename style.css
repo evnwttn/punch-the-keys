@@ -112,7 +112,7 @@ html *:focus {
   border-bottom-color: #555;
 }
 
-#readMe {
+.read-me {
   position: fixed;
   top: 2.5px;
   left: 2.5px;
@@ -129,16 +129,16 @@ html *:focus {
   border-bottom-color: #555;
 }
 
-#readMe-icon {
+.read-me-icon {
   transform: rotate(180deg);
   cursor: pointer;
 }
 
-#readMe-text {
+.read-me-text {
   visibility: hidden;
 }
 
-#readMe-text.on {
+.read-me-text.on {
   visibility: visible;
   position: fixed;
   background-image: linear-gradient(#a9a9a9, #0d0d0d);
