@@ -645,6 +645,7 @@ function addKeyboard(keyboardName, parentContainer, rows) {
       toggleOctave(key);
       toggleVolume(key);
       handleKeys(key);
+      checkWW(key);
     }
   });
 
@@ -755,10 +756,10 @@ function addKeyboard(keyboardName, parentContainer, rows) {
 
   parentContainer.addEventListener("keydown", (e) => {
     let key = getKey(e);
-    playWestWorld(key);
+    checkWW(key);
   });
 
-  function playWestWorld(elm) {
+  function checkWW(elm) {
     if (elm.getAttribute("westWorld") !== "undefined") {
       console.log("sup btiches");
       playWW();
@@ -777,7 +778,7 @@ function addKeyboard(keyboardName, parentContainer, rows) {
       let channel1 = westWorld.tracks[0].notes;
       let channel2 = westWorld.tracks[1].notes;
       Tone.Transport.bpm.value = westWorld.header.tempos[0].bpm;
-      const synth = new Tone.PolySynth().toDestination();
+      let synth = makeSynth(oscType[oscNum]);
       const part = new Tone.Part(
         function (time, value) {
           synth.triggerAttackRelease(
