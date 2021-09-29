@@ -1,15 +1,22 @@
 // WW
 
-let requestURL =
-  "https://raw.githubusercontent.com/evnwttn/punch-the-keys/pure-js/audio/westworld.json";
-let request = new XMLHttpRequest();
-request.open("GET", requestURL);
-request.responseType = "json";
-request.send();
-request.onload = function () {
-  const westWorld = request.response;
-  console.log(westWorld);
+document.getElementById("ww").onclick = (event) => {
+  playWW();
 };
+
+function playWW() {
+  let requestURL =
+    "https://raw.githubusercontent.com/evnwttn/punch-the-keys/pure-js/audio/westworld.json";
+  let request = new XMLHttpRequest();
+  request.open("GET", requestURL);
+  request.responseType = "json";
+  request.send();
+  request.onload = function () {
+    let westWorld = request.response;
+    let notes = westWorld.tracks[0].notes;
+    console.log(notes);
+  };
+}
 
 // TITLE
 
