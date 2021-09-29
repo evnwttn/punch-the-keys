@@ -503,7 +503,14 @@ const defaultRows = [
     /* ROW 5 */
     { keyCode: 16, classes: "word shift align-shiftl gdt", value: "SHIFT" },
     { keyCode: 90, classes: "letter gdt", value: "Z" },
-    { keyCode: 88, classes: "letter gdt", value: "X", westWorld: true },
+    {
+      keyCode: 88,
+      classes: "letter gdt",
+      value: "X",
+      westWorld: true,
+      multi: "&#8776;",
+      multiClasses: ["multi"],
+    },
     { keyCode: 67, classes: "letter gdt", value: "C" },
     { keyCode: 86, classes: "letter gdt", value: "V" },
     { keyCode: 66, classes: "letter gdt", value: "B" },
