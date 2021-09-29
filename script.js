@@ -1,3 +1,15 @@
+// WW
+
+var myJSON;
+
+function getLocalJSON(json_url) {
+  var json_script = document.createElement("script");
+  json_script.type = "text/javascript";
+  json_script.src = json_url;
+  json_script.id = "json_script";
+  document.getElementsByTagName("head")[0].appendChild(json_script);
+}
+
 // TITLE
 
 anime
