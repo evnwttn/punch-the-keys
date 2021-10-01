@@ -98,6 +98,7 @@ html *:focus {
   /* position: fixed; */
   /* top: 0px;
   right: 0px; */
+  text-transform: uppercase;
   z-index: 100;
   color: #f7fcff;
   font-size: 15px;

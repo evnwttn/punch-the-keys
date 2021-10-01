@@ -466,21 +466,29 @@ function addKeyboard(keyboardName, parentContainer, rows) {
   const parentDiv = document.createElement("div");
   parentDiv.classList.add("keys");
 
+  // UI
+
   const hud = document.createElement("div");
   hud.classList.add("ui");
+
   const uiVol = document.createElement("div");
   uiVol.classList.add("ui-vol");
+  uiVol.innerHTML = "[0db]";
+
   const uiOsc = document.createElement("div");
   uiOsc.classList.add("ui-osc");
+  uiOsc.innerHTML = "[SAWTOOTH]";
+
   const uiOct = document.createElement("div");
   uiOct.classList.add("ui-oct");
-  uiVol.innerHTML = "yeah";
-  uiOsc.innerHTML = "yeah";
-  uiOct.innerHTML = "yeah";
+  uiOct.innerHTML = "[O4]";
+
   hud.appendChild(uiVol);
   hud.appendChild(uiOsc);
   hud.appendChild(uiOct);
   parentDiv.appendChild(hud);
+
+  // ROWS
 
   rows.forEach((row, index) => {
     const rowDiv = document.createElement("div");
@@ -647,6 +655,7 @@ function addKeyboard(keyboardName, parentContainer, rows) {
         synth = makeSynth(oscType[oscNum]);
       }
     }
+    uiOsc.innerHTML = `[${oscType[oscNum]}]`;
   }
 
   // VOLUME
@@ -663,6 +672,7 @@ function addKeyboard(keyboardName, parentContainer, rows) {
         synth = makeSynth(oscType[oscNum]);
       }
     }
+    uiVol.innerHTML = `[${volLevel}db]`;
   }
 
   // OCTAVE SELECTION
@@ -681,6 +691,7 @@ function addKeyboard(keyboardName, parentContainer, rows) {
     } else if (elm.getAttribute("octave") !== null) {
       octave = elm.getAttribute("octave");
     }
+    uiOct.innerHTML = `[0${octave}]`;
   }
 
   // KEY FUNCTION
