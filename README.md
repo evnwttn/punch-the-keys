@@ -10,3 +10,4 @@ https://evnwttn.github.io/punch-the-keys/
    <br />&#10688; & &#10689; &#8702; toggle octave
    <br />&#8818; & &#8819; &#8702; toggle oscillator
    <br />&#9651; & &#9661; &#8702; toggle volume
+   <br />create multiple keyboard instances
