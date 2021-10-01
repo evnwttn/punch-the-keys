@@ -466,6 +466,22 @@ function addKeyboard(keyboardName, parentContainer, rows) {
   const parentDiv = document.createElement("div");
   parentDiv.classList.add("keys");
 
+  const hud = document.createElement("div");
+  hud.classList.add("ui");
+  const uiVol = document.createElement("div");
+  uiVol.classList.add("ui-vol");
+  const uiOsc = document.createElement("div");
+  uiOsc.classList.add("ui-osc");
+  const uiOct = document.createElement("div");
+  uiOct.classList.add("ui-oct");
+  uiVol.innerHTML = "yeah";
+  uiOsc.innerHTML = "yeah";
+  uiOct.innerHTML = "yeah";
+  hud.appendChild(uiVol);
+  hud.appendChild(uiOsc);
+  hud.appendChild(uiOct);
+  parentDiv.appendChild(hud);
+
   rows.forEach((row, index) => {
     const rowDiv = document.createElement("div");
     rowDiv.classList.add("key-row");
@@ -607,7 +623,6 @@ function addKeyboard(keyboardName, parentContainer, rows) {
   let oscType = ["sawtooth", "triangle", "square", "sine"];
   let oscNum = 0;
   let volLevel = 0;
-  let uiOsc = document.getElementById("ui-osc");
   let synth = makeSynth(oscType[oscNum]);
 
   function makeSynth(oscillatorType) {
@@ -632,12 +647,9 @@ function addKeyboard(keyboardName, parentContainer, rows) {
         synth = makeSynth(oscType[oscNum]);
       }
     }
-    uiOsc.innerHTML = `[${oscType[oscNum]}]`;
   }
 
   // VOLUME
-
-  let uiVol = document.getElementById("ui-vol");
 
   function toggleVolume(elm) {
     if (elm.getAttribute("volUp") === "true") {
@@ -651,13 +663,11 @@ function addKeyboard(keyboardName, parentContainer, rows) {
         synth = makeSynth(oscType[oscNum]);
       }
     }
-    uiVol.innerHTML = `[${volLevel}db]`;
   }
 
   // OCTAVE SELECTION
 
   let octave = 4;
-  let uiOct = document.getElementById("ui-oct");
 
   function toggleOctave(elm) {
     if (elm.getAttribute("octaveUp") === "true") {
@@ -671,7 +681,6 @@ function addKeyboard(keyboardName, parentContainer, rows) {
     } else if (elm.getAttribute("octave") !== null) {
       octave = elm.getAttribute("octave");
     }
-    uiOct.innerHTML = `[0${octave}]`;
   }
 
   // KEY FUNCTION

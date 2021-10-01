@@ -90,11 +90,11 @@ html *:focus {
   box-shadow: 0 0 0 0.05em #0a0140;
 }
 
-#ui * {
+.ui * {
   display: inline-block;
 }
 
-#ui {
+.ui {
   /* position: fixed; */
   /* top: 0px;
   right: 0px; */
