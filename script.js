@@ -735,12 +735,18 @@ function addKeyboard(keyboardName, parentContainer, rows) {
             time,
             value.velocity
           );
+          let note = value.name;
+          lightUp(note);
         },
         channel1,
         channel2
       ).start();
       Tone.Transport.start();
     };
+  }
+
+  function lightUp(elm) {
+    console.log(elm);
   }
 
   // KEYBOARD
