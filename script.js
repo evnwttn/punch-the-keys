@@ -485,8 +485,12 @@ function addKeyboard(keyboardName, parentContainer, rows) {
       keyDiv.setAttribute("octaveDown", key.octaveDown);
       keyDiv.setAttribute("oscUp", key.oscUp);
       keyDiv.setAttribute("oscDown", key.oscDown);
-      keyDiv.setAttribute("volUp", key.volUp);
-      keyDiv.setAttribute("volDown", key.volDown);
+      if (key.volUp) {
+        keyDiv.setAttribute("volUp", key.volUp);
+      }
+      if (key.volDown) {
+        keyDiv.setAttribute("volDown", key.volDown);
+      }
       keyDiv.setAttribute("right", key.right);
       keyDiv.setAttribute("westWorld", key.westWorld);
 
@@ -553,6 +557,7 @@ function addKeyboard(keyboardName, parentContainer, rows) {
       return console.warn("No key for", e.keyCode);
     }
     key.setAttribute("data-pressed", "on");
+    console.log(key);
     toggleSynth(key);
     toggleOctave(key);
     toggleVolume(key);
