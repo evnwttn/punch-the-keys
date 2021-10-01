@@ -746,7 +746,23 @@ function addKeyboard(keyboardName, parentContainer, rows) {
   }
 
   function lightUp(elm) {
-    console.log(elm);
+    let baseNote = elm.charAt(0);
+    if (baseNote === "A") {
+      console.log("A");
+    } else if (baseNote === "B") {
+      console.log("B");
+    } else if (baseNote === "C") {
+      console.log("C");
+    } else if (baseNote === "D") {
+      console.log("D");
+    } else if (baseNote === "E") {
+      console.log("E");
+    } else if (baseNote === "F") {
+      console.log("F");
+    } else if (baseNote === "G") {
+      console.log("G");
+    }
+    // key.setAttribute("data-pressed", "on");
   }
 
   // KEYBOARD
