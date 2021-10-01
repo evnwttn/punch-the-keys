@@ -480,7 +480,9 @@ function addKeyboard(keyboardName, parentContainer, rows) {
       keyDiv.setAttribute("value", key.value);
       keyDiv.setAttribute("multi", key.multi);
       keyDiv.setAttribute("multiClasses", key.multiClasses);
-      keyDiv.setAttribute("octave", key.octave);
+      if (key.octave) {
+        keyDiv.setAttribute("octave", key.octave);
+      }
       if (key.octaveUp) {
         keyDiv.setAttribute("octaveUp", key.octaveUp);
       }
@@ -569,7 +571,6 @@ function addKeyboard(keyboardName, parentContainer, rows) {
       return console.warn("No key for", e.keyCode);
     }
     key.setAttribute("data-pressed", "on");
-    console.log(key);
     toggleSynth(key);
     toggleOctave(key);
     toggleVolume(key);
@@ -660,8 +661,9 @@ function addKeyboard(keyboardName, parentContainer, rows) {
       if (octave >= 1) {
         octave--;
       }
-    } else if (elm.getAttribute("octave") !== "undefined") {
+    } else if (elm.getAttribute("octave") !== null) {
       octave = elm.getAttribute("octave");
+      console.log(elm.getAttribute("octave"));
     }
     uiOct.innerHTML = `[0${octave}]`;
   }
@@ -678,7 +680,7 @@ function addKeyboard(keyboardName, parentContainer, rows) {
   // DEMO
 
   function toggleDemo(elm) {
-    if (elm.getAttribute("westWorld") !== "undefined") {
+    if (elm.getAttribute("westWorld") === "true") {
       playDemo();
     }
   }
