@@ -112,6 +112,7 @@ html *:focus {
 
 .hud {
   position: relative;
+  padding-left: 72.65%;
 }
 
 .read-me {
