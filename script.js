@@ -379,7 +379,7 @@ const defaultRows = [
       keyCode: 88,
       classes: "letter gdt",
       value: "X",
-      westWorld: true,
+      demo: true,
       multi: "&#8776;",
       multiClasses: ["multi"],
     },
@@ -503,43 +503,43 @@ function addKeyboard(keyboardName, parentContainer, rows) {
       const keyDiv = document.createElement("div");
 
       keyDiv.setAttribute("data-key", key.keyCode);
-      keyDiv.setAttribute("classes", key.classes);
+      keyDiv.setAttribute("data-classes", key.classes);
       if (key.sound) {
-        keyDiv.setAttribute("sound", key.sound);
+        keyDiv.setAttribute("data-sound", key.sound);
       }
-      keyDiv.setAttribute("value", key.value);
+      keyDiv.setAttribute("data-value", key.value);
       if (key.multi) {
-        keyDiv.setAttribute("multi", key.multi);
+        keyDiv.setAttribute("data-multi", key.multi);
       }
       if (key.multiClasses) {
-        keyDiv.setAttribute("multiClasses", key.multiClasses);
+        keyDiv.setAttribute("data-multi-classes", key.multiClasses);
       }
       if (key.octave) {
-        keyDiv.setAttribute("octave", key.octave);
+        keyDiv.setAttribute("data-octave", key.octave);
       }
       if (key.octaveUp) {
-        keyDiv.setAttribute("octaveUp", key.octaveUp);
+        keyDiv.setAttribute("data-octave-up", key.octaveUp);
       }
       if (key.octaveDown) {
-        keyDiv.setAttribute("octaveDown", key.octaveDown);
+        keyDiv.setAttribute("data-octave-down", key.octaveDown);
       }
       if (key.oscUp) {
-        keyDiv.setAttribute("oscUp", key.oscUp);
+        keyDiv.setAttribute("data-osc-up", key.oscUp);
       }
       if (key.oscDown) {
-        keyDiv.setAttribute("oscDown", key.oscDown);
+        keyDiv.setAttribute("data-osc-down", key.oscDown);
       }
       if (key.volUp) {
-        keyDiv.setAttribute("volUp", key.volUp);
+        keyDiv.setAttribute("data-vol-up", key.volUp);
       }
       if (key.volDown) {
-        keyDiv.setAttribute("volDown", key.volDown);
+        keyDiv.setAttribute("data-vol-down", key.volDown);
       }
       if (key.right) {
-        keyDiv.setAttribute("right", key.right);
+        keyDiv.setAttribute("data-right", key.right);
       }
-      if (key.westWorld) {
-        keyDiv.setAttribute("westWorld", key.westWorld);
+      if (key.demo) {
+        keyDiv.setAttribute("data-demo", key.demo);
       }
 
       key.classes.split(" ").forEach((klass) => {
@@ -605,7 +605,6 @@ function addKeyboard(keyboardName, parentContainer, rows) {
       return console.warn("No key for", e.keyCode);
     }
     key.setAttribute("data-pressed", "on");
-    console.log(key);
     toggleSynth(key);
     toggleOctave(key);
     toggleVolume(key);
@@ -647,13 +646,13 @@ function addKeyboard(keyboardName, parentContainer, rows) {
   }
 
   function toggleSynth(elm) {
-    if (elm.getAttribute("oscUp") === "true") {
+    if (elm.getAttribute("data-osc-up") === "true") {
       if (oscNum <= oscType.length - 2) {
         oscNum++;
         synth = makeSynth(oscType[oscNum]);
         console.log({ parentDiv, synth, oscNum });
       }
-    } else if (elm.getAttribute("oscDown") === "true") {
+    } else if (elm.getAttribute("data-osc-down") === "true") {
       if (oscNum >= 1) {
         oscNum--;
         synth = makeSynth(oscType[oscNum]);
@@ -665,12 +664,12 @@ function addKeyboard(keyboardName, parentContainer, rows) {
   // VOLUME
 
   function toggleVolume(elm) {
-    if (elm.getAttribute("volUp") === "true") {
+    if (elm.getAttribute("data-vol-up") === "true") {
       if (volLevel <= 29) {
         volLevel++;
         synth = makeSynth(oscType[oscNum]);
       }
-    } else if (elm.getAttribute("volDown") === "true") {
+    } else if (elm.getAttribute("data-vol-down") === "true") {
       if (volLevel >= -29) {
         volLevel--;
         synth = makeSynth(oscType[oscNum]);
@@ -684,16 +683,16 @@ function addKeyboard(keyboardName, parentContainer, rows) {
   let octave = 4;
 
   function toggleOctave(elm) {
-    if (elm.getAttribute("octaveUp") === "true") {
+    if (elm.getAttribute("data-octave-up") === "true") {
       if (octave <= 8) {
         octave++;
       }
-    } else if (elm.getAttribute("octaveDown") === "true") {
+    } else if (elm.getAttribute("data-octave-down") === "true") {
       if (octave >= 1) {
         octave--;
       }
-    } else if (elm.getAttribute("octave") !== null) {
-      octave = elm.getAttribute("octave");
+    } else if (elm.getAttribute("data-octave") !== null) {
+      octave = elm.getAttribute("data-octave");
     }
     uiOct.innerHTML = `[0${octave}]`;
   }
@@ -701,8 +700,8 @@ function addKeyboard(keyboardName, parentContainer, rows) {
   // KEY FUNCTION
 
   function handleKeys(elm) {
-    if (elm.getAttribute("sound") !== null) {
-      let note = elm.getAttribute("sound");
+    if (elm.getAttribute("data-sound") !== null) {
+      let note = elm.getAttribute("data-sound");
       synth.triggerAttackRelease(`${note}${octave}`, "4n");
     }
   }
@@ -710,7 +709,7 @@ function addKeyboard(keyboardName, parentContainer, rows) {
   // DEMO
 
   function toggleDemo(elm) {
-    if (elm.getAttribute("westWorld") === "true") {
+    if (elm.getAttribute("data-demo") === "true") {
       playDemo();
     }
   }
@@ -723,10 +722,10 @@ function addKeyboard(keyboardName, parentContainer, rows) {
     request.responseType = "json";
     request.send();
     request.onload = function () {
-      let westWorld = request.response;
-      let channel1 = westWorld.tracks[0].notes;
-      let channel2 = westWorld.tracks[1].notes;
-      Tone.Transport.bpm.value = westWorld.header.tempos[0].bpm;
+      let demo = request.response;
+      let channel1 = demo.tracks[0].notes;
+      let channel2 = demo.tracks[1].notes;
+      Tone.Transport.bpm.value = demo.header.tempos[0].bpm;
       let synth = makeSynth(oscType[oscNum]);
       const part = new Tone.Part(
         function (time, value) {
