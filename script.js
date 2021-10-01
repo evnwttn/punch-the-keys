@@ -468,6 +468,9 @@ function addKeyboard(keyboardName, parentContainer, rows) {
 
   // UI
 
+  const hudDiv = document.createElement("div");
+  hudDiv.classList.add("hud");
+
   const hud = document.createElement("div");
   hud.classList.add("ui");
 
@@ -486,7 +489,8 @@ function addKeyboard(keyboardName, parentContainer, rows) {
   hud.appendChild(uiVol);
   hud.appendChild(uiOsc);
   hud.appendChild(uiOct);
-  parentDiv.appendChild(hud);
+  hudDiv.appendChild(hud);
+  parentDiv.appendChild(hudDiv);
 
   // ROWS
 

@@ -95,9 +95,6 @@ html *:focus {
 }
 
 .ui {
-  /* position: fixed; */
-  /* top: 0px;
-  right: 0px; */
   text-transform: uppercase;
   z-index: 100;
   color: #f7fcff;
@@ -106,11 +103,15 @@ html *:focus {
   border-radius: 0.3em;
   margin: 0.3em;
   padding: 0.2em;
-  width: 12em;
+  width: 11.5em;
   box-sizing: border-box;
   border: 1px solid #e0e0d9;
   box-shadow: 0 0.2em 0 0.05em #bff205;
   border-bottom-color: #555;
+}
+
+.hud {
+  position: relative;
 }
 
 .read-me {
