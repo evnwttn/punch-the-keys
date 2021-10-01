@@ -481,18 +481,30 @@ function addKeyboard(keyboardName, parentContainer, rows) {
       keyDiv.setAttribute("multi", key.multi);
       keyDiv.setAttribute("multiClasses", key.multiClasses);
       keyDiv.setAttribute("octave", key.octave);
-      keyDiv.setAttribute("octaveUp", key.octaveUp);
-      keyDiv.setAttribute("octaveDown", key.octaveDown);
-      keyDiv.setAttribute("oscUp", key.oscUp);
-      keyDiv.setAttribute("oscDown", key.oscDown);
+      if (key.octaveUp) {
+        keyDiv.setAttribute("octaveUp", key.octaveUp);
+      }
+      if (key.octaveDown) {
+        keyDiv.setAttribute("octaveDown", key.octaveDown);
+      }
+      if (key.oscUp) {
+        keyDiv.setAttribute("oscUp", key.oscUp);
+      }
+      if (key.oscDown) {
+        keyDiv.setAttribute("oscDown", key.oscDown);
+      }
       if (key.volUp) {
         keyDiv.setAttribute("volUp", key.volUp);
       }
       if (key.volDown) {
         keyDiv.setAttribute("volDown", key.volDown);
       }
-      keyDiv.setAttribute("right", key.right);
-      keyDiv.setAttribute("westWorld", key.westWorld);
+      if (key.right) {
+        keyDiv.setAttribute("right", key.right);
+      }
+      if (key.westWorld) {
+        keyDiv.setAttribute("westWorld", key.westWorld);
+      }
 
       key.classes.split(" ").forEach((klass) => {
         keyDiv.classList.add(klass);
