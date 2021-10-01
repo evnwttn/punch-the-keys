@@ -27,32 +27,32 @@ class Readme {
   constructor() {
     this.isOpen = window.localStorage.getItem("read-me") === "on";
 
-    this.parentDiv = document.createElement('div');
-    this.parentDiv.className = 'read-me';
+    this.parentDiv = document.createElement("div");
+    this.parentDiv.className = "read-me";
 
-    this.iconDiv = document.createElement('div');
-    this.iconDiv.className = "read-me-icon"
-    this.iconDiv.innerHTML = '&#9786';
-    this.iconDiv.addEventListener('click', () => {
+    this.iconDiv = document.createElement("div");
+    this.iconDiv.className = "read-me-icon";
+    this.iconDiv.innerHTML = "&#9786";
+    this.iconDiv.addEventListener("click", () => {
       this.onClick();
     });
 
-    this.textDiv = document.createElement('div');
-    this.textDiv.className = "read-me-text"
+    this.textDiv = document.createElement("div");
+    this.textDiv.className = "read-me-text";
     this.textDiv.innerHTML = `1 - 0 &#8702; octaves
 <br />&#10688; & &#10689; &#8702; toggle octave
 <br />W - U &#8702; black keys
 <br />&#8818; & &#8819; &#8702; toggle oscillator
 <br />A - K &#8702; white keys
-<br />&#9651; & &#9661; &#8702; toggle volume`
+<br />&#9651; & &#9661; &#8702; toggle volume`;
 
     this.parentDiv.appendChild(this.iconDiv);
     this.parentDiv.appendChild(this.textDiv);
 
     if (this.isOpen) {
-      this.open()
+      this.open();
     } else {
-      this.close()
+      this.close();
     }
   }
 
@@ -396,13 +396,18 @@ const defaultRows = [
   ],
   [
     /* ROW 6 */
-    { keyCode: 17, classes: "word bottomctrl gdt", value: "CTRL" },
+    { keyCode: 17, classes: "word bottom-ctrl gdt", value: "CTRL" },
     { keyCode: 255, classes: "word bottom gdt", value: "FN" },
     { keyCode: 91, classes: "word bottom gdt", value: "&#9734;" },
     { keyCode: 18, classes: "word bottom gdt", value: "ALT" },
     { keyCode: 32, classes: "word space gdt", value: "" },
     { keyCode: 18, right: true, classes: "word bottom gdt", value: "ALT" },
-    { keyCode: 17, right: true, classes: "word bottomctrl gdt", value: "CTRL" },
+    {
+      keyCode: 17,
+      right: true,
+      classes: "word bottom-ctrl gdt",
+      value: "CTRL",
+    },
     { keyCode: 37, classes: "arrow gdt", value: "&#9664;" },
     { keyCode: 38, classes: "stack gdt", value: ["&#9650;", "&#9660;"] },
     { keyCode: 39, classes: "arrow gdt", value: "&#9654;" },
@@ -565,14 +570,15 @@ function addKeyboard(keyboardName, parentContainer, rows) {
 
   // UI
 
-  let uiVol = document.getElementById("ui-Vol");
-  let uiOsc = document.getElementById("ui-Osc");
-  let uiOct = document.getElementById("ui-Oct");
+  let uiVol = document.getElementById("ui-vol");
+  let uiOsc = document.getElementById("ui-osc");
+  let uiOct = document.getElementById("ui-oct");
 
   // TOGGLE OSCILLATOR / SYNTH
 
   let oscType = ["sawtooth", "triangle", "square", "sine"];
   let oscNum = 0;
+
   let volLevel = 0;
 
   function makeSynth(oscillatorType) {
@@ -591,7 +597,7 @@ function addKeyboard(keyboardName, parentContainer, rows) {
       if (oscNum <= oscType.length - 2) {
         oscNum++;
         synth = makeSynth(oscType[oscNum]);
-        console.log({parentDiv, synth, oscNum})
+        console.log({ parentDiv, synth, oscNum });
       }
     } else if (elm.getAttribute("oscDown") === "true") {
       if (oscNum >= 1) {
