@@ -476,10 +476,16 @@ function addKeyboard(keyboardName, parentContainer, rows) {
 
       keyDiv.setAttribute("data-key", key.keyCode);
       keyDiv.setAttribute("classes", key.classes);
-      keyDiv.setAttribute("sound", key.sound);
+      if (key.sound) {
+        keyDiv.setAttribute("sound", key.sound);
+      }
       keyDiv.setAttribute("value", key.value);
-      keyDiv.setAttribute("multi", key.multi);
-      keyDiv.setAttribute("multiClasses", key.multiClasses);
+      if (key.multi) {
+        keyDiv.setAttribute("multi", key.multi);
+      }
+      if (key.multiClasses) {
+        keyDiv.setAttribute("multiClasses", key.multiClasses);
+      }
       if (key.octave) {
         keyDiv.setAttribute("octave", key.octave);
       }
@@ -571,6 +577,7 @@ function addKeyboard(keyboardName, parentContainer, rows) {
       return console.warn("No key for", e.keyCode);
     }
     key.setAttribute("data-pressed", "on");
+    console.log(key);
     toggleSynth(key);
     toggleOctave(key);
     toggleVolume(key);
@@ -663,7 +670,6 @@ function addKeyboard(keyboardName, parentContainer, rows) {
       }
     } else if (elm.getAttribute("octave") !== null) {
       octave = elm.getAttribute("octave");
-      console.log(elm.getAttribute("octave"));
     }
     uiOct.innerHTML = `[0${octave}]`;
   }
@@ -671,7 +677,7 @@ function addKeyboard(keyboardName, parentContainer, rows) {
   // KEY FUNCTION
 
   function handleKeys(elm) {
-    if (elm.getAttribute("sound") !== "undefined") {
+    if (elm.getAttribute("sound") !== null) {
       let note = elm.getAttribute("sound");
       synth.triggerAttackRelease(`${note}${octave}`, "4n");
     }
