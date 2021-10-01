@@ -211,13 +211,13 @@ const defaultRows = [
     },
     {
       keyCode: 8,
-      classes: "word backspacetab align-backspace gdt",
+      classes: "word backspace-tab align-backspace gdt",
       value: "&#8592;",
     },
   ],
   [
     /* ROW 3 */
-    { keyCode: 9, classes: "word backspacetab align-tab gdt", value: "TAB" },
+    { keyCode: 9, classes: "word backspace-tab align-tab gdt", value: "TAB" },
     { keyCode: 81, classes: "letter gdt", value: "Q" },
     {
       keyCode: 87,
@@ -283,7 +283,11 @@ const defaultRows = [
   ],
   [
     /* ROW 4 */
-    { keyCode: 20, classes: "word capsenter align-caps gdt", value: "CAPSLCK" },
+    {
+      keyCode: 20,
+      classes: "word caps-enter align-caps gdt",
+      value: "CAPSLCK",
+    },
     {
       keyCode: 65,
       sound: "C",
@@ -365,7 +369,7 @@ const defaultRows = [
       multi: "&#9651;",
       multiClasses: ["multi"],
     },
-    { keyCode: 13, classes: "word capsenter align-enter gdt", value: "ENTER" },
+    { keyCode: 13, classes: "word caps-enter align-enter gdt", value: "ENTER" },
   ],
   [
     /* ROW 5 */
@@ -549,6 +553,11 @@ function addKeyboard(keyboardName, parentContainer, rows) {
       return console.warn("No key for", e.keyCode);
     }
     key.setAttribute("data-pressed", "on");
+    toggleSynth(key);
+    toggleOctave(key);
+    toggleVolume(key);
+    handleKeys(key);
+    toggleDemo(key);
   });
 
   parentDiv.addEventListener("keyup", (e) => {
@@ -564,22 +573,17 @@ function addKeyboard(keyboardName, parentContainer, rows) {
       toggleOctave(key);
       toggleVolume(key);
       handleKeys(key);
-      checkWW(key);
+      toggleDemo(key);
     }
   });
-
-  // UI
-
-  let uiVol = document.getElementById("ui-vol");
-  let uiOsc = document.getElementById("ui-osc");
-  let uiOct = document.getElementById("ui-oct");
 
   // TOGGLE OSCILLATOR / SYNTH
 
   let oscType = ["sawtooth", "triangle", "square", "sine"];
   let oscNum = 0;
-
   let volLevel = 0;
+  let uiOsc = document.getElementById("ui-osc");
+  let synth = makeSynth(oscType[oscNum]);
 
   function makeSynth(oscillatorType) {
     return new Tone.PolySynth(Tone.Synth, {
@@ -589,8 +593,6 @@ function addKeyboard(keyboardName, parentContainer, rows) {
       volume: volLevel,
     }).toDestination();
   }
-
-  let synth = makeSynth(oscType[oscNum]);
 
   function toggleSynth(elm) {
     if (elm.getAttribute("oscUp") === "true") {
@@ -608,17 +610,9 @@ function addKeyboard(keyboardName, parentContainer, rows) {
     uiOsc.innerHTML = `[${oscType[oscNum]}]`;
   }
 
-  parentDiv.addEventListener("keydown", (e) => {
-    let key = getKey(e);
-    toggleSynth(key);
-  });
-
   // VOLUME
 
-  parentDiv.addEventListener("keydown", (e) => {
-    let volToggle = getKey(e);
-    toggleVolume(volToggle);
-  });
+  let uiVol = document.getElementById("ui-vol");
 
   function toggleVolume(elm) {
     if (elm.getAttribute("volUp") === "true") {
@@ -638,6 +632,7 @@ function addKeyboard(keyboardName, parentContainer, rows) {
   // OCTAVE SELECTION
 
   let octave = 4;
+  let uiOct = document.getElementById("ui-oct");
 
   function toggleOctave(elm) {
     if (elm.getAttribute("octaveUp") === "true") {
@@ -654,17 +649,7 @@ function addKeyboard(keyboardName, parentContainer, rows) {
     uiOct.innerHTML = `[0${octave}]`;
   }
 
-  parentDiv.addEventListener("keydown", (e) => {
-    let key = getKey(e);
-    toggleOctave(key);
-  });
-
   // KEY FUNCTION
-
-  parentDiv.addEventListener("keydown", (e) => {
-    let key = getKey(e);
-    handleKeys(key);
-  });
 
   function handleKeys(elm) {
     if (elm.getAttribute("sound") !== "undefined") {
@@ -675,19 +660,13 @@ function addKeyboard(keyboardName, parentContainer, rows) {
 
   // DEMO
 
-  parentDiv.addEventListener("keydown", (e) => {
-    let key = getKey(e);
-    checkWW(key);
-  });
-
-  function checkWW(elm) {
+  function toggleDemo(elm) {
     if (elm.getAttribute("westWorld") !== "undefined") {
-      console.log("sup btiches");
-      playWW();
+      playDemo();
     }
   }
 
-  function playWW() {
+  function playDemo() {
     let requestURL =
       "https://raw.githubusercontent.com/evnwttn/punch-the-keys/pure-js/audio/westworld.json";
     let request = new XMLHttpRequest();
