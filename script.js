@@ -518,17 +518,17 @@ class Keyboard {
           this.multiDiv.innerHTML = `${this.multiText}`;
         }
 
-        // if (typeof key.value === "string") {
-        //   keySpan.innerHTML = key.value;
-        // } else if (Array.isArray(key.value)) {
-        //   key.value.forEach((value) => {
-        //     const valueDiv = document.createElement("div");
-        //     valueDiv.innerHTML = value;
-        //     keySpan.appendChild(valueDiv);
-        //   });
-        // } else {
-        //   throw new Error(`unknown key.value!: ${key.value}`);
-        // }
+        if (typeof key.value === "string") {
+          this.keySpan.innerHTML = key.value;
+        } else if (Array.isArray(key.value)) {
+          key.value.forEach((value) => {
+            this.valueDiv = document.createElement("div");
+            this.valueDiv.innerHTML = value;
+            this.keySpan.appendChild(this.valueDiv);
+          });
+        } else {
+          throw new Error(`unknown key.value!: ${key.value}`);
+        }
 
         this.keyDiv.appendChild(this.keySpan); // span under key
         this.rowDiv.appendChild(this.keyDiv); // key under row
