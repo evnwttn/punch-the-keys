@@ -418,7 +418,7 @@ const defaultRows = [
   ],
 ];
 
-// ------- //
+// ------------------------------------------------------ //
 
 const container = document.getElementById("container");
 
@@ -426,8 +426,6 @@ class Keyboard {
   constructor(keyboardName, rows) {
     this.parentDiv = document.createElement("div");
     this.parentDiv.classList.add("keys");
-
-    // this.octave = 4;
 
     this.hudDiv = document.createElement("div");
     this.hudDiv.classList.add("hud");
@@ -541,57 +539,36 @@ class Keyboard {
 
     ///////
 
-    function getKey(e) {
-      let location = e.location;
-      let selector;
-      if (location === KeyboardEvent.DOM_KEY_LOCATION_RIGHT) {
-        selector = [
-          '[data-right="true"]',
-          '[data-key="' + e.keyCode + '"]',
-        ].join("");
-      } else {
-        let code = e.keyCode || e.which;
-        selector = [
-          '[data-key="' + code + '"]',
-          '[data-char*="' +
-            encodeURIComponent(String.fromCharCode(code)) +
-            '"]',
-        ].join(",");
-      }
-      return parentDiv.querySelector(selector);
-    }
+    // function getKey(e) {
+    //   let location = e.location;
+    //   let selector;
+    //   if (location === KeyboardEvent.DOM_KEY_LOCATION_RIGHT) {
+    //     selector = [
+    //       '[data-right="true"]',
+    //       '[data-key="' + e.keyCode + '"]',
+    //     ].join("");
+    //   } else {
+    //     let code = e.keyCode || e.which;
+    //     selector = [
+    //       '[data-key="' + code + '"]',
+    //       '[data-char*="' +
+    //         encodeURIComponent(String.fromCharCode(code)) +
+    //         '"]',
+    //     ].join(",");
+    //   }
+    //   return parentDiv.querySelector(selector);
+    // }
 
     this.parentDiv.addEventListener("click", (e) => {
       let key = e.target;
       if (key.hasAttribute("data-key") === true) {
-        console.log(key);
         //   toggleSynth(key);
-        //   toggleOctave(key);
+        setOctave();
         //   toggleVolume(key);
         //   handleKeys(key);
         //   toggleDemo(key);
       }
     });
-
-    // parentDiv.addEventListener("keydown", (e) => {
-    //   e.preventDefault();
-    //   let key = getKey(e);
-    //   if (!key) {
-    //     return console.warn("No key for", e.keyCode);
-    //   }
-    //   key.setAttribute("data-pressed", "on");
-    //   toggleSynth(key);
-    //   toggleOctave(key);
-    //   toggleVolume(key);
-    //   handleKeys(key);
-    //   toggleDemo(key);
-    // });
-
-    // parentDiv.addEventListener("keyup", (e) => {
-    //   e.preventDefault();
-    //   let key = getKey(e);
-    //   key && key.removeAttribute("data-pressed");
-    // });
 
     // ensure onKeyPress is hit when keys are hit
     // maybe likt this
@@ -605,15 +582,22 @@ class Keyboard {
       this.onKeyPress(key);
     });
     */
+
+    this.octave = 4;
   }
 
-  setOctave(newOctave) {
-    this.octave = newOctave;
-
-    // run other code here, things like
-    // update the UI
-    // maybe make a new synth if you need to for changing the pitch
+  setOctave() {
+    console.log(this.octave);
   }
+
+  // setOctave(elm) {
+  //   // this.octave = newOctave;
+  //   console.log(elm);
+
+  //   // run other code here, things like
+  //   // update the UI
+  //   // maybe make a new synth if you need to for changing the pitch
+  // }
 
   getElement() {
     return this.parentDiv;
@@ -668,8 +652,6 @@ function addKeyboard(keyboardName, parentContainer, rows) {
 
     row.forEach((key, index) => {
       const keyDiv = document.createElement("div");
-
-      ////
 
       keyDiv.setAttribute("data-key", key.keyCode);
       keyDiv.setAttribute("data-classes", key.classes);
@@ -741,11 +723,11 @@ function addKeyboard(keyboardName, parentContainer, rows) {
         throw new Error(`unknown key.value!: ${key.value}`);
       }
 
-      keyDiv.appendChild(keySpan); // span under key
-      rowDiv.appendChild(keyDiv); // key under row
+      keyDiv.appendChild(keySpan);
+      rowDiv.appendChild(keyDiv);
     });
 
-    parentDiv.appendChild(rowDiv); // row under parent
+    parentDiv.appendChild(rowDiv);
   });
 
   parentDiv.setAttribute("id", `keyboard-${keyboardName}`);
@@ -797,8 +779,6 @@ function addKeyboard(keyboardName, parentContainer, rows) {
       toggleDemo(key);
     }
   });
-
-  ///////////////////TO HERE/////////////////////////
 
   // TOGGLE OSCILLATOR / SYNTH
 
@@ -919,7 +899,6 @@ function addKeyboard(keyboardName, parentContainer, rows) {
   function lightUp(elm) {
     let baseNote = elm.charAt(0);
     console.log(baseNote);
-    // key.setAttribute("data-pressed", "on");
   }
 
   // KEYBOARD
