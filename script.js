@@ -562,7 +562,7 @@ class Keyboard {
     this.parentDiv.addEventListener("click", (e) => {
       let key = e.target;
       if (key.hasAttribute("data-key") === true) {
-        //   toggleSynth(key);
+        this.setSynth(key);
         this.setOctave(key);
         this.setVolume(key);
         this.handleKeys(key);
@@ -585,6 +585,33 @@ class Keyboard {
 
     this.octave = 4;
     this.volume = 0;
+    this.oscNum = 0;
+    this.oscType = ["sawtooth", "triangle", "square", "sine"];
+    this.synth = this.makeSynth(this.oscType[this.oscNum]);
+  }
+
+  makeSynth(elm) {
+    return new Tone.PolySynth(Tone.Synth, {
+      oscillator: {
+        type: elm,
+      },
+      volume: this.volume,
+    }).toDestination();
+  }
+
+  setSynth(elm) {
+    if (elm.hasAttribute("data-osc-up")) {
+      if (this.oscNum <= this.oscType.length - 2) {
+        this.oscNum++;
+        this.synth = this.makeSynth(this.oscType[this.oscNum]);
+      }
+    } else if (elm.hasAttribute("data-osc-down")) {
+      if (this.oscNum >= 1) {
+        this.oscNum--;
+        this.synth = this.makeSynth(this.oscType[this.oscNum]);
+      }
+    }
+    this.uiOsc.innerHTML = `[${this.oscType[this.oscNum]}]`;
   }
 
   setVolume(elm) {
