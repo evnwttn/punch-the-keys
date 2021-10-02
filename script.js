@@ -565,7 +565,7 @@ class Keyboard {
         //   toggleSynth(key);
         this.setOctave(key);
         this.setVolume(key);
-        //   handleKeys(key);
+        this.handleKeys(key);
         //   toggleDemo(key);
       }
     });
@@ -615,6 +615,13 @@ class Keyboard {
       this.octave = elm.getAttribute("data-octave");
     }
     this.uiOct.innerHTML = `[0${this.octave}]`;
+  }
+
+  handleKeys(elm) {
+    if (elm.hasAttribute("data-sound")) {
+      let note = elm.getAttribute("data-sound");
+      // synth.triggerAttackRelease(`${note}${this.octave}`, "4n");
+    }
   }
 
   getElement() {
