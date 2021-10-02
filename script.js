@@ -647,7 +647,7 @@ class Keyboard {
   handleKeys(elm) {
     if (elm.hasAttribute("data-sound")) {
       let note = elm.getAttribute("data-sound");
-      // synth.triggerAttackRelease(`${note}${this.octave}`, "4n");
+      this.synth.triggerAttackRelease(`${note}${this.octave}`, "4n");
     }
   }
 
