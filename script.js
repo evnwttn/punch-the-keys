@@ -563,7 +563,7 @@ class Keyboard {
       let key = e.target;
       if (key.hasAttribute("data-key") === true) {
         //   toggleSynth(key);
-        setOctave();
+        this.setOctave(key);
         //   toggleVolume(key);
         //   handleKeys(key);
         //   toggleDemo(key);
@@ -586,8 +586,22 @@ class Keyboard {
     this.octave = 4;
   }
 
-  setOctave() {
-    console.log(this.octave);
+  setOctave(elm) {
+    if (elm.hasAttribute("data-octave-up")) {
+      if (this.octave <= 8) {
+        this.octave++;
+        console.log(this.octave);
+      }
+    } else if (elm.hasAttribute("data-octave-down")) {
+      if (this.octave >= 1) {
+        this.octave--;
+        console.log(this.octave);
+      }
+    } else if (elm.hasAttribute("data-octave")) {
+      this.octave = elm.getAttribute("data-octave");
+      console.log(this.octave);
+    }
+    this.uiOct.innerHTML = `[0${this.octave}]`;
   }
 
   // setOctave(elm) {
