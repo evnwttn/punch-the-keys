@@ -537,6 +537,62 @@ class Keyboard {
       this.parentDiv.appendChild(this.rowDiv); // row under parent
     });
 
+    this.parentDiv.setAttribute("id", `keyboard-${this.keyboardName}`);
+
+    ///////
+
+    function getKey(e) {
+      let location = e.location;
+      let selector;
+      if (location === KeyboardEvent.DOM_KEY_LOCATION_RIGHT) {
+        selector = [
+          '[data-right="true"]',
+          '[data-key="' + e.keyCode + '"]',
+        ].join("");
+      } else {
+        let code = e.keyCode || e.which;
+        selector = [
+          '[data-key="' + code + '"]',
+          '[data-char*="' +
+            encodeURIComponent(String.fromCharCode(code)) +
+            '"]',
+        ].join(",");
+      }
+      return parentDiv.querySelector(selector);
+    }
+
+    this.parentDiv.addEventListener("click", (e) => {
+      let key = e.target;
+      if (key.hasAttribute("data-key") === true) {
+        console.log(key);
+        //   toggleSynth(key);
+        //   toggleOctave(key);
+        //   toggleVolume(key);
+        //   handleKeys(key);
+        //   toggleDemo(key);
+      }
+    });
+
+    // parentDiv.addEventListener("keydown", (e) => {
+    //   e.preventDefault();
+    //   let key = getKey(e);
+    //   if (!key) {
+    //     return console.warn("No key for", e.keyCode);
+    //   }
+    //   key.setAttribute("data-pressed", "on");
+    //   toggleSynth(key);
+    //   toggleOctave(key);
+    //   toggleVolume(key);
+    //   handleKeys(key);
+    //   toggleDemo(key);
+    // });
+
+    // parentDiv.addEventListener("keyup", (e) => {
+    //   e.preventDefault();
+    //   let key = getKey(e);
+    //   key && key.removeAttribute("data-pressed");
+    // });
+
     // ensure onKeyPress is hit when keys are hit
     // maybe likt this
     /*
@@ -694,8 +750,6 @@ function addKeyboard(keyboardName, parentContainer, rows) {
 
   parentDiv.setAttribute("id", `keyboard-${keyboardName}`);
 
-  // TO HERE
-
   function getKey(e) {
     let location = e.location;
     let selector;
@@ -743,6 +797,8 @@ function addKeyboard(keyboardName, parentContainer, rows) {
       toggleDemo(key);
     }
   });
+
+  ///////////////////TO HERE/////////////////////////
 
   // TOGGLE OSCILLATOR / SYNTH
 
