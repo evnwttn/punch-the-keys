@@ -453,6 +453,90 @@ class Keyboard {
     this.hudDiv.appendChild(this.hud);
     this.parentDiv.appendChild(this.hudDiv);
 
+    rows.forEach((row, index) => {
+      this.rowDiv = document.createElement("div");
+      this.rowDiv.classList.add("key-row");
+      this.rowDiv.classList.add(`row-${index + 1}`);
+
+      row.forEach((key, index) => {
+        this.keyDiv = document.createElement("div");
+        this.keyDiv.setAttribute("data-key", key.keyCode);
+        this.keyDiv.setAttribute("data-classes", key.classes);
+        if (key.sound) {
+          this.keyDiv.setAttribute("data-sound", key.sound);
+        }
+        this.keyDiv.setAttribute("data-value", key.value);
+        if (key.multi) {
+          this.keyDiv.setAttribute("data-multi", key.multi);
+        }
+        if (key.multiClasses) {
+          this.keyDiv.setAttribute("data-multi-classes", key.multiClasses);
+        }
+        if (key.octave) {
+          this.keyDiv.setAttribute("data-octave", key.octave);
+        }
+        if (key.octaveUp) {
+          this.keyDiv.setAttribute("data-octave-up", key.octaveUp);
+        }
+        if (key.octaveDown) {
+          this.keyDiv.setAttribute("data-octave-down", key.octaveDown);
+        }
+        if (key.oscUp) {
+          this.keyDiv.setAttribute("data-osc-up", key.oscUp);
+        }
+        if (key.oscDown) {
+          this.keyDiv.setAttribute("data-osc-down", key.oscDown);
+        }
+        if (key.volUp) {
+          this.keyDiv.setAttribute("data-vol-up", key.volUp);
+        }
+        if (key.volDown) {
+          this.keyDiv.setAttribute("data-vol-down", key.volDown);
+        }
+        if (key.right) {
+          this.keyDiv.setAttribute("data-right", key.right);
+        }
+        if (key.demo) {
+          this.keyDiv.setAttribute("data-demo", key.demo);
+        }
+
+        // key.classes.split(" ").forEach((klass) => {
+        //   keyDiv.classList.add(klass);
+        // });
+
+        // keyDiv.setAttribute("data-key", key.keyCode);
+
+        this.keySpan = document.createElement("span");
+
+        // if (key.multiClasses !== undefined) {
+        //   const multiDiv = document.createElement("div");
+        //   multiText = key.sound || key.octave || key.multi;
+        //   keyDiv.appendChild(multiDiv);
+        //   key.multiClasses.forEach((klass) => {
+        //     multiDiv.classList.add(klass);
+        //   });
+        //   multiDiv.innerHTML = `${multiText}`;
+        // }
+
+        // if (typeof key.value === "string") {
+        //   keySpan.innerHTML = key.value;
+        // } else if (Array.isArray(key.value)) {
+        //   key.value.forEach((value) => {
+        //     const valueDiv = document.createElement("div");
+        //     valueDiv.innerHTML = value;
+        //     keySpan.appendChild(valueDiv);
+        //   });
+        // } else {
+        //   throw new Error(`unknown key.value!: ${key.value}`);
+        // }
+
+        this.keyDiv.appendChild(this.keySpan); // span under key
+        this.rowDiv.appendChild(this.keyDiv); // key under row
+      });
+
+      this.parentDiv.appendChild(this.rowDiv); // row under parent
+    });
+
     // ensure onKeyPress is hit when keys are hit
     // maybe likt this
     /*
@@ -486,7 +570,8 @@ class Keyboard {
 
 // --------------------------------------------- //
 
-container.prepend(new Keyboard().getElement());
+let classKeyboard = 0;
+container.prepend(new Keyboard(classKeyboard, defaultRows).getElement());
 
 function addKeyboard(keyboardName, parentContainer, rows) {
   const parentDiv = document.createElement("div");
@@ -527,6 +612,8 @@ function addKeyboard(keyboardName, parentContainer, rows) {
 
     row.forEach((key, index) => {
       const keyDiv = document.createElement("div");
+
+      ////
 
       keyDiv.setAttribute("data-key", key.keyCode);
       keyDiv.setAttribute("data-classes", key.classes);
