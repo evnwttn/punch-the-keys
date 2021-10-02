@@ -427,7 +427,31 @@ class Keyboard {
     this.parentDiv = document.createElement("div");
     this.parentDiv.classList.add("keys");
 
-    this.octave = 4;
+    // this.octave = 4;
+
+    this.hudDiv = document.createElement("div");
+    this.hudDiv.classList.add("hud");
+
+    this.hud = document.createElement("div");
+    this.hud.classList.add("ui");
+
+    this.uiVol = document.createElement("div");
+    this.uiVol.classList.add("ui-vol");
+    this.thuiVol.innerHTML = "[0db]";
+
+    this.uiOsc = document.createElement("div");
+    this.uiOsc.classList.add("ui-osc");
+    this.uiOsc.innerHTML = "[SAWTOOTH]";
+
+    this.uiOct = document.createElement("div");
+    this.uiOct.classList.add("ui-oct");
+    this.uiOct.innerHTML = "[O4]";
+
+    this.hud.appendChild(this.uiVol);
+    this.hud.appendChild(this.uiOsc);
+    this.hud.appendChild(this.uiOct);
+    this.hudDiv.appendChild(this.hud);
+    this.parentDiv.appendChild(this.hudDiv);
 
     // ...
 
@@ -747,21 +771,7 @@ function addKeyboard(keyboardName, parentContainer, rows) {
 
   function lightUp(elm) {
     let baseNote = elm.charAt(0);
-    if (baseNote === "A") {
-      console.log("A");
-    } else if (baseNote === "B") {
-      console.log("B");
-    } else if (baseNote === "C") {
-      console.log("C");
-    } else if (baseNote === "D") {
-      console.log("D");
-    } else if (baseNote === "E") {
-      console.log("E");
-    } else if (baseNote === "F") {
-      console.log("F");
-    } else if (baseNote === "G") {
-      console.log("G");
-    }
+    console.log(baseNote);
     // key.setAttribute("data-pressed", "on");
   }
 
