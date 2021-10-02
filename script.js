@@ -564,7 +564,7 @@ class Keyboard {
       if (key.hasAttribute("data-key") === true) {
         //   toggleSynth(key);
         this.setOctave(key);
-        //   toggleVolume(key);
+        this.setVolume(key);
         //   handleKeys(key);
         //   toggleDemo(key);
       }
@@ -584,34 +584,38 @@ class Keyboard {
     */
 
     this.octave = 4;
+    this.volume = 0;
+  }
+
+  setVolume(elm) {
+    if (elm.hasAttribute("data-vol-up")) {
+      if (this.volume <= 29) {
+        this.volume++;
+        // synth = makeSynth(oscType[oscNum]);
+      }
+    } else if (elm.hasAttribute("data-vol-down")) {
+      if (this.volume >= -29) {
+        this.volume--;
+        // synth = makeSynth(oscType[oscNum]);
+      }
+    }
+    this.uiVol.innerHTML = `[${this.volume}db]`;
   }
 
   setOctave(elm) {
     if (elm.hasAttribute("data-octave-up")) {
       if (this.octave <= 8) {
         this.octave++;
-        console.log(this.octave);
       }
     } else if (elm.hasAttribute("data-octave-down")) {
       if (this.octave >= 1) {
         this.octave--;
-        console.log(this.octave);
       }
     } else if (elm.hasAttribute("data-octave")) {
       this.octave = elm.getAttribute("data-octave");
-      console.log(this.octave);
     }
     this.uiOct.innerHTML = `[0${this.octave}]`;
   }
-
-  // setOctave(elm) {
-  //   // this.octave = newOctave;
-  //   console.log(elm);
-
-  //   // run other code here, things like
-  //   // update the UI
-  //   // maybe make a new synth if you need to for changing the pitch
-  // }
 
   getElement() {
     return this.parentDiv;
