@@ -537,27 +537,26 @@ class Keyboard {
 
     this.parentDiv.setAttribute("id", `keyboard-${this.keyboardName}`);
 
-    ///////
-
-    // function getKey(e) {
-    //   let location = e.location;
-    //   let selector;
-    //   if (location === KeyboardEvent.DOM_KEY_LOCATION_RIGHT) {
-    //     selector = [
-    //       '[data-right="true"]',
-    //       '[data-key="' + e.keyCode + '"]',
-    //     ].join("");
-    //   } else {
-    //     let code = e.keyCode || e.which;
-    //     selector = [
-    //       '[data-key="' + code + '"]',
-    //       '[data-char*="' +
-    //         encodeURIComponent(String.fromCharCode(code)) +
-    //         '"]',
-    //     ].join(",");
-    //   }
-    //   return parentDiv.querySelector(selector);
-    // }
+    function getKey(e) {
+      console.log("yo");
+      // let location = e.location;
+      // let selector;
+      // if (location === KeyboardEvent.DOM_KEY_LOCATION_RIGHT) {
+      //   selector = [
+      //     '[data-right="true"]',
+      //     '[data-key="' + e.keyCode + '"]',
+      //   ].join("");
+      // } else {
+      //   let code = e.keyCode || e.which;
+      //   selector = [
+      //     '[data-key="' + code + '"]',
+      //     '[data-char*="' +
+      //       encodeURIComponent(String.fromCharCode(code)) +
+      //       '"]',
+      //   ].join(",");
+      // }
+      // return parentDiv.querySelector(selector);
+    }
 
     this.parentDiv.addEventListener("click", (e) => {
       let key = e.target;
@@ -570,18 +569,15 @@ class Keyboard {
       }
     });
 
-    // ensure onKeyPress is hit when keys are hit
-    // maybe likt this
-    /*
-    parentDiv.addEventListener("keydown", (e) => {
+    window.addEventListener("keydown", (e) => {
       e.preventDefault();
       const key = getKey(e);
-      if (!key) {
-        return console.warn("No key for", e.keyCode);
-      }
-      this.onKeyPress(key);
+      onKeyPress(e);
     });
-    */
+
+    function onKeyPress(e) {
+      console.log(e);
+    }
 
     this.octave = 4;
     this.volume = 0;
@@ -657,13 +653,15 @@ class Keyboard {
 
   onKeyPress(key) {
     // ...
+    // this.parentDiv.setAttribute("tabindex", 0);
+    // this.parentContainer.appendChild(this.parentDiv);
   }
 }
 
 // --------------------------------------------- //
 
-let classKeyboard = 0;
-container.prepend(new Keyboard(classKeyboard, defaultRows).getElement());
+// let classKeyboard = 0;
+// container.prepend(new Keyboard(classKeyboard, defaultRows).getElement());
 
 function addKeyboard(keyboardName, parentContainer, rows) {
   const parentDiv = document.createElement("div");
