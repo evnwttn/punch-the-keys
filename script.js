@@ -437,7 +437,7 @@ class Keyboard {
 
     this.uiVol = document.createElement("div");
     this.uiVol.classList.add("ui-vol");
-    this.thuiVol.innerHTML = "[0db]";
+    this.uiVol.innerHTML = "[0db]";
 
     this.uiOsc = document.createElement("div");
     this.uiOsc.classList.add("ui-osc");
@@ -452,8 +452,6 @@ class Keyboard {
     this.hud.appendChild(this.uiOct);
     this.hudDiv.appendChild(this.hud);
     this.parentDiv.appendChild(this.hudDiv);
-
-    // ...
 
     // ensure onKeyPress is hit when keys are hit
     // maybe likt this
@@ -485,6 +483,10 @@ class Keyboard {
     // ...
   }
 }
+
+// --------------------------------------------- //
+
+container.prepend(new Keyboard().getElement());
 
 function addKeyboard(keyboardName, parentContainer, rows) {
   const parentDiv = document.createElement("div");
@@ -604,6 +606,8 @@ function addKeyboard(keyboardName, parentContainer, rows) {
   });
 
   parentDiv.setAttribute("id", `keyboard-${keyboardName}`);
+
+  // TO HERE
 
   function getKey(e) {
     let location = e.location;
