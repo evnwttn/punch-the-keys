@@ -500,23 +500,23 @@ class Keyboard {
           this.keyDiv.setAttribute("data-demo", key.demo);
         }
 
-        // key.classes.split(" ").forEach((klass) => {
-        //   keyDiv.classList.add(klass);
-        // });
+        key.classes.split(" ").forEach((klass) => {
+          this.keyDiv.classList.add(klass);
+        });
 
-        // keyDiv.setAttribute("data-key", key.keyCode);
+        this.keyDiv.setAttribute("data-key", key.keyCode);
 
         this.keySpan = document.createElement("span");
 
-        // if (key.multiClasses !== undefined) {
-        //   const multiDiv = document.createElement("div");
-        //   multiText = key.sound || key.octave || key.multi;
-        //   keyDiv.appendChild(multiDiv);
-        //   key.multiClasses.forEach((klass) => {
-        //     multiDiv.classList.add(klass);
-        //   });
-        //   multiDiv.innerHTML = `${multiText}`;
-        // }
+        if (key.multiClasses !== undefined) {
+          this.multiDiv = document.createElement("div");
+          this.multiText = key.sound || key.octave || key.multi;
+          this.keyDiv.appendChild(this.multiDiv);
+          key.multiClasses.forEach((klass) => {
+            this.multiDiv.classList.add(klass);
+          });
+          this.multiDiv.innerHTML = `${this.multiText}`;
+        }
 
         // if (typeof key.value === "string") {
         //   keySpan.innerHTML = key.value;
