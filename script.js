@@ -538,24 +538,23 @@ class Keyboard {
     this.parentDiv.setAttribute("id", `keyboard-${this.keyboardName}`);
 
     function getKey(e) {
-      console.log("yo");
-      // let location = e.location;
-      // let selector;
-      // if (location === KeyboardEvent.DOM_KEY_LOCATION_RIGHT) {
-      //   selector = [
-      //     '[data-right="true"]',
-      //     '[data-key="' + e.keyCode + '"]',
-      //   ].join("");
-      // } else {
-      //   let code = e.keyCode || e.which;
-      //   selector = [
-      //     '[data-key="' + code + '"]',
-      //     '[data-char*="' +
-      //       encodeURIComponent(String.fromCharCode(code)) +
-      //       '"]',
-      //   ].join(",");
-      // }
-      // return parentDiv.querySelector(selector);
+      let location = e.location;
+      let selector;
+      if (location === KeyboardEvent.DOM_KEY_LOCATION_RIGHT) {
+        selector = [
+          '[data-right="true"]',
+          '[data-key="' + e.keyCode + '"]',
+        ].join("");
+      } else {
+        let code = e.keyCode || e.which;
+        let selector = [
+          '[data-key="' + code + '"]',
+          '[data-char*="' +
+            encodeURIComponent(String.fromCharCode(code)) +
+            '"]',
+        ].join(",");
+      }
+      return parentDiv.querySelector(selector);
     }
 
     this.parentDiv.addEventListener("click", (e) => {
@@ -569,14 +568,18 @@ class Keyboard {
       }
     });
 
-    window.addEventListener("keydown", (e) => {
-      e.preventDefault();
-      const key = getKey(e);
-      onKeyPress(e);
+    this.parentDiv.addEventListener("keydown", (e) => {
+      e.preventDefault;
+      let key = getKey(e);
+      if (!key) {
+        return console.warn("No key for", e.keyCode);
+      }
+      onKeyPress(key);
     });
 
-    function onKeyPress(e) {
-      console.log(e);
+    function onKeyPress() {
+      this.parentDiv.setAttribute("tabindex", 0);
+      this.parentContainer.appendChild(this.parentDiv);
     }
 
     this.octave = 4;
@@ -649,12 +652,6 @@ class Keyboard {
 
   getElement() {
     return this.parentDiv;
-  }
-
-  onKeyPress(key) {
-    // ...
-    // this.parentDiv.setAttribute("tabindex", 0);
-    // this.parentContainer.appendChild(this.parentDiv);
   }
 }
 
