@@ -614,12 +614,12 @@ class Keyboard {
     if (elm.hasAttribute("data-vol-up")) {
       if (this.volume <= 29) {
         this.volume++;
-        // synth = makeSynth(oscType[oscNum]);
+        this.synth = this.makeSynth(this.oscType[this.oscNum]);
       }
     } else if (elm.hasAttribute("data-vol-down")) {
       if (this.volume >= -29) {
         this.volume--;
-        // synth = makeSynth(oscType[oscNum]);
+        this.synth = this.makeSynth(this.oscType[this.oscNum]);
       }
     }
     this.uiVol.innerHTML = `[${this.volume}db]`;
@@ -660,8 +660,8 @@ class Keyboard {
 
 // --------------------------------------------- //
 
-// let classKeyboard = 0;
-// container.prepend(new Keyboard(classKeyboard, defaultRows).getElement());
+let classKeyboard = 0;
+container.prepend(new Keyboard(classKeyboard, defaultRows).getElement());
 
 function addKeyboard(keyboardName, parentContainer, rows) {
   const parentDiv = document.createElement("div");
