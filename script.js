@@ -529,14 +529,17 @@ class Keyboard {
           throw new Error(`unknown key.value!: ${key.value}`);
         }
 
-        this.keyDiv.appendChild(this.keySpan); // span under key
-        this.rowDiv.appendChild(this.keyDiv); // key under row
+        this.keyDiv.appendChild(this.keySpan);
+        this.rowDiv.appendChild(this.keyDiv);
       });
 
-      this.parentDiv.appendChild(this.rowDiv); // row under parent
+      this.parentDiv.appendChild(this.rowDiv);
     });
 
     this.parentDiv.setAttribute("id", `keyboard-${this.keyboardName}`);
+
+    /////////////////////////////////////
+    // RUN THRU THIS WITH JACK
 
     function getKey(e) {
       let location = e.location;
@@ -571,6 +574,8 @@ class Keyboard {
       }
       console.log(e);
     });
+
+    //////////////////////////////////////////
 
     this.parentDiv.addEventListener("click", (e) => {
       let key = e.target;
@@ -658,8 +663,8 @@ class Keyboard {
 
 // --------------------------------------------- //
 
-// let classKeyboard = 0;
-// container.prepend(new Keyboard(classKeyboard, defaultRows).getElement());
+let classKeyboard = 0;
+container.prepend(new Keyboard(classKeyboard, defaultRows).getElement());
 
 function addKeyboard(keyboardName, parentContainer, rows) {
   const parentDiv = document.createElement("div");
