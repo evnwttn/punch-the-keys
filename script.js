@@ -449,91 +449,85 @@ class Keyboard {
     this.hud.appendChild(this.uiVol);
     this.hud.appendChild(this.uiOsc);
     this.hud.appendChild(this.uiOct);
+
     this.hudDiv.appendChild(this.hud);
     this.parentDiv.appendChild(this.hudDiv);
 
     rows.forEach((row, index) => {
-      this.rowDiv = document.createElement("div");
-      this.rowDiv.classList.add("key-row");
-      this.rowDiv.classList.add(`row-${index + 1}`);
+      const rowDiv = document.createElement("div");
+      rowDiv.classList.add("key-row");
+      rowDiv.classList.add(`row-${index + 1}`);
 
-      row.forEach((key, index) => {
-        this.keyDiv = document.createElement("div");
-        this.keyDiv.setAttribute("data-key", key.keyCode);
-        this.keyDiv.setAttribute("data-classes", key.classes);
-        if (key.sound) {
-          this.keyDiv.setAttribute("data-sound", key.sound);
-        }
-        this.keyDiv.setAttribute("data-value", key.value);
-        if (key.multi) {
-          this.keyDiv.setAttribute("data-multi", key.multi);
-        }
-        if (key.multiClasses) {
-          this.keyDiv.setAttribute("data-multi-classes", key.multiClasses);
-        }
-        if (key.octave) {
-          this.keyDiv.setAttribute("data-octave", key.octave);
-        }
-        if (key.octaveUp) {
-          this.keyDiv.setAttribute("data-octave-up", key.octaveUp);
-        }
-        if (key.octaveDown) {
-          this.keyDiv.setAttribute("data-octave-down", key.octaveDown);
-        }
-        if (key.oscUp) {
-          this.keyDiv.setAttribute("data-osc-up", key.oscUp);
-        }
-        if (key.oscDown) {
-          this.keyDiv.setAttribute("data-osc-down", key.oscDown);
-        }
-        if (key.volUp) {
-          this.keyDiv.setAttribute("data-vol-up", key.volUp);
-        }
-        if (key.volDown) {
-          this.keyDiv.setAttribute("data-vol-down", key.volDown);
-        }
-        if (key.right) {
-          this.keyDiv.setAttribute("data-right", key.right);
-        }
-        if (key.demo) {
-          this.keyDiv.setAttribute("data-demo", key.demo);
-        }
+      row.forEach((key) => {
+        const keyDiv = document.createElement("div");
+        keyDiv.setAttribute("data-key", key.keyCode);
+        keyDiv.setAttribute("data-classes", key.classes);
+        keyDiv.setAttribute("data-value", key.value);
 
-        key.classes.split(" ").forEach((klass) => {
-          this.keyDiv.classList.add(klass);
+        const optionalAttributes = [
+          "sound",
+          "multi",
+          "multiClasses",
+          "octave",
+          "octaveUp",
+          "octaveDown",
+          "oscUp",
+          "oscDown",
+          "volUp",
+          "volDown",
+          "right",
+          "demo",
+        ];
+
+        // multiClasses -> multi-classes
+
+        optionalAttributes.forEach((optionalAttribute) => {
+          if (key[optionalAttribute]) {
+            const attributeName = optionalAttribute
+              .match(/\w?[^A-Z]*/g)
+              .slice(0,-1)
+              .map((s) => s.toLowerCase())
+              .join('-');
+
+            keyDiv.setAttribute(`data-${attributeName}`, key.sound);
+          }
         });
 
-        this.keyDiv.setAttribute("data-key", key.keyCode);
+        key.classes.split(" ").forEach((klass) => {
+          keyDiv.classList.add(klass);
+        });
 
-        this.keySpan = document.createElement("span");
+        keyDiv.setAttribute("data-key", key.keyCode);
+
+        const keySpan = document.createElement("span");
 
         if (key.multiClasses !== undefined) {
-          this.multiDiv = document.createElement("div");
-          this.multiText = key.sound || key.octave || key.multi;
-          this.keyDiv.appendChild(this.multiDiv);
+          const multiDiv = document.createElement("div");
+          const multiText = key.sound || key.octave || key.multi;
+          keyDiv.appendChild(multiDiv);
           key.multiClasses.forEach((klass) => {
-            this.multiDiv.classList.add(klass);
+            multiDiv.classList.add(klass);
           });
-          this.multiDiv.innerHTML = `${this.multiText}`;
+          multiDiv.innerHTML = `${multiText}`;
         }
 
         if (typeof key.value === "string") {
-          this.keySpan.innerHTML = key.value;
+          keySpan.innerHTML = key.value;
         } else if (Array.isArray(key.value)) {
           key.value.forEach((value) => {
-            this.valueDiv = document.createElement("div");
-            this.valueDiv.innerHTML = value;
-            this.keySpan.appendChild(this.valueDiv);
+            const valueDiv = document.createElement("div");
+            valueDiv.innerHTML = value;
+            keySpan.appendChild(valueDiv);
           });
         } else {
           throw new Error(`unknown key.value!: ${key.value}`);
         }
 
-        this.keyDiv.appendChild(this.keySpan);
-        this.rowDiv.appendChild(this.keyDiv);
+        keyDiv.appendChild(keySpan);
+        rowDiv.appendChild(keyDiv);
       });
 
-      this.parentDiv.appendChild(this.rowDiv);
+      this.parentDiv.appendChild(rowDiv);
     });
 
     this.parentDiv.setAttribute("id", `keyboard-${this.keyboardName}`);
@@ -541,7 +535,7 @@ class Keyboard {
     /////////////////////////////////////
     // RUN THROUGH THIS WITH JACK
 
-    function getKey(e) {
+    const getKey = (e) => {
       let location = e.location;
       let selector;
       if (location === KeyboardEvent.DOM_KEY_LOCATION_RIGHT) {
@@ -551,14 +545,14 @@ class Keyboard {
         ].join("");
       } else {
         let code = e.keyCode || e.which;
-        let selector = [
+        selector = [
           '[data-key="' + code + '"]',
           '[data-char*="' +
             encodeURIComponent(String.fromCharCode(code)) +
             '"]',
         ].join(",");
       }
-      return parentDiv.querySelector(selector);
+      return this.parentDiv.querySelector(selector);
     }
 
     // function onKeyPress() {
@@ -572,7 +566,14 @@ class Keyboard {
       if (!key) {
         return console.warn("No key for", e);
       }
-      console.log(e);
+      key.setAttribute("data-pressed", "on");
+      this.handleKey(key);
+    });
+
+    this.parentDiv.addEventListener("keyup", (e) => {
+      e.preventDefault();
+      let key = getKey(e);
+      key && key.removeAttribute("data-pressed");
     });
 
     //////////////////////////////////////////
@@ -580,11 +581,8 @@ class Keyboard {
     this.parentDiv.addEventListener("click", (e) => {
       let key = e.target;
       if (key.hasAttribute("data-key") === true) {
-        this.setSynth(key);
-        this.setOctave(key);
-        this.setVolume(key);
-        this.handleKeys(key);
-        //   toggleDemo(key);
+        this.handleKey(key);
+        // toggleDemo(key);
       }
     });
 
@@ -595,22 +593,29 @@ class Keyboard {
     this.synth = this.makeSynth(this.oscType[this.oscNum]);
   }
 
-  makeSynth(elm) {
+  handleKey(key) {
+    this.setSynth(key);
+    this.setOctave(key);
+    this.setVolume(key);
+    this.handleSound(key)
+  }
+
+  makeSynth(synthType) {
     return new Tone.PolySynth(Tone.Synth, {
       oscillator: {
-        type: elm,
+        type: synthType,
       },
       volume: this.volume,
     }).toDestination();
   }
 
-  setSynth(elm) {
-    if (elm.hasAttribute("data-osc-up")) {
+  setSynth(keyElm) {
+    if (keyElm.hasAttribute("data-osc-up")) {
       if (this.oscNum <= this.oscType.length - 2) {
         this.oscNum++;
         this.synth = this.makeSynth(this.oscType[this.oscNum]);
       }
-    } else if (elm.hasAttribute("data-osc-down")) {
+    } else if (keyElm.hasAttribute("data-osc-down")) {
       if (this.oscNum >= 1) {
         this.oscNum--;
         this.synth = this.makeSynth(this.oscType[this.oscNum]);
@@ -619,13 +624,13 @@ class Keyboard {
     this.uiOsc.innerHTML = `[${this.oscType[this.oscNum]}]`;
   }
 
-  setVolume(elm) {
-    if (elm.hasAttribute("data-vol-up")) {
+  setVolume(keyElm) {
+    if (keyElm.hasAttribute("data-vol-up")) {
       if (this.volume <= 29) {
         this.volume++;
         this.synth = this.makeSynth(this.oscType[this.oscNum]);
       }
-    } else if (elm.hasAttribute("data-vol-down")) {
+    } else if (keyElm.hasAttribute("data-vol-down")) {
       if (this.volume >= -29) {
         this.volume--;
         this.synth = this.makeSynth(this.oscType[this.oscNum]);
@@ -634,24 +639,24 @@ class Keyboard {
     this.uiVol.innerHTML = `[${this.volume}db]`;
   }
 
-  setOctave(elm) {
-    if (elm.hasAttribute("data-octave-up")) {
+  setOctave(keyElm) {
+    if (keyElm.hasAttribute("data-octave-up")) {
       if (this.octave <= 8) {
         this.octave++;
       }
-    } else if (elm.hasAttribute("data-octave-down")) {
+    } else if (keyElm.hasAttribute("data-octave-down")) {
       if (this.octave >= 1) {
         this.octave--;
       }
-    } else if (elm.hasAttribute("data-octave")) {
-      this.octave = elm.getAttribute("data-octave");
+    } else if (keyElm.hasAttribute("data-octave")) {
+      this.octave = keyElm.getAttribute("data-octave");
     }
     this.uiOct.innerHTML = `[0${this.octave}]`;
   }
 
-  handleKeys(elm) {
-    if (elm.hasAttribute("data-sound")) {
-      let note = elm.getAttribute("data-sound");
+  handleSound(keyElm) {
+    if (keyElm.hasAttribute("data-sound")) {
+      let note = keyElm.getAttribute("data-sound");
       this.synth.triggerAttackRelease(`${note}${this.octave}`, "4n");
     }
   }
@@ -663,305 +668,10 @@ class Keyboard {
 
 // --------------------------------------------- //
 
-let classKeyboard = 0;
-container.prepend(new Keyboard(classKeyboard, defaultRows).getElement());
-
-function addKeyboard(keyboardName, parentContainer, rows) {
-  const parentDiv = document.createElement("div");
-  parentDiv.classList.add("keys");
-
-  // UI
-
-  const hudDiv = document.createElement("div");
-  hudDiv.classList.add("hud");
-
-  const hud = document.createElement("div");
-  hud.classList.add("ui");
-
-  const uiVol = document.createElement("div");
-  uiVol.classList.add("ui-vol");
-  uiVol.innerHTML = "[0db]";
-
-  const uiOsc = document.createElement("div");
-  uiOsc.classList.add("ui-osc");
-  uiOsc.innerHTML = "[SAWTOOTH]";
-
-  const uiOct = document.createElement("div");
-  uiOct.classList.add("ui-oct");
-  uiOct.innerHTML = "[O4]";
-
-  hud.appendChild(uiVol);
-  hud.appendChild(uiOsc);
-  hud.appendChild(uiOct);
-  hudDiv.appendChild(hud);
-  parentDiv.appendChild(hudDiv);
-
-  // ROWS
-
-  rows.forEach((row, index) => {
-    const rowDiv = document.createElement("div");
-    rowDiv.classList.add("key-row");
-    rowDiv.classList.add(`row-${index + 1}`);
-
-    row.forEach((key, index) => {
-      const keyDiv = document.createElement("div");
-
-      keyDiv.setAttribute("data-key", key.keyCode);
-      keyDiv.setAttribute("data-classes", key.classes);
-      if (key.sound) {
-        keyDiv.setAttribute("data-sound", key.sound);
-      }
-      keyDiv.setAttribute("data-value", key.value);
-      if (key.multi) {
-        keyDiv.setAttribute("data-multi", key.multi);
-      }
-      if (key.multiClasses) {
-        keyDiv.setAttribute("data-multi-classes", key.multiClasses);
-      }
-      if (key.octave) {
-        keyDiv.setAttribute("data-octave", key.octave);
-      }
-      if (key.octaveUp) {
-        keyDiv.setAttribute("data-octave-up", key.octaveUp);
-      }
-      if (key.octaveDown) {
-        keyDiv.setAttribute("data-octave-down", key.octaveDown);
-      }
-      if (key.oscUp) {
-        keyDiv.setAttribute("data-osc-up", key.oscUp);
-      }
-      if (key.oscDown) {
-        keyDiv.setAttribute("data-osc-down", key.oscDown);
-      }
-      if (key.volUp) {
-        keyDiv.setAttribute("data-vol-up", key.volUp);
-      }
-      if (key.volDown) {
-        keyDiv.setAttribute("data-vol-down", key.volDown);
-      }
-      if (key.right) {
-        keyDiv.setAttribute("data-right", key.right);
-      }
-      if (key.demo) {
-        keyDiv.setAttribute("data-demo", key.demo);
-      }
-
-      key.classes.split(" ").forEach((klass) => {
-        keyDiv.classList.add(klass);
-      });
-
-      keyDiv.setAttribute("data-key", key.keyCode);
-
-      const keySpan = document.createElement("span");
-
-      if (key.multiClasses !== undefined) {
-        const multiDiv = document.createElement("div");
-        multiText = key.sound || key.octave || key.multi;
-        keyDiv.appendChild(multiDiv);
-        key.multiClasses.forEach((klass) => {
-          multiDiv.classList.add(klass);
-        });
-        multiDiv.innerHTML = `${multiText}`;
-      }
-
-      if (typeof key.value === "string") {
-        keySpan.innerHTML = key.value;
-      } else if (Array.isArray(key.value)) {
-        key.value.forEach((value) => {
-          const valueDiv = document.createElement("div");
-          valueDiv.innerHTML = value;
-          keySpan.appendChild(valueDiv);
-        });
-      } else {
-        throw new Error(`unknown key.value!: ${key.value}`);
-      }
-
-      keyDiv.appendChild(keySpan);
-      rowDiv.appendChild(keyDiv);
-    });
-
-    parentDiv.appendChild(rowDiv);
-  });
-
-  parentDiv.setAttribute("id", `keyboard-${keyboardName}`);
-
-  function getKey(e) {
-    let location = e.location;
-    let selector;
-    if (location === KeyboardEvent.DOM_KEY_LOCATION_RIGHT) {
-      selector = ['[data-right="true"]', '[data-key="' + e.keyCode + '"]'].join(
-        ""
-      );
-    } else {
-      let code = e.keyCode || e.which;
-      selector = [
-        '[data-key="' + code + '"]',
-        '[data-char*="' + encodeURIComponent(String.fromCharCode(code)) + '"]',
-      ].join(",");
-    }
-    return parentDiv.querySelector(selector);
-  }
-
-  parentDiv.addEventListener("keydown", (e) => {
-    e.preventDefault();
-    let key = getKey(e);
-    if (!key) {
-      return console.warn("No key for", e.keyCode);
-    }
-    key.setAttribute("data-pressed", "on");
-    toggleSynth(key);
-    toggleOctave(key);
-    toggleVolume(key);
-    handleKeys(key);
-    toggleDemo(key);
-  });
-
-  parentDiv.addEventListener("keyup", (e) => {
-    e.preventDefault();
-    let key = getKey(e);
-    key && key.removeAttribute("data-pressed");
-  });
-
-  parentDiv.addEventListener("click", (e) => {
-    let key = e.target;
-    if (key.hasAttribute("data-key") === true) {
-      toggleSynth(key);
-      toggleOctave(key);
-      toggleVolume(key);
-      handleKeys(key);
-      toggleDemo(key);
-    }
-  });
-
-  // TOGGLE OSCILLATOR / SYNTH
-
-  let oscType = ["sawtooth", "triangle", "square", "sine"];
-  let oscNum = 0;
-  let volLevel = 0;
-  let synth = makeSynth(oscType[oscNum]);
-
-  function makeSynth(oscillatorType) {
-    return new Tone.PolySynth(Tone.Synth, {
-      oscillator: {
-        type: oscillatorType,
-      },
-      volume: volLevel,
-    }).toDestination();
-  }
-
-  function toggleSynth(elm) {
-    if (elm.getAttribute("data-osc-up") === "true") {
-      if (oscNum <= oscType.length - 2) {
-        oscNum++;
-        synth = makeSynth(oscType[oscNum]);
-        console.log({ parentDiv, synth, oscNum });
-      }
-    } else if (elm.getAttribute("data-osc-down") === "true") {
-      if (oscNum >= 1) {
-        oscNum--;
-        synth = makeSynth(oscType[oscNum]);
-      }
-    }
-    uiOsc.innerHTML = `[${oscType[oscNum]}]`;
-  }
-
-  // VOLUME
-
-  function toggleVolume(elm) {
-    if (elm.getAttribute("data-vol-up") === "true") {
-      if (volLevel <= 29) {
-        volLevel++;
-        synth = makeSynth(oscType[oscNum]);
-      }
-    } else if (elm.getAttribute("data-vol-down") === "true") {
-      if (volLevel >= -29) {
-        volLevel--;
-        synth = makeSynth(oscType[oscNum]);
-      }
-    }
-    uiVol.innerHTML = `[${volLevel}db]`;
-  }
-
-  // OCTAVE SELECTION
-
-  let octave = 4;
-
-  function toggleOctave(elm) {
-    if (elm.getAttribute("data-octave-up") === "true") {
-      if (octave <= 8) {
-        octave++;
-      }
-    } else if (elm.getAttribute("data-octave-down") === "true") {
-      if (octave >= 1) {
-        octave--;
-      }
-    } else if (elm.getAttribute("data-octave") !== null) {
-      octave = elm.getAttribute("data-octave");
-    }
-    uiOct.innerHTML = `[0${octave}]`;
-  }
-
-  // KEY FUNCTION
-
-  function handleKeys(elm) {
-    if (elm.getAttribute("data-sound") !== null) {
-      let note = elm.getAttribute("data-sound");
-      synth.triggerAttackRelease(`${note}${octave}`, "4n");
-    }
-  }
-
-  // DEMO
-
-  function toggleDemo(elm) {
-    if (elm.getAttribute("data-demo") === "true") {
-      playDemo();
-    }
-  }
-
-  function playDemo() {
-    let requestURL =
-      "https://raw.githubusercontent.com/evnwttn/punch-the-keys/pure-js/audio/westworld.json";
-    let request = new XMLHttpRequest();
-    request.open("GET", requestURL);
-    request.responseType = "json";
-    request.send();
-    request.onload = function () {
-      let demo = request.response;
-      let channel1 = demo.tracks[0].notes;
-      let channel2 = demo.tracks[1].notes;
-      Tone.Transport.bpm.value = demo.header.tempos[0].bpm;
-      let synth = makeSynth(oscType[oscNum]);
-      const part = new Tone.Part(
-        function (time, value) {
-          synth.triggerAttackRelease(
-            value.name,
-            value.duration,
-            time,
-            value.velocity
-          );
-          let note = value.name;
-          lightUp(note);
-        },
-        channel1,
-        channel2
-      ).start();
-      Tone.Transport.start();
-    };
-  }
-
-  function lightUp(elm) {
-    let baseNote = elm.charAt(0);
-    console.log(baseNote);
-  }
-
-  // KEYBOARD
-
-  parentDiv.setAttribute("tabindex", 0);
-  parentContainer.appendChild(parentDiv);
-}
-
 let keyboardNum = 0;
+container.prepend(new Keyboard(keyboardNum, defaultRows).getElement());
+
 document.getElementById("add-keyboard").onclick = (event) => {
   keyboardNum++;
-  addKeyboard(keyboardNum, container, defaultRows);
+  container.prepend(new Keyboard(keyboardNum, defaultRows).getElement());
 };
