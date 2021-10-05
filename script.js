@@ -485,9 +485,9 @@ class Keyboard {
           if (key[optionalAttribute]) {
             const attributeName = optionalAttribute
               .match(/\w?[^A-Z]*/g)
-              .slice(0,-1)
+              .slice(0, -1)
               .map((s) => s.toLowerCase())
-              .join('-');
+              .join("-");
 
             keyDiv.setAttribute(`data-${attributeName}`, key.sound);
           }
@@ -553,7 +553,7 @@ class Keyboard {
         ].join(",");
       }
       return this.parentDiv.querySelector(selector);
-    }
+    };
 
     // function onKeyPress() {
     //   this.parentDiv.setAttribute("tabindex", 0);
@@ -597,7 +597,7 @@ class Keyboard {
     this.setSynth(key);
     this.setOctave(key);
     this.setVolume(key);
-    this.handleSound(key)
+    this.handleSound(key);
   }
 
   makeSynth(synthType) {
