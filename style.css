@@ -6,7 +6,26 @@ html {
   margin: 0;
   background-repeat: no-repeat;
   background-attachment: fixed;
-  overflow: hidden;
+}
+
+html *:focus {
+  outline: none;
+}
+
+#add-keyboard {
+  padding: 3rem;
+  border: none;
+  background: none;
+  font-size: 1.4rem;
+  float: right;
+  font-family: "Lato", sans-serif;
+  font-weight: 800;
+  font-size: 1.5em;
+  text-transform: uppercase;
+  letter-spacing: 0.8em;
+  text-align: center;
+  color: #f7fcff;
+  transform: skew(-7deg);
 }
 
 #container {
@@ -26,6 +45,7 @@ html {
   background-attachment: fixed;
   background-size: cover;
   background-position: center;
+  z-index: 2400;
 }
 
 .key-row {
@@ -70,14 +90,12 @@ html {
   box-shadow: 0 0 0 0.05em #0a0140;
 }
 
-#ui * {
+.ui * {
   display: inline-block;
 }
 
-#ui {
-  position: fixed;
-  top: 0px;
-  right: 0px;
+.ui {
+  text-transform: uppercase;
   z-index: 100;
   color: #f7fcff;
   font-size: 15px;
@@ -85,14 +103,19 @@ html {
   border-radius: 0.3em;
   margin: 0.3em;
   padding: 0.2em;
-  width: 12em;
+  width: 11.5em;
   box-sizing: border-box;
   border: 1px solid #e0e0d9;
   box-shadow: 0 0.2em 0 0.05em #bff205;
   border-bottom-color: #555;
 }
 
-#readMe {
+.hud {
+  position: relative;
+  padding-left: 72.65%;
+}
+
+.read-me {
   position: fixed;
   top: 2.5px;
   left: 2.5px;
@@ -109,16 +132,16 @@ html {
   border-bottom-color: #555;
 }
 
-#readMe-icon {
+.read-me-icon {
   transform: rotate(180deg);
   cursor: pointer;
 }
 
-#readMe-text {
+.read-me-text {
   visibility: hidden;
 }
 
-#readMe-text.on {
+.read-me-text.on {
   visibility: visible;
   position: fixed;
   background-image: linear-gradient(#a9a9a9, #0d0d0d);
@@ -140,7 +163,7 @@ html {
   border-bottom-color: #555;
 }
 
-#ui-Osc {
+#ui-osc {
   padding-left: 0.05em;
   text-transform: uppercase;
 }
@@ -181,11 +204,11 @@ html {
   padding-right: 2em;
 }
 
-.backspacetab {
+.backspace-tab {
   width: 7em;
 }
 
-.capsenter {
+.caps-enter {
   width: 7.4em;
 }
 
@@ -195,11 +218,12 @@ html {
 
 .stack {
   padding-top: 0.2em;
+  width: 4em;
 }
 
-.bottomctrl {
-  width: 6.2em;
-  padding-right: 2.8em;
+.bottom-ctrl {
+  width: 4em;
+  padding-right: 1.1em;
   padding-top: 0.8em;
 }
 
@@ -221,7 +245,7 @@ html {
 }
 
 .align-caps {
-  padding-right: 3em;
+  padding-right: 2.6em;
 }
 
 .align-shiftl {
@@ -241,11 +265,12 @@ html {
 }
 
 .align-esc {
-  padding-right: 0.5em;
+  padding-right: 0.7em;
 }
 
 .arrow {
   padding-top: 0.8em;
+  width: 4em;
 }
 
 .func {
@@ -265,6 +290,7 @@ html {
   color: hsl(73, 99%, 45%);
   padding-left: 2em;
   text-shadow: 1px 1px 8px #0000005e;
+  pointer-events: none;
 }
 
 .multi-sharps {
@@ -272,4 +298,9 @@ html {
   color: hsl(73, 99%, 45%);
   padding-left: 1.7em;
   text-shadow: 1px 1px 8px #0000005e;
+  pointer-events: none;
+}
+
+span {
+  pointer-events: none;
 }
