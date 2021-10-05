@@ -539,7 +539,7 @@ class Keyboard {
     this.parentDiv.setAttribute("id", `keyboard-${this.keyboardName}`);
 
     /////////////////////////////////////
-    // RUN THRU THIS WITH JACK
+    // RUN THROUGH THIS WITH JACK
 
     function getKey(e) {
       let location = e.location;
