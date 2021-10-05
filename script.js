@@ -426,6 +426,7 @@ class Keyboard {
   constructor(keyboardName, rows) {
     this.parentDiv = document.createElement("div");
     this.parentDiv.classList.add("keys");
+    this.parentDiv.setAttribute("tabindex", 0);
 
     this.hudDiv = document.createElement("div");
     this.hudDiv.classList.add("hud");
@@ -557,6 +558,20 @@ class Keyboard {
       return parentDiv.querySelector(selector);
     }
 
+    // function onKeyPress() {
+    //   this.parentDiv.setAttribute("tabindex", 0);
+    //   this.parentContainer.appendChild(this.parentDiv);
+    // }
+
+    this.parentDiv.addEventListener("keydown", (e) => {
+      e.preventDefault();
+      let key = getKey(e);
+      if (!key) {
+        return console.warn("No key for", e);
+      }
+      console.log(e);
+    });
+
     this.parentDiv.addEventListener("click", (e) => {
       let key = e.target;
       if (key.hasAttribute("data-key") === true) {
@@ -567,20 +582,6 @@ class Keyboard {
         //   toggleDemo(key);
       }
     });
-
-    this.parentDiv.addEventListener("keydown", (e) => {
-      e.preventDefault;
-      let key = getKey(e);
-      if (!key) {
-        return console.warn("No key for", e.keyCode);
-      }
-      onKeyPress(key);
-    });
-
-    function onKeyPress() {
-      this.parentDiv.setAttribute("tabindex", 0);
-      this.parentContainer.appendChild(this.parentDiv);
-    }
 
     this.octave = 4;
     this.volume = 0;
@@ -657,8 +658,8 @@ class Keyboard {
 
 // --------------------------------------------- //
 
-let classKeyboard = 0;
-container.prepend(new Keyboard(classKeyboard, defaultRows).getElement());
+// let classKeyboard = 0;
+// container.prepend(new Keyboard(classKeyboard, defaultRows).getElement());
 
 function addKeyboard(keyboardName, parentContainer, rows) {
   const parentDiv = document.createElement("div");
