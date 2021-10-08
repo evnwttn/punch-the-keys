@@ -484,7 +484,7 @@ class Keyboard {
               .join("-");
             keyDiv.setAttribute(
               `data-${attributeName}`,
-              key.sound || key.octave
+              key.sound || key.octave || key.right
             );
           }
         });
