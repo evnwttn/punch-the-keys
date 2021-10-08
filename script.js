@@ -475,8 +475,6 @@ class Keyboard {
           "demo",
         ];
 
-        // multiClasses -> multi-classes
-
         optionalAttributes.forEach((optionalAttribute) => {
           if (key[optionalAttribute]) {
             const attributeName = optionalAttribute
@@ -484,8 +482,10 @@ class Keyboard {
               .slice(0, -1)
               .map((s) => s.toLowerCase())
               .join("-");
-
-            keyDiv.setAttribute(`data-${attributeName}`, key.sound);
+            keyDiv.setAttribute(
+              `data-${attributeName}`,
+              key.sound || key.octave
+            );
           }
         });
 
@@ -555,6 +555,7 @@ class Keyboard {
         return console.warn("No key for", e);
       }
       key.setAttribute("data-pressed", "on");
+      console.log(key);
       this.handleKey(key);
     });
 
