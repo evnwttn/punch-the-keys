@@ -377,7 +377,6 @@ const defaultRows = [
       keyCode: 88,
       classes: "letter gdt",
       value: "X",
-      demo: true,
       multi: "&#8776;",
       multiClasses: ["multi"],
     },
@@ -472,7 +471,6 @@ class Keyboard {
           "volUp",
           "volDown",
           "right",
-          "demo",
         ];
 
         optionalAttributes.forEach((optionalAttribute) => {
@@ -569,7 +567,6 @@ class Keyboard {
       let key = e.target;
       if (key.hasAttribute("data-key") === true) {
         this.handleKey(key);
-        // toggleDemo(key);
       }
     });
 

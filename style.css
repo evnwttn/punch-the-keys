@@ -29,8 +29,11 @@ html *:focus {
 }
 
 #container {
-  min-width: 960px;
-  max-width: 1885px;
+  display: flex;
+  align-self: center;
+  justify-content: center;
+  min-width: 1240px;
+  max-width: 1240px;
 }
 
 .keys {
@@ -112,7 +115,7 @@ html *:focus {
 
 .hud {
   position: relative;
-  padding-left: 72.65%;
+  padding-left: 73.1%;
 }
 
 .read-me {
