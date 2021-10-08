@@ -87,8 +87,6 @@ document.body.prepend(new Readme().getElement());
 
 // new emojiCursor();
 
-/* THE GREAT SCHISM */
-
 const defaultRows = [
   [
     /* ROW 1 */
@@ -418,8 +416,6 @@ const defaultRows = [
   ],
 ];
 
-// ------------------------------------------------------ //
-
 const container = document.getElementById("container");
 
 class Keyboard {
@@ -532,9 +528,6 @@ class Keyboard {
 
     this.parentDiv.setAttribute("id", `keyboard-${this.keyboardName}`);
 
-    /////////////////////////////////////
-    // RUN THROUGH THIS WITH JACK
-
     const getKey = (e) => {
       let location = e.location;
       let selector;
@@ -555,11 +548,6 @@ class Keyboard {
       return this.parentDiv.querySelector(selector);
     };
 
-    // function onKeyPress() {
-    //   this.parentDiv.setAttribute("tabindex", 0);
-    //   this.parentContainer.appendChild(this.parentDiv);
-    // }
-
     this.parentDiv.addEventListener("keydown", (e) => {
       e.preventDefault();
       let key = getKey(e);
@@ -575,8 +563,6 @@ class Keyboard {
       let key = getKey(e);
       key && key.removeAttribute("data-pressed");
     });
-
-    //////////////////////////////////////////
 
     this.parentDiv.addEventListener("click", (e) => {
       let key = e.target;
@@ -665,8 +651,6 @@ class Keyboard {
     return this.parentDiv;
   }
 }
-
-// --------------------------------------------- //
 
 let keyboardNum = 0;
 container.prepend(new Keyboard(keyboardNum, defaultRows).getElement());
