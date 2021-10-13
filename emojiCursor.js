@@ -189,8 +189,25 @@ function emojiCursor(options) {
 
   // ON CLICK PARTICLES
 
+  function getSmile(e) {
+    let location = e.location;
+    let selector;
+    if (location === KeyboardEvent.DOM_KEY_LOCATION_RIGHT) {
+      selector = ['[data-right="true"]', '[data-key="' + e.keyCode + '"]'].join(
+        ""
+      );
+    } else {
+      let code = e.keyCode || e.which;
+      selector = [
+        '[data-key="' + code + '"]',
+        '[data-char*="' + encodeURIComponent(String.fromCharCode(code)) + '"]',
+      ].join(",");
+    }
+    return document.querySelector(selector);
+  }
+
   document.body.addEventListener("keydown", (e) => {
-    let noteListen = getKey(e);
+    let noteListen = getSmile(e);
     createSmile(noteListen);
   });
 

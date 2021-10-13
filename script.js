@@ -1,3 +1,7 @@
+// // CURSOR
+
+// new emojiCursor();
+
 // TITLE
 
 anime
@@ -20,9 +24,6 @@ anime
 
 // UI
 
-/**
- * TODO: ensure the localStorage is unique per-instance
- */
 class Readme {
   constructor() {
     this.isOpen = window.localStorage.getItem("read-me") === "on";
@@ -82,10 +83,6 @@ class Readme {
 }
 
 document.body.prepend(new Readme().getElement());
-
-// CURSOR
-
-// new emojiCursor();
 
 const defaultRows = [
   [
@@ -553,7 +550,6 @@ class Keyboard {
         return console.warn("No key for", e);
       }
       key.setAttribute("data-pressed", "on");
-      console.log(key);
       this.handleKey(key);
     });
 
