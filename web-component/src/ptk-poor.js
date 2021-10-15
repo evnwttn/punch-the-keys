@@ -38,6 +38,7 @@ class PoorMansPunchTheKeys extends LitElement {
       <p>poor mans punch the keys</p>
       ${this.currentNote} ${this.volume}
       <br />
+      <!-- ROW 1 -->
       ${this.oscType.map(
         (oscType) => html`
           <button @click="${this.onOscTypeClick}" data-osc-type="${oscType}">
@@ -45,7 +46,10 @@ class PoorMansPunchTheKeys extends LitElement {
           </button>
         `
       )}
+      <button data-octave="up">"&#10688;"</button
+      ><button data-octave="down">"&#10689;"</button>
       <br />
+      <!-- ROW 2 -->
       ${this.octaves.map(
         (octave) => html`
           <button @click="${this.onOctaveClick}" data-octave="${octave}">
@@ -54,6 +58,7 @@ class PoorMansPunchTheKeys extends LitElement {
         `
       )}
       <br />
+      <!-- ROW 3 -->
       ${this.rowBlack.map(
         (row) => html`
           <button @click="${this.onClickButton}" data-sound="${row.sound}">
@@ -62,6 +67,7 @@ class PoorMansPunchTheKeys extends LitElement {
         `
       )}
       <br />
+      <!-- ROW 4 -->
       ${this.rowWhite.map(
         (row) => html`
           <button @click="${this.onClickButton}" data-sound="${row.sound}">
