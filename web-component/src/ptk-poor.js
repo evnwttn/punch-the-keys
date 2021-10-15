@@ -52,12 +52,8 @@ class PoorMansPunchTheKeys extends LitElement {
         `
       )}
       <br />
-      <button @click="${this.onVolumeClick}" data-volume="up">
-        Volume Up!!</button
-      ><button @click="${this.onVolumeClick}" data-volume="down">
-        Volume Down!!
-      </button>
-      volume be goin here
+      <button @click="${this.onVolumeClick}" data-volume="up">+++</button
+      ><button @click="${this.onVolumeClick}" data-volume="down">---</button>
     `;
   }
 
@@ -96,7 +92,17 @@ class PoorMansPunchTheKeys extends LitElement {
   }
 
   onVolumeClick(event) {
-    console.log(event.target.dataset);
+    const volume = event.target.dataset.volume;
+    if (volume === "up") {
+      this.volume++;
+    } else if (volume === "down") {
+      this.volume--;
+    } else if (!volume) {
+      throw new Error(
+        "button was clicked, but it lacked a data-volume attribute"
+      );
+    }
+    console.log(this.volume);
   }
 
   onClickButton(event) {
