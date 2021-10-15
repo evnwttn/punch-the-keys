@@ -52,7 +52,11 @@ class PoorMansPunchTheKeys extends LitElement {
         `
       )}
       <br />
-      <button>+</button><button>-</button>
+      <button @click="${this.onVolumeClick}" data-volume="up">
+        Volume Up!!</button
+      ><button @click="${this.onVolumeClick}" data-volume="down">
+        Volume Down!!
+      </button>
       volume be goin here
     `;
   }
@@ -92,7 +96,7 @@ class PoorMansPunchTheKeys extends LitElement {
   }
 
   onVolumeClick(event) {
-    console.log(event);
+    console.log(event.target.dataset);
   }
 
   onClickButton(event) {
