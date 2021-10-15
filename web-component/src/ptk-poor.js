@@ -107,16 +107,18 @@ class PoorMansPunchTheKeys extends LitElement {
       if (this.oscNum >= 1) {
         this.oscNum--;
         this.synth = this.makeSynth(this.oscType[this.oscNum]);
+        this.synthHud = this.oscType[this.oscNum];
       }
     } else if (oscType === "up") {
       if (this.oscNum <= this.oscType.length - 2) {
         this.oscNum++;
         this.synth = this.makeSynth(this.oscType[this.oscNum]);
+        this.synthHud = this.oscType[this.oscNum];
       }
     } else {
       this.synth = this.makeSynth(oscType);
+      this.synthHud = oscType;
     }
-    this.synthHud = this.oscType[this.oscNum];
 
     if (!oscType) {
       throw new Error(
