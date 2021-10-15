@@ -35,9 +35,13 @@ class PoorMansPunchTheKeys extends LitElement {
         `
       )}
       <br />
-      octave be goin here
       ${this.octaves.map(
-        (setOctave) => html` <button>${this.octaves}</button> `
+        (octave) =>
+          html`
+            <button @click="${this.OctaveClick}" data-octave="${this.octaves}">
+              ${octave}
+            </button>
+          `
       )}
       <br />
       ${this.rows.map(
@@ -48,6 +52,10 @@ class PoorMansPunchTheKeys extends LitElement {
         `
       )}
     `;
+  }
+
+  OctaveClick(event) {
+    console.log("yeah");
   }
 
   makeSynth(synthType) {
