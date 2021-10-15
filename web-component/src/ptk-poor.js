@@ -46,8 +46,6 @@ class PoorMansPunchTheKeys extends LitElement {
           </button>
         `
       )}
-      <button data-octave="up">"&#10688;"</button
-      ><button data-octave="down">"&#10689;"</button>
       <br />
       <!-- ROW 2 -->
       ${this.octaves.map(
@@ -57,6 +55,8 @@ class PoorMansPunchTheKeys extends LitElement {
           </button>
         `
       )}
+      <button data-octave="down">"&#10688;"</button>
+      <button data-octave="up">"&#10689;"</button>
       <br />
       <!-- ROW 3 -->
       ${this.rowBlack.map(
@@ -66,6 +66,8 @@ class PoorMansPunchTheKeys extends LitElement {
           </button>
         `
       )}
+      <button data-osc="down">"&#8818;"</button>
+      <button data-osc="up">"&#8819;"</button>
       <br />
       <!-- ROW 4 -->
       ${this.rowWhite.map(
@@ -75,8 +77,10 @@ class PoorMansPunchTheKeys extends LitElement {
           </button>
         `
       )}
-      <button @click="${this.onVolumeClick}" data-volume="up">+++</button
-      ><button @click="${this.onVolumeClick}" data-volume="down">---</button>
+      <button @click="${this.onVolumeClick}" data-volume="down">
+        "&#9661;"
+      </button>
+      <button @click="${this.onVolumeClick}" data-volume="up">"&#9651;"</button>
     `;
   }
 
