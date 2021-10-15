@@ -9,8 +9,9 @@ class PoorMansPunchTheKeys extends LitElement {
     this.octave = 4;
     this.octaves = ["1", "2", "3", "4", "5", "6", "7", "8", "9"];
     this.oscType = ["sawtooth", "triangle", "square", "sine"];
+    this.oscNum = 0;
     this.volume = 0;
-    this.synth = this.makeSynth(this.oscType[0]);
+    this.synth = this.makeSynth(this.oscType[this.oscNum]);
 
     this.rowBlack = [
       { sound: "C#" },
@@ -36,7 +37,7 @@ class PoorMansPunchTheKeys extends LitElement {
   render() {
     return html`
       <p>poor mans punch the keys</p>
-      ${this.currentNote} ${this.volume}
+      ${this.currentNote} ${this.volume} ${this.oscType[this.oscNum]}
       <br />
       <!-- ROW 1 -->
       ${this.oscType.map(
@@ -68,8 +69,12 @@ class PoorMansPunchTheKeys extends LitElement {
           </button>
         `
       )}
-      <button data-osc="down">&#8818;</button>
-      <button data-osc="up">&#8819;</button>
+      <button @click="${this.onOscTypeClick}" data-osc-type="down">
+        &#8818;
+      </button>
+      <button @click="${this.onOscTypeClick}" data-osc-type="up">
+        &#8819;
+      </button>
       <br />
       <!-- ROW 4 -->
       ${this.rowWhite.map(
@@ -97,14 +102,25 @@ class PoorMansPunchTheKeys extends LitElement {
 
   onOscTypeClick(event) {
     const oscType = event.target.dataset.oscType;
+    if (oscType === "down") {
+      if (this.oscNum >= 1) {
+        this.oscNum--;
+        this.synth = this.makeSynth(this.oscType[this.oscNum]);
+      }
+    } else if (oscType === "up") {
+      if (this.oscNum <= this.oscType.length - 2) {
+        this.oscNum++;
+        this.synth = this.makeSynth(this.oscType[this.oscNum]);
+      }
+    } else {
+      this.synth = this.makeSynth(oscType);
+    }
 
     if (!oscType) {
       throw new Error(
         "button was clicked, but it lacked a data-osc-type attribute"
       );
     }
-
-    this.synth = this.makeSynth(oscType);
   }
 
   onOctaveClick(event) {
