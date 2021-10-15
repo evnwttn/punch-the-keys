@@ -38,7 +38,7 @@ class PoorMansPunchTheKeys extends LitElement {
   render() {
     return html`
       <p>poor mans punch the keys</p>
-      [${this.currentNote}${this.octave}] [${this.volume}db] [${this.synthHud}]
+      [${this.volume}DB] [${this.synthHud}] [O${this.octave}]
       <br />
       <!-- ROW 1 -->
       ${this.oscType.map(
