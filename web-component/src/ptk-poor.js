@@ -12,19 +12,22 @@ class PoorMansPunchTheKeys extends LitElement {
     this.volume = 0;
     this.synth = this.makeSynth(this.oscType[0]);
 
-    // this.rows = [
-    //   { sound: "C" },
-    //   { sound: "D" },
-    //   { sound: "E" },
-    //   { sound: "F" },
-    //   { sound: "G" },
-    //   { sound: "A" },
-    //   { sound: "B" },
-    // ];
+    this.rowBlack = [
+      { sound: "C#" },
+      { sound: "D#" },
+      { sound: "F#" },
+      { sound: "G#" },
+      { sound: "A#" },
+    ];
 
-    this.rows = [
-      [{ sound: "C" }, { sound: "D" }],
-      [{ sound: "C#" }, { sound: "D#" }],
+    this.rowWhite = [
+      { sound: "C" },
+      { sound: "D" },
+      { sound: "E" },
+      { sound: "F" },
+      { sound: "G" },
+      { sound: "A" },
+      { sound: "B" },
     ];
 
     //////
@@ -51,7 +54,7 @@ class PoorMansPunchTheKeys extends LitElement {
         `
       )}
       <br />
-      ${this.rows.map(
+      ${this.rowBlack.map(
         (row) => html`
           <button @click="${this.onClickButton}" data-sound="${row.sound}">
             ${row.sound}
@@ -59,6 +62,13 @@ class PoorMansPunchTheKeys extends LitElement {
         `
       )}
       <br />
+      ${this.rowWhite.map(
+        (row) => html`
+          <button @click="${this.onClickButton}" data-sound="${row.sound}">
+            ${row.sound}
+          </button>
+        `
+      )}
       <button @click="${this.onVolumeClick}" data-volume="up">+++</button
       ><button @click="${this.onVolumeClick}" data-volume="down">---</button>
     `;
