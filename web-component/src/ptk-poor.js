@@ -9,6 +9,7 @@ class PoorMansPunchTheKeys extends LitElement {
     this.octave = 4;
     this.octaves = ["1", "2", "3", "4", "5", "6", "7", "8", "9"];
     this.oscType = ["sawtooth", "triangle", "square", "sine"];
+    this.volume = 0;
     this.synth = this.makeSynth(this.oscType[0]);
 
     this.rows = [
@@ -25,7 +26,7 @@ class PoorMansPunchTheKeys extends LitElement {
   render() {
     return html`
       <p>poor mans punch the keys</p>
-      ${this.currentNote}
+      ${this.currentNote} ${this.volume}
       <br />
       ${this.oscType.map(
         (oscType) => html`
@@ -50,19 +51,13 @@ class PoorMansPunchTheKeys extends LitElement {
           </button>
         `
       )}
+      <br />
+      <button>+</button><button>-</button>
+      volume be goin here
     `;
   }
 
-  onOctaveClick(event) {
-    const octave = event.target.dataset.octave;
-    this.octave = octave;
-
-    if (!octave) {
-      throw new Error(
-        "button was clicked, but it lacked a data-octave attribute"
-      );
-    }
-  }
+  // FUNCTIONS
 
   makeSynth(synthType) {
     return new Tone.PolySynth(Tone.Synth, {
@@ -83,6 +78,21 @@ class PoorMansPunchTheKeys extends LitElement {
     }
 
     this.synth = this.makeSynth(oscType);
+  }
+
+  onOctaveClick(event) {
+    const octave = event.target.dataset.octave;
+    this.octave = octave;
+
+    if (!octave) {
+      throw new Error(
+        "button was clicked, but it lacked a data-octave attribute"
+      );
+    }
+  }
+
+  onVolumeClick(event) {
+    console.log(event);
   }
 
   onClickButton(event) {
