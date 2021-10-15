@@ -7,7 +7,7 @@ class PoorMansPunchTheKeys extends LitElement {
 
     this.currentNote = "none";
     this.octave = 4;
-
+    this.octaves = ["1", "2", "3", "4", "5", "6", "7", "8", "9"];
     this.oscType = ["sawtooth", "triangle", "square", "sine"];
     this.synth = this.makeSynth(this.oscType[0]);
 
@@ -33,6 +33,11 @@ class PoorMansPunchTheKeys extends LitElement {
             ${oscType}
           </button>
         `
+      )}
+      <br />
+      octave be goin here
+      ${this.octaves.map(
+        (setOctave) => html` <button>${this.octaves}</button> `
       )}
       <br />
       ${this.rows.map(
