@@ -36,12 +36,11 @@ class PoorMansPunchTheKeys extends LitElement {
       )}
       <br />
       ${this.octaves.map(
-        (octave) =>
-          html`
-            <button @click="${this.OctaveClick}" data-octave="${this.octaves}">
-              ${octave}
-            </button>
-          `
+        (octave) => html`
+          <button @click="${this.onOctaveClick}" data-octave="${octave}">
+            ${octave}
+          </button>
+        `
       )}
       <br />
       ${this.rows.map(
@@ -54,8 +53,15 @@ class PoorMansPunchTheKeys extends LitElement {
     `;
   }
 
-  OctaveClick(event) {
-    console.log("yeah");
+  onOctaveClick(event) {
+    const octave = event.target.dataset.octave;
+    this.octave = octave;
+
+    if (!octave) {
+      throw new Error(
+        "button was clicked, but it lacked a data-octave attribute"
+      );
+    }
   }
 
   makeSynth(synthType) {
