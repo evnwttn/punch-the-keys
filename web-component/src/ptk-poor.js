@@ -12,15 +12,22 @@ class PoorMansPunchTheKeys extends LitElement {
     this.volume = 0;
     this.synth = this.makeSynth(this.oscType[0]);
 
+    // this.rows = [
+    //   { sound: "C" },
+    //   { sound: "D" },
+    //   { sound: "E" },
+    //   { sound: "F" },
+    //   { sound: "G" },
+    //   { sound: "A" },
+    //   { sound: "B" },
+    // ];
+
     this.rows = [
-      { sound: "C" },
-      { sound: "D" },
-      { sound: "E" },
-      { sound: "F" },
-      { sound: "G" },
-      { sound: "A" },
-      { sound: "B" },
+      [{ sound: "C" }, { sound: "D" }],
+      [{ sound: "C#" }, { sound: "D#" }],
     ];
+
+    //////
   }
 
   render() {
@@ -103,6 +110,7 @@ class PoorMansPunchTheKeys extends LitElement {
       );
     }
     console.log(this.volume);
+    // DOES NOT WORK
   }
 
   onClickButton(event) {
