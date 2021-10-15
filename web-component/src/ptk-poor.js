@@ -110,9 +110,13 @@ class PoorMansPunchTheKeys extends LitElement {
   onOctaveClick(event) {
     const octave = event.target.dataset.octave;
     if (octave === "down") {
-      this.octave--;
+      if (this.octave >= 1) {
+        this.octave--;
+      }
     } else if (octave === "up") {
-      this.octave++;
+      if (this.octave <= 8) {
+        this.octave++;
+      }
     } else {
       this.octave = octave;
     }
