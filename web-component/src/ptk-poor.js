@@ -11,6 +11,7 @@ class PoorMansPunchTheKeys extends LitElement {
     this.oscType = ["sawtooth", "triangle", "square", "sine"];
     this.oscNum = 0;
     this.volume = 0;
+    this.synthHud = "sawtooth";
     this.synth = this.makeSynth(this.oscType[this.oscNum]);
 
     this.rowBlack = [
@@ -37,7 +38,7 @@ class PoorMansPunchTheKeys extends LitElement {
   render() {
     return html`
       <p>poor mans punch the keys</p>
-      ${this.currentNote} ${this.volume} ${this.oscType[this.oscNum]}
+      [${this.currentNote}${this.octave}] [${this.volume}db] [${this.synthHud}]
       <br />
       <!-- ROW 1 -->
       ${this.oscType.map(
@@ -115,6 +116,7 @@ class PoorMansPunchTheKeys extends LitElement {
     } else {
       this.synth = this.makeSynth(oscType);
     }
+    this.synthHud = this.oscType[this.oscNum];
 
     if (!oscType) {
       throw new Error(
@@ -171,10 +173,14 @@ class PoorMansPunchTheKeys extends LitElement {
 
     this.synth.triggerAttackRelease(note, "8n");
 
-    this.currentNote = note;
+    this.currentNote = sound;
   }
 }
 PoorMansPunchTheKeys.properties = {
   currentNote: {},
+  volume: {},
+  synthHud: {},
+  octave: {},
 };
+
 customElements.define("ptk-poor", PoorMansPunchTheKeys);
