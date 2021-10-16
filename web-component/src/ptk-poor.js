@@ -1,4 +1,4 @@
-import { LitElement, html } from "lit";
+import { LitElement, html, css } from "lit";
 import * as Tone from "tone";
 
 class PoorMansPunchTheKeys extends LitElement {
@@ -500,6 +500,8 @@ class PoorMansPunchTheKeys extends LitElement {
           </button>
         `
       )}
+
+      <!-- //////// -->
     `;
   }
 
@@ -597,5 +599,10 @@ PoorMansPunchTheKeys.properties = {
   synthHud: {},
   octave: {},
 };
+PoorMansPunchTheKeys.styles = css`
+  button[data-row="1"] {
+    color: green;
+  }
+`;
 
 customElements.define("ptk-poor", PoorMansPunchTheKeys);
