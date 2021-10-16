@@ -32,6 +32,16 @@ class PoorMansPunchTheKeys extends LitElement {
       { sound: "B" },
     ];
 
+    this.rows = [
+      { sound: "C" },
+      { sound: "D" },
+      { sound: "E" },
+      { sound: "F" },
+      { sound: "G" },
+      { sound: "A" },
+      { sound: "B" },
+    ];
+
     //////
   }
 
@@ -39,8 +49,11 @@ class PoorMansPunchTheKeys extends LitElement {
     return html`
       <p>poor mans punch the keys</p>
       [${this.volume}DB] [${this.synthHud}] [O${this.octave}]
+
       <br />
+
       <!-- ROW 1 -->
+
       ${this.oscType.map(
         (oscType) => html`
           <button @click="${this.onOscTypeClick}" data-osc-type="${oscType}">
@@ -48,8 +61,10 @@ class PoorMansPunchTheKeys extends LitElement {
           </button>
         `
       )}
+
       <br />
       <!-- ROW 2 -->
+
       ${this.octaves.map(
         (octave) => html`
           <button @click="${this.onOctaveClick}" data-octave="${octave}">
@@ -57,36 +72,58 @@ class PoorMansPunchTheKeys extends LitElement {
           </button>
         `
       )}
+
       <button @click="${this.onOctaveClick}" data-octave="down">
         &#10688;
       </button>
+
       <button @click="${this.onOctaveClick}" data-octave="up">&#10689;</button>
+
       <br />
+
       <!-- ROW 3 -->
-      ${this.rowBlack.map(
+
+      <!-- ${this.rowBlack.map(
         (row) => html`
           <button @click="${this.onClickButton}" data-sound="${row.sound}">
             ${row.sound}
           </button>
         `
-      )}
+      )} -->
+
       <button @click="${this.onOscTypeClick}" data-osc-type="down">
         &#8818;
       </button>
+
       <button @click="${this.onOscTypeClick}" data-osc-type="up">
         &#8819;
       </button>
+
       <br />
+
       <!-- ROW 4 -->
-      ${this.rowWhite.map(
+
+      <!-- ${this.rowWhite.map(
+        (row) => html`
+          <button @click="${this.onClickButton}" data-sound="${row.sound}">
+            ${row.sound}
+          </button>
+        `
+      )} -->
+
+      <button @click="${this.onVolumeClick}" data-volume="down">&#9661;</button>
+
+      <button @click="${this.onVolumeClick}" data-volume="up">&#9651;</button>
+
+      <br />
+
+      ${this.rows.map(
         (row) => html`
           <button @click="${this.onClickButton}" data-sound="${row.sound}">
             ${row.sound}
           </button>
         `
       )}
-      <button @click="${this.onVolumeClick}" data-volume="down">&#9661;</button>
-      <button @click="${this.onVolumeClick}" data-volume="up">&#9651;</button>
     `;
   }
 
