@@ -600,8 +600,33 @@ PoorMansPunchTheKeys.properties = {
   octave: {},
 };
 PoorMansPunchTheKeys.styles = css`
+  button {
+    display: inline-block;
+    color: grey;
+  }
+
   button[data-row="1"] {
     color: green;
+  }
+
+  button[data-row="2"] {
+    color: red;
+  }
+
+  button[data-row="3"] {
+    color: pink;
+  }
+
+  button[data-row="4"] {
+    color: blue;
+  }
+
+  button[data-row="5"] {
+    color: purple;
+  }
+
+  button[data-row="6"] {
+    color: orange;
   }
 `;
 
