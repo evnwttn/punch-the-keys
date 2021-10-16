@@ -454,13 +454,13 @@ class PoorMansPunchTheKeys extends LitElement {
 
       <!-- ROW 3 -->
 
-      <!-- ${this.rowBlack.map(
+      ${this.rowBlack.map(
         (row) => html`
           <button @click="${this.onClickButton}" data-sound="${row.sound}">
             ${row.sound}
           </button>
         `
-      )} -->
+      )}
 
       <button @click="${this.onOscTypeClick}" data-osc-type="down">
         &#8818;
@@ -474,13 +474,13 @@ class PoorMansPunchTheKeys extends LitElement {
 
       <!-- ROW 4 -->
 
-      <!-- ${this.rowWhite.map(
+      ${this.rowWhite.map(
         (row) => html`
           <button @click="${this.onClickButton}" data-sound="${row.sound}">
             ${row.sound}
           </button>
         `
-      )} -->
+      )}
 
       <button @click="${this.onVolumeClick}" data-volume="down">&#9661;</button>
 
@@ -488,7 +488,7 @@ class PoorMansPunchTheKeys extends LitElement {
 
       <br />
 
-      ${this.rows.map(
+      <!-- ${this.rows.map(
         (row) => html`
           <button
             @click="${this.onClickButton}"
@@ -499,7 +499,7 @@ class PoorMansPunchTheKeys extends LitElement {
             ${row.value} ${row.sound}
           </button>
         `
-      )}
+      )} -->
 
       <!-- //////// -->
     `;
@@ -602,11 +602,14 @@ PoorMansPunchTheKeys.properties = {
 PoorMansPunchTheKeys.styles = css`
   button {
     display: inline-block;
-    color: grey;
   }
 
-  button[data-row="1"] {
+  [data-row="1"] {
     color: green;
+  }
+
+  button[data-row="1"]::after {
+    content: "\a";
   }
 
   button[data-row="2"] {
