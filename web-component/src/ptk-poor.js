@@ -356,6 +356,7 @@ class PoorMansPunchTheKeys extends LitElement {
             @click="${this.handleClick}"
             data-sound="${key.sound}"
             data-value="${key.value}"
+            data-volume="${key.volume}"
           >
             ${key.value} ${key.sound}
           </button>`
@@ -369,9 +370,10 @@ class PoorMansPunchTheKeys extends LitElement {
   // FUNCTIONS
 
   handleClick(event) {
-    this.makeSynth(event);
-    this.onOscTypeClick(event);
-    this.onOctaveClick(event);
+    console.log(event.target.dataset);
+    // this.makeSynth(event);
+    // this.onOscTypeClick(event);
+    // this.onOctaveClick(event);
     this.onVolumeClick(event);
     this.onClickButton(event);
   }
@@ -443,8 +445,6 @@ class PoorMansPunchTheKeys extends LitElement {
         "button was clicked, but it lacked a data-volume attribute"
       );
     }
-    console.log(this.volume);
-    // DOES NOT WORK
   }
 
   onClickButton(event) {
