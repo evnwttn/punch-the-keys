@@ -178,7 +178,7 @@ class PoorMansPunchTheKeys extends LitElement {
         { keyCode: 80, classes: "letter gdt", value: "P" },
         {
           keyCode: 219,
-          oscDown: true,
+          oscType: "down",
           classes: "double gdt",
           value: ["{", "["],
           multi: "&#8818;",
@@ -186,7 +186,7 @@ class PoorMansPunchTheKeys extends LitElement {
         },
         {
           keyCode: 221,
-          oscUp: true,
+          oscType: "up",
           classes: "double gdt",
           value: ["}", "]"],
           multi: "&#8819;",
@@ -352,16 +352,6 @@ class PoorMansPunchTheKeys extends LitElement {
 
       <br />
 
-      ${this.oscType.map(
-        (oscType) => html`
-          <button @click="${this.onOscTypeClick}" data-osc-type="${oscType}">
-            ${oscType}
-          </button>
-        `
-      )}
-
-      <br />
-
       ${this.octaves.map(
         (octave) => html`
           <button @click="${this.onOctaveClick}" data-octave="${octave}">
@@ -445,10 +435,11 @@ class PoorMansPunchTheKeys extends LitElement {
         this.synth = this.makeSynth(this.oscType[this.oscNum]);
         this.synthHud = this.oscType[this.oscNum];
       }
-    } else {
-      this.synth = this.makeSynth(oscType);
-      this.synthHud = oscType;
     }
+    // else {
+    //   this.synth = this.makeSynth(oscType);
+    //   this.synthHud = oscType;
+    // }
 
     if (!oscType) {
       throw new Error(
