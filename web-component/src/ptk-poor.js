@@ -8,11 +8,11 @@ class PoorMansPunchTheKeys extends LitElement {
     this.currentNote = "none";
     this.octave = 4;
     this.octaves = ["1", "2", "3", "4", "5", "6", "7", "8", "9"];
-    this.oscType = ["sawtooth", "triangle", "square", "sine"];
+    this.oscillator = ["sawtooth", "triangle", "square", "sine"];
     this.oscNum = 0;
     this.volume = 0;
     this.synthHud = "sawtooth";
-    this.synth = this.makeSynth(this.oscType[this.oscNum]);
+    this.synth = this.makeSynth(this.oscillator[this.oscNum]);
 
     this.rows = [
       /* ROW 1 */
@@ -178,7 +178,7 @@ class PoorMansPunchTheKeys extends LitElement {
         { keyCode: 80, classes: "letter gdt", value: "P" },
         {
           keyCode: 219,
-          oscType: "down",
+          oscillator: "down",
           classes: "double gdt",
           value: ["{", "["],
           multi: "&#8818;",
@@ -186,7 +186,7 @@ class PoorMansPunchTheKeys extends LitElement {
         },
         {
           keyCode: 221,
-          oscType: "up",
+          oscillator: "up",
           classes: "double gdt",
           value: ["}", "]"],
           multi: "&#8819;",
@@ -348,6 +348,8 @@ class PoorMansPunchTheKeys extends LitElement {
       <p>poor mans punch the keys</p>
       [${this.volume}DB] [${this.synthHud}] [O${this.octave}]
 
+      <br />
+
       <!-- NEW POOR PTK -->
 
       ${this.rows.map((row) =>
@@ -357,6 +359,8 @@ class PoorMansPunchTheKeys extends LitElement {
             data-sound="${key.sound}"
             data-value="${key.value}"
             data-volume="${key.volume}"
+            data-octave="${key.octave}"
+            data-oscillator="${key.oscillator}"
           >
             ${key.value} ${key.sound}
           </button>`
@@ -372,8 +376,8 @@ class PoorMansPunchTheKeys extends LitElement {
   handleClick(event) {
     console.log(event.target.dataset);
     // this.makeSynth(event);
-    // this.onOscTypeClick(event);
-    // this.onOctaveClick(event);
+    this.onOscTypeClick(event);
+    this.onOctaveClick(event);
     this.onVolumeClick(event);
     this.onClickButton(event);
   }
@@ -388,26 +392,26 @@ class PoorMansPunchTheKeys extends LitElement {
   }
 
   onOscTypeClick(event) {
-    const oscType = event.target.dataset.oscType;
-    if (oscType === "down") {
+    const oscillator = event.target.dataset.oscillator;
+    if (oscillator === "down") {
       if (this.oscNum >= 1) {
         this.oscNum--;
-        this.synth = this.makeSynth(this.oscType[this.oscNum]);
-        this.synthHud = this.oscType[this.oscNum];
+        this.synth = this.makeSynth(this.oscillator[this.oscNum]);
+        this.synthHud = this.oscillator[this.oscNum];
       }
-    } else if (oscType === "up") {
-      if (this.oscNum <= this.oscType.length - 2) {
+    } else if (oscillator === "up") {
+      if (this.oscNum <= this.oscillator.length - 2) {
         this.oscNum++;
-        this.synth = this.makeSynth(this.oscType[this.oscNum]);
-        this.synthHud = this.oscType[this.oscNum];
+        this.synth = this.makeSynth(this.oscillator[this.oscNum]);
+        this.synthHud = this.oscillator[this.oscNum];
       }
     }
     // else {
-    //   this.synth = this.makeSynth(oscType);
-    //   this.synthHud = oscType;
+    //   this.synth = this.makeSynth(oscillator);
+    //   this.synthHud = oscillator;
     // }
 
-    if (!oscType) {
+    if (!oscillator) {
       throw new Error(
         "button was clicked, but it lacked a data-osc-type attribute"
       );
