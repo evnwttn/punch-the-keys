@@ -408,8 +408,17 @@ class PoorMansPunchTheKeys extends LitElement {
           </button>
         `
       )} -->
+
       ${this.rows.map((row) =>
-        row.map((key) => html` <button>${key.value}</button>`)
+        row.map(
+          (key) => html` <button
+            @click="${this.onClickButton}"
+            data-sound="${key.sound}"
+            data-value="${key.value}"
+          >
+            ${key.value} ${key.sound}
+          </button>`
+        )
       )}
 
       <!-- //////// -->
