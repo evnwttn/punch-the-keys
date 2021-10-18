@@ -109,7 +109,7 @@ class PoorMansPunchTheKeys extends LitElement {
         },
         {
           keyCode: 189,
-          octaveDown: true,
+          octave: "down",
           classes: "double gdt",
           value: ["_", "-"],
           multi: "&#10688;",
@@ -117,7 +117,7 @@ class PoorMansPunchTheKeys extends LitElement {
         },
         {
           keyCode: 187,
-          octaveUp: true,
+          octave: "up",
           classes: "double gdt",
           value: ["+", "="],
           multi: "&#10689;",
@@ -396,23 +396,10 @@ class PoorMansPunchTheKeys extends LitElement {
 
       <!-- NEW POOR PTK -->
 
-      <!-- ${this.rows.map(
-        (row) => html`
-          <button
-            @click="${this.onClickButton}"
-            data-sound="${row.sound}"
-            data-value="${row.value}"
-            data-row="${row.row}"
-          >
-            ${row.value} ${row.sound}
-          </button>
-        `
-      )} -->
-
       ${this.rows.map((row) =>
         row.map(
           (key) => html` <button
-            @click="${this.onClickButton}"
+            @click="${this.handleClick}"
             data-sound="${key.sound}"
             data-value="${key.value}"
           >
@@ -426,6 +413,14 @@ class PoorMansPunchTheKeys extends LitElement {
   }
 
   // FUNCTIONS
+
+  handleClick(event) {
+    this.makeSynth(event);
+    this.onOscTypeClick(event);
+    this.onOctaveClick(event);
+    this.onVolumeClick(event);
+    this.onClickButton(event);
+  }
 
   makeSynth(synthType) {
     return new Tone.PolySynth(Tone.Synth, {
