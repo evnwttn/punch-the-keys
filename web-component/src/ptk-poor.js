@@ -260,7 +260,7 @@ class PoorMansPunchTheKeys extends LitElement {
         { keyCode: 76, classes: "letter gdt", value: "L" },
         {
           keyCode: 186,
-          volDown: true,
+          volume: "down",
           classes: "double gdt",
           value: [":", ";"],
           multi: "&#9661;",
@@ -268,7 +268,7 @@ class PoorMansPunchTheKeys extends LitElement {
         },
         {
           keyCode: 222,
-          volUp: true,
+          volume: "up",
           classes: "double gdt",
           value: ["&#34;", "&#39;"],
           multi: "&#9651;",
@@ -347,42 +347,6 @@ class PoorMansPunchTheKeys extends LitElement {
     return html`
       <p>poor mans punch the keys</p>
       [${this.volume}DB] [${this.synthHud}] [O${this.octave}]
-
-      <!-- OLD POOR PTK -->
-
-      <br />
-
-      ${this.octaves.map(
-        (octave) => html`
-          <button @click="${this.onOctaveClick}" data-octave="${octave}">
-            ${octave}
-          </button>
-        `
-      )}
-
-      <button @click="${this.onOctaveClick}" data-octave="down">
-        &#10688;
-      </button>
-
-      <button @click="${this.onOctaveClick}" data-octave="up">&#10689;</button>
-
-      <br />
-
-      <button @click="${this.onOscTypeClick}" data-osc-type="down">
-        &#8818;
-      </button>
-
-      <button @click="${this.onOscTypeClick}" data-osc-type="up">
-        &#8819;
-      </button>
-
-      <br />
-
-      <button @click="${this.onVolumeClick}" data-volume="down">&#9661;</button>
-
-      <button @click="${this.onVolumeClick}" data-volume="up">&#9651;</button>
-
-      <br />
 
       <!-- NEW POOR PTK -->
 
