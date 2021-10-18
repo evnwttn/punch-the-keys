@@ -332,9 +332,9 @@ class PoorMansPunchTheKeys extends LitElement {
       <p>poor mans punch the keys</p>
       [${this.volume}DB] [${this.synthHud}] [O${this.octave}]
 
-      <br />
+      <!-- OLD POOR PTK -->
 
-      <!-- ROW 1 -->
+      <br />
 
       ${this.oscType.map(
         (oscType) => html`
@@ -345,7 +345,6 @@ class PoorMansPunchTheKeys extends LitElement {
       )}
 
       <br />
-      <!-- ROW 2 -->
 
       ${this.octaves.map(
         (octave) => html`
@@ -363,8 +362,6 @@ class PoorMansPunchTheKeys extends LitElement {
 
       <br />
 
-      <!-- ROW 3 -->
-
       <button @click="${this.onOscTypeClick}" data-osc-type="down">
         &#8818;
       </button>
@@ -375,13 +372,13 @@ class PoorMansPunchTheKeys extends LitElement {
 
       <br />
 
-      <!-- ROW 4 -->
-
       <button @click="${this.onVolumeClick}" data-volume="down">&#9661;</button>
 
       <button @click="${this.onVolumeClick}" data-volume="up">&#9651;</button>
 
       <br />
+
+      <!-- NEW POOR PTK -->
 
       <!-- ${this.rows.map(
         (row) => html`
