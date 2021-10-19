@@ -409,22 +409,18 @@ class PoorMansPunchTheKeys extends LitElement {
 
   onOctaveClick(event) {
     const octave = event.target.dataset.octave;
-    if (octave === "down") {
-      if (this.octave >= 1) {
-        this.octave--;
-      }
-    } else if (octave === "up") {
-      if (this.octave <= 8) {
-        this.octave++;
-      }
-    } else {
-      this.octave = octave;
-    }
-    if (!octave) {
-      throw new Error(
-        "button was clicked, but it lacked a data-octave attribute"
-      );
-    }
+    console.log(octave);
+    // if (octave === "down") {
+    //   if (this.octave >= 1) {
+    //     this.octave--;
+    //   }
+    // } else if (octave === "up") {
+    //   if (this.octave <= 8) {
+    //     this.octave++;
+    //   }
+    // } else {
+    //   this.octave = octave;
+    // }
   }
 
   onVolumeClick(event) {
@@ -440,14 +436,16 @@ class PoorMansPunchTheKeys extends LitElement {
 
   onClickButton(event) {
     const sound = event.target.dataset.sound;
+    if (sound != "") {
+      this.onVolumeClick(event);
+      this.onOctaveClick(event);
 
-    this.onVolumeClick(event);
+      const note = `${sound}${this.octave}`;
 
-    const note = `${sound}${this.octave}`;
+      this.synth.triggerAttackRelease(note, "8n");
 
-    this.synth.triggerAttackRelease(note, "8n");
-
-    this.currentNote = sound;
+      this.currentNote = sound;
+    }
   }
 }
 PoorMansPunchTheKeys.properties = {
