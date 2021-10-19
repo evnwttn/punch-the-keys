@@ -346,7 +346,9 @@ class PoorMansPunchTheKeys extends LitElement {
   render() {
     return html`
       <p>poor mans punch the keys</p>
+      <br />
       [${this.volume}DB] [${this.synthHud}] [O${this.octave}]
+      <br />
       ${this.rows.map((row) =>
         row.map(
           (key) => html` <button
@@ -424,7 +426,6 @@ class PoorMansPunchTheKeys extends LitElement {
   }
 
   onClickButton(event) {
-    console.log(event.target);
     const sound = event.target.dataset.sound;
     if (sound != "") {
       const note = `${sound}${this.octave}`;
@@ -448,10 +449,6 @@ PoorMansPunchTheKeys.styles = css`
   [data-octave="up"] {
     color: red;
     font-size: 2em;
-  }
-
-  [data-classes="letter gdt"] {
-    color: red;
   }
 
   [data-oscillator="up"] {
