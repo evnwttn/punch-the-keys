@@ -348,14 +348,12 @@ class PoorMansPunchTheKeys extends LitElement {
       <p>poor mans punch the keys</p>
       [${this.volume}DB] [${this.synthHud}] [O${this.octave}]
 
-      <br />
-
       <!-- NEW POOR PTK -->
 
       ${this.rows.map((row) =>
         row.map(
           (key) => html` <button
-            @click="${this.handleClick}"
+            @click="${this.onClickButton}"
             data-sound="${key.sound}"
             data-value="${key.value}"
             data-volume="${key.volume}"
@@ -372,15 +370,6 @@ class PoorMansPunchTheKeys extends LitElement {
   }
 
   // FUNCTIONS
-
-  handleClick(event) {
-    console.log(event.target.dataset);
-    // this.makeSynth(event);
-    this.onOscTypeClick(event);
-    this.onOctaveClick(event);
-    this.onVolumeClick(event);
-    this.onClickButton(event);
-  }
 
   makeSynth(synthType) {
     return new Tone.PolySynth(Tone.Synth, {
@@ -442,23 +431,17 @@ class PoorMansPunchTheKeys extends LitElement {
     const volume = event.target.dataset.volume;
     if (volume === "up") {
       this.volume++;
+      console.log(this.volume);
     } else if (volume === "down") {
       this.volume--;
-    } else if (!volume) {
-      throw new Error(
-        "button was clicked, but it lacked a data-volume attribute"
-      );
+      console.log(this.volume);
     }
   }
 
   onClickButton(event) {
     const sound = event.target.dataset.sound;
 
-    if (!sound) {
-      throw new Error(
-        "button was clicked, but it lacked a data-sound attribute"
-      );
-    }
+    this.onVolumeClick(event);
 
     const note = `${sound}${this.octave}`;
 
@@ -474,36 +457,19 @@ PoorMansPunchTheKeys.properties = {
   octave: {},
 };
 PoorMansPunchTheKeys.styles = css`
-  button {
-    display: inline-block;
-  }
-
-  [data-row="1"] {
-    color: green;
-  }
-
-  button[data-row="1"]::after {
-    content: "\a";
-  }
-
-  button[data-row="2"] {
+  [data-octave="up"] {
     color: red;
+    font-size: 2em;
   }
 
-  button[data-row="3"] {
-    color: pink;
-  }
-
-  button[data-row="4"] {
+  [data-oscillator="up"] {
     color: blue;
+    font-size: 2em;
   }
 
-  button[data-row="5"] {
-    color: purple;
-  }
-
-  button[data-row="6"] {
-    color: orange;
+  [data-volume="up"] {
+    color: green;
+    font-size: 2em;
   }
 `;
 
