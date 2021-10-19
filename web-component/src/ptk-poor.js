@@ -409,43 +409,43 @@ class PoorMansPunchTheKeys extends LitElement {
 
   onOctaveClick(event) {
     const octave = event.target.dataset.octave;
-    console.log(octave);
-    // if (octave === "down") {
-    //   if (this.octave >= 1) {
-    //     this.octave--;
-    //   }
-    // } else if (octave === "up") {
-    //   if (this.octave <= 8) {
-    //     this.octave++;
-    //   }
-    // } else {
-    //   this.octave = octave;
-    // }
+    if (octave != "") {
+      if (octave === "down") {
+        if (this.octave >= 1) {
+          this.octave--;
+        }
+      } else if (octave === "up") {
+        if (this.octave <= 8) {
+          this.octave++;
+        }
+      } else {
+        this.octave = octave;
+      }
+    }
   }
 
   onVolumeClick(event) {
     const volume = event.target.dataset.volume;
-    if (volume === "up") {
-      this.volume++;
-      console.log(this.volume);
-    } else if (volume === "down") {
-      this.volume--;
-      console.log(this.volume);
+    if (volume != "") {
+      if (volume === "up") {
+        this.volume++;
+      } else if (volume === "down") {
+        this.volume--;
+      }
     }
   }
 
   onClickButton(event) {
     const sound = event.target.dataset.sound;
     if (sound != "") {
-      this.onVolumeClick(event);
-      this.onOctaveClick(event);
-
       const note = `${sound}${this.octave}`;
 
       this.synth.triggerAttackRelease(note, "8n");
 
       this.currentNote = sound;
     }
+    this.onVolumeClick(event);
+    this.onOctaveClick(event);
   }
 }
 PoorMansPunchTheKeys.properties = {
