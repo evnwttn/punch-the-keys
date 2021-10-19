@@ -380,30 +380,22 @@ class PoorMansPunchTheKeys extends LitElement {
     }).toDestination();
   }
 
-  onOscTypeClick(event) {
+  onOscClick(event) {
     const oscillator = event.target.dataset.oscillator;
-    if (oscillator === "down") {
-      if (this.oscNum >= 1) {
-        this.oscNum--;
-        this.synth = this.makeSynth(this.oscillator[this.oscNum]);
-        this.synthHud = this.oscillator[this.oscNum];
+    if (oscillator != "") {
+      if (oscillator === "down") {
+        if (this.oscNum >= 1) {
+          this.oscNum--;
+          this.synth = this.makeSynth(this.oscillator[this.oscNum]);
+          this.synthHud = this.oscillator[this.oscNum];
+        }
+      } else if (oscillator === "up") {
+        if (this.oscNum <= this.oscillator.length - 2) {
+          this.oscNum++;
+          this.synth = this.makeSynth(this.oscillator[this.oscNum]);
+          this.synthHud = this.oscillator[this.oscNum];
+        }
       }
-    } else if (oscillator === "up") {
-      if (this.oscNum <= this.oscillator.length - 2) {
-        this.oscNum++;
-        this.synth = this.makeSynth(this.oscillator[this.oscNum]);
-        this.synthHud = this.oscillator[this.oscNum];
-      }
-    }
-    // else {
-    //   this.synth = this.makeSynth(oscillator);
-    //   this.synthHud = oscillator;
-    // }
-
-    if (!oscillator) {
-      throw new Error(
-        "button was clicked, but it lacked a data-osc-type attribute"
-      );
     }
   }
 
@@ -446,6 +438,7 @@ class PoorMansPunchTheKeys extends LitElement {
     }
     this.onVolumeClick(event);
     this.onOctaveClick(event);
+    this.onOscClick(event);
   }
 }
 PoorMansPunchTheKeys.properties = {
