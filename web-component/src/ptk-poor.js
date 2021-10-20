@@ -1,4 +1,5 @@
 import { LitElement, html, css } from "lit";
+import { ifDefined } from 'lit/directives/if-defined.js';
 import * as Tone from "tone";
 
 class PoorMansPunchTheKeys extends LitElement {
@@ -14,103 +15,107 @@ class PoorMansPunchTheKeys extends LitElement {
     this.synthHud = "sawtooth";
     this.synth = this.makeSynth(this.oscillator[this.oscNum]);
 
+    this.addEventListener('keydown', (event) => {
+      this.onKeyPress(event);
+    });
+
     this.rows = [
       /* ROW 1 */
       [
-        { keyCode: 27, classes: "word-top align-esq gdt", value: "ESC" },
-        { keyCode: 112, classes: "func gdt", value: "F1" },
-        { keyCode: 113, classes: "func gdt", value: "F2" },
-        { keyCode: 114, classes: "func gdt", value: "F3" },
-        { keyCode: 115, classes: "func gdt", value: "F4" },
-        { keyCode: 116, classes: "func gdt", value: "F5" },
-        { keyCode: 117, classes: "func gdt", value: "F6" },
-        { keyCode: 118, classes: "func gdt", value: "F7" },
-        { keyCode: 119, classes: "func gdt", value: "F8" },
-        { keyCode: 120, classes: "func gdt", value: "F9" },
-        { keyCode: 121, classes: "func gdt", value: "F10" },
-        { keyCode: 122, classes: "func gdt", value: "F11" },
-        { keyCode: 123, classes: "func gdt", value: "F12" },
-        { keyCode: 45, classes: "word-top gdt", value: "INSERT" },
-        { keyCode: 44, classes: "word-top gdt", value: "PRTSC" },
-        { keyCode: 46, classes: "word-top gdt", value: "DELETE" },
+        { keyCode: 27, classes: "word-top align-esq", value: "ESC" },
+        { keyCode: 112, classes: "func", value: "F1" },
+        { keyCode: 113, classes: "func", value: "F2" },
+        { keyCode: 114, classes: "func", value: "F3" },
+        { keyCode: 115, classes: "func", value: "F4" },
+        { keyCode: 116, classes: "func", value: "F5" },
+        { keyCode: 117, classes: "func", value: "F6" },
+        { keyCode: 118, classes: "func", value: "F7" },
+        { keyCode: 119, classes: "func", value: "F8" },
+        { keyCode: 120, classes: "func", value: "F9" },
+        { keyCode: 121, classes: "func", value: "F10" },
+        { keyCode: 122, classes: "func", value: "F11" },
+        { keyCode: 123, classes: "func", value: "F12" },
+        { keyCode: 45, classes: "word-top", value: "INSERT" },
+        { keyCode: 44, classes: "word-top", value: "PRTSC" },
+        { keyCode: 46, classes: "word-top", value: "DELETE" },
       ],
       [
         /* ROW 2 */
-        { keyCode: 192, classes: "double gdt", value: ["~", "`"] },
+        { keyCode: 192, classes: "double", value: ["~", "`"] },
         {
           keyCode: 49,
           octave: "0",
-          classes: "double gdt",
+          classes: "double",
           value: ["!", "1"],
           multiClasses: ["multi"],
         },
         {
           keyCode: 50,
           octave: "1",
-          classes: "double gdt",
+          classes: "double",
           value: ["@", "2"],
           multiClasses: ["multi"],
         },
         {
           keyCode: 51,
           octave: "2",
-          classes: "double gdt",
+          classes: "double",
           value: ["#", "3"],
           multiClasses: ["multi"],
         },
         {
           keyCode: 52,
           octave: "3",
-          classes: "double gdt",
+          classes: "double",
           value: ["$", "4"],
           multiClasses: ["multi"],
         },
         {
           keyCode: 53,
           octave: "4",
-          classes: "double gdt",
+          classes: "double",
           value: ["%", "5"],
           multiClasses: ["multi"],
         },
         {
           keyCode: 54,
           octave: "5",
-          classes: "double gdt",
+          classes: "double",
           value: ["^", "6"],
           multiClasses: ["multi"],
         },
         {
           keyCode: 55,
           octave: "6",
-          classes: "double gdt",
+          classes: "double",
           value: ["&", "7"],
           multiClasses: ["multi"],
         },
         {
           keyCode: 56,
           octave: "7",
-          classes: "double gdt",
+          classes: "double",
           value: ["*", "8"],
           multiClasses: ["multi"],
         },
         {
           keyCode: 57,
           octave: "8",
-          classes: "double gdt",
+          classes: "double",
           value: ["(", "9"],
           multiClasses: ["multi"],
         },
         {
           keyCode: 48,
           octave: "9",
-          classes: "double gdt",
+          classes: "double",
           value: [")", "0"],
           multiClasses: ["multi"],
         },
         {
           keyCode: 189,
           octave: "down",
-          classes: "double gdt",
+          classes: "double",
           value: ["_", "-"],
           multi: "&#10688;",
           multiClasses: ["multi"],
@@ -118,14 +123,14 @@ class PoorMansPunchTheKeys extends LitElement {
         {
           keyCode: 187,
           octave: "up",
-          classes: "double gdt",
+          classes: "double",
           value: ["+", "="],
           multi: "&#10689;",
           multiClasses: ["multi"],
         },
         {
           keyCode: 8,
-          classes: "word backspace-tab align-backspace gdt",
+          classes: "word backspace-tab align-backspace",
           value: "&#8592;",
         },
       ],
@@ -133,53 +138,53 @@ class PoorMansPunchTheKeys extends LitElement {
         /* ROW 3 */
         {
           keyCode: 9,
-          classes: "word backspace-tab align-tab gdt",
+          classes: "word backspace-tab align-tab",
           value: "TAB",
         },
-        { keyCode: 81, classes: "letter gdt", value: "Q" },
+        { keyCode: 81, classes: "letter", value: "Q" },
         {
           keyCode: 87,
           sound: "C#",
-          classes: "letter gdt",
+          classes: "letter",
           value: "W",
           multiClasses: ["multi-sharps"],
         },
         {
           keyCode: 69,
           sound: "D#",
-          classes: "letter gdt",
+          classes: "letter",
           value: "E",
           multiClasses: ["multi-sharps"],
         },
-        { keyCode: 82, classes: "letter gdt", value: "R" },
+        { keyCode: 82, classes: "letter", value: "R" },
         {
           keyCode: 84,
           sound: "F#",
-          classes: "letter gdt",
+          classes: "letter",
           value: "T",
           multiClasses: ["multi-sharps"],
         },
         {
           keyCode: 89,
           sound: "G#",
-          classes: "letter gdt",
+          classes: "letter",
           value: "Y",
           multiClasses: ["multi-sharps"],
         },
         {
           keyCode: 85,
           sound: "A#",
-          classes: "letter gdt",
+          classes: "letter",
           value: "U",
           multiClasses: ["multi-sharps"],
         },
-        { keyCode: 73, classes: "letter gdt", value: "I" },
-        { keyCode: 79, classes: "letter gdt", value: "O" },
-        { keyCode: 80, classes: "letter gdt", value: "P" },
+        { keyCode: 73, classes: "letter", value: "I" },
+        { keyCode: 79, classes: "letter", value: "O" },
+        { keyCode: 80, classes: "letter", value: "P" },
         {
           keyCode: 219,
           oscillator: "down",
-          classes: "double gdt",
+          classes: "double",
           value: ["{", "["],
           multi: "&#8818;",
           multiClasses: ["multi-sharps"],
@@ -187,81 +192,81 @@ class PoorMansPunchTheKeys extends LitElement {
         {
           keyCode: 221,
           oscillator: "up",
-          classes: "double gdt",
+          classes: "double",
           value: ["}", "]"],
           multi: "&#8819;",
           multiClasses: ["multi-sharps"],
         },
-        { keyCode: 220, classes: "double gdt", value: ["|", "&#92;"] },
+        { keyCode: 220, classes: "double", value: ["|", "&#92;"] },
       ],
       [
         /* ROW 4 */
         {
           keyCode: 20,
-          classes: "word caps-enter align-caps gdt",
+          classes: "word caps-enter align-caps",
           value: "CAPSLCK",
         },
         {
           keyCode: 65,
           sound: "C",
-          classes: "letter gdt",
+          classes: "letter",
           value: "A",
           multiClasses: ["multi"],
         },
         {
           keyCode: 83,
           sound: "D",
-          classes: "letter gdt",
+          classes: "letter",
           value: "S",
           multiClasses: ["multi"],
         },
         {
           keyCode: 68,
           sound: "E",
-          classes: "letter gdt",
+          classes: "letter",
           value: "D",
           multiClasses: ["multi"],
         },
         {
           keyCode: 70,
           sound: "F",
-          classes: "letter gdt",
+          classes: "letter",
           value: "F",
           multiClasses: ["multi"],
         },
         {
           keyCode: 71,
           sound: "G",
-          classes: "letter gdt",
+          classes: "letter",
           value: "G",
           multiClasses: ["multi"],
         },
         {
           keyCode: 72,
           sound: "A",
-          classes: "letter gdt",
+          classes: "letter",
           value: "H",
           multiClasses: ["multi"],
         },
         {
           keyCode: 74,
           sound: "B",
-          classes: "letter gdt",
+          classes: "letter",
           value: "J",
           multiClasses: ["multi"],
         },
         {
           keyCode: 75,
           sound: "C",
-          classes: "letter gdt",
+          classes: "letter",
           value: "K",
           multiClasses: ["multi"],
         },
-        { keyCode: 76, classes: "letter gdt", value: "L" },
+        { keyCode: 76, classes: "letter", value: "L" },
         {
           keyCode: 186,
           volume: "down",
-          classes: "double gdt",
+          classes: "double",
           value: [":", ";"],
           multi: "&#9661;",
           multiClasses: ["multi"],
@@ -269,14 +274,14 @@ class PoorMansPunchTheKeys extends LitElement {
         {
           keyCode: 222,
           volume: "up",
-          classes: "double gdt",
-          value: ["&#34;", "&#39;"],
+          classes: "double",
+          value: ["\"", "'"],
           multi: "&#9651;",
           multiClasses: ["multi"],
         },
         {
           keyCode: 13,
-          classes: "word caps-enter align-enter gdt",
+          classes: "word caps-enter align-enter",
           value: "ENTER",
         },
       ],
@@ -285,58 +290,58 @@ class PoorMansPunchTheKeys extends LitElement {
         {
           keyCode: 16,
 
-          classes: "word shift align-shiftl gdt",
+          classes: "word shift align-shiftl",
           value: "SHIFT",
         },
-        { keyCode: 90, classes: "letter gdt", value: "Z" },
+        { keyCode: 90, classes: "letter", value: "Z" },
         {
           keyCode: 88,
-          classes: "letter gdt",
+          classes: "letter",
           value: "X",
           multi: "&#8776;",
           multiClasses: ["multi"],
         },
-        { keyCode: 67, classes: "letter gdt", value: "C" },
-        { keyCode: 86, classes: "letter gdt", value: "V" },
-        { keyCode: 66, classes: "letter gdt", value: "B" },
-        { keyCode: 78, classes: "letter gdt", value: "N" },
-        { keyCode: 77, classes: "letter gdt", value: "M" },
-        { keyCode: 188, classes: "double gdt", value: ["<", ","] },
-        { keyCode: 190, classes: "double gdt", value: [">", "."] },
-        { keyCode: 191, classes: "double gdt", value: ["?", "/"] },
+        { keyCode: 67, classes: "letter", value: "C" },
+        { keyCode: 86, classes: "letter", value: "V" },
+        { keyCode: 66, classes: "letter", value: "B" },
+        { keyCode: 78, classes: "letter", value: "N" },
+        { keyCode: 77, classes: "letter", value: "M" },
+        { keyCode: 188, classes: "double", value: ["<", ","] },
+        { keyCode: 190, classes: "double", value: [">", "."] },
+        { keyCode: 191, classes: "double", value: ["?", "/"] },
         {
           keyCode: 16,
           right: true,
-          classes: "word shift align-shiftr gdt",
+          classes: "word shift align-shiftr",
           value: "SHIFT",
         },
       ],
       [
         /* ROW 6 */
-        { keyCode: 17, classes: "word bottom-ctrl gdt", value: "CTRL" },
-        { keyCode: 255, classes: "word bottom gdt", value: "FN" },
-        { keyCode: 91, classes: "word bottom gdt", value: "&#9734;" },
-        { keyCode: 18, classes: "word bottom gdt", value: "ALT" },
-        { keyCode: 32, classes: "word space gdt", value: "" },
+        { keyCode: 17, classes: "word bottom-ctrl", value: "CTRL" },
+        { keyCode: 255, classes: "word bottom", value: "FN" },
+        { keyCode: 91, classes: "word bottom", value: "&#9734;" },
+        { keyCode: 18, classes: "word bottom", value: "ALT" },
+        { keyCode: 32, classes: "word space", value: "" },
         {
           keyCode: 18,
           right: true,
-          classes: "word bottom gdt",
+          classes: "word bottom",
           value: "ALT",
         },
         {
           keyCode: 17,
           right: true,
-          classes: "word bottom-ctrl gdt",
+          classes: "word bottom-ctrl",
           value: "CTRL",
         },
-        { keyCode: 37, classes: "arrow gdt", value: "&#9664;" },
+        { keyCode: 37, classes: "arrow", value: "&#9664;" },
         {
           keyCode: 38,
-          classes: "stack gdt",
+          classes: "stack",
           value: ["&#9650;", "&#9660;"],
         },
-        { keyCode: 39, classes: "arrow gdt", value: "&#9654;" },
+        { keyCode: 39, classes: "arrow", value: "&#9654;" },
       ],
     ];
 
@@ -353,12 +358,13 @@ class PoorMansPunchTheKeys extends LitElement {
         row.map(
           (key) => html` <button
             @click="${this.onClickButton}"
-            data-sound="${key.sound}"
-            data-value="${key.value}"
-            data-volume="${key.volume}"
-            data-octave="${key.octave}"
-            data-oscillator="${key.oscillator}"
-            data-classes="${key.classes}"
+            class="${key.classes}"
+            data-key="${ifDefined(key.keyCode)}"
+            data-sound="${ifDefined(key.sound)}"
+            data-value="${ifDefined(key.value)}"
+            data-volume="${ifDefined(key.volume)}"
+            data-octave="${ifDefined(key.octave)}"
+            data-oscillator="${ifDefined(key.oscillator)}"
           >
             ${key.value} ${key.sound}
           </button>`
@@ -378,65 +384,83 @@ class PoorMansPunchTheKeys extends LitElement {
     }).toDestination();
   }
 
-  onOscClick(event) {
-    const oscillator = event.target.dataset.oscillator;
-    if (oscillator != "") {
-      if (oscillator === "down") {
-        if (this.oscNum >= 1) {
-          this.oscNum--;
-          this.synth = this.makeSynth(this.oscillator[this.oscNum]);
-          this.synthHud = this.oscillator[this.oscNum];
-        }
-      } else if (oscillator === "up") {
-        if (this.oscNum <= this.oscillator.length - 2) {
-          this.oscNum++;
-          this.synth = this.makeSynth(this.oscillator[this.oscNum]);
-          this.synthHud = this.oscillator[this.oscNum];
-        }
+  onOscClick(oscillator) {
+    if (oscillator === "down") {
+      if (this.oscNum >= 1) {
+        this.oscNum--;
+        this.synth = this.makeSynth(this.oscillator[this.oscNum]);
+        this.synthHud = this.oscillator[this.oscNum];
+      }
+    } else if (oscillator === "up") {
+      if (this.oscNum <= this.oscillator.length - 2) {
+        this.oscNum++;
+        this.synth = this.makeSynth(this.oscillator[this.oscNum]);
+        this.synthHud = this.oscillator[this.oscNum];
       }
     }
   }
 
-  onOctaveClick(event) {
-    const octave = event.target.dataset.octave;
-    if (octave != "") {
-      if (octave === "down") {
-        if (this.octave >= 1) {
-          this.octave--;
-        }
-      } else if (octave === "up") {
-        if (this.octave <= 8) {
-          this.octave++;
-        }
-      } else {
-        this.octave = octave;
+  onOctaveClick(octave) {
+    if (octave === "down") {
+      if (this.octave >= 1) {
+        this.octave--;
       }
+    } else if (octave === "up") {
+      if (this.octave <= 8) {
+        this.octave++;
+      }
+    } else {
+      this.octave = octave;
     }
   }
 
-  onVolumeClick(event) {
-    const volume = event.target.dataset.volume;
-    if (volume != "") {
-      if (volume === "up") {
-        this.volume++;
-      } else if (volume === "down") {
-        this.volume--;
-      }
+  onVolumeClick(volume) {
+    if (volume === "up") {
+      this.volume++;
+    } else if (volume === "down") {
+      this.volume--;
     }
+  }
+
+  onSoundClick(sound) {
+    const note = `${sound}${this.octave}`;
+
+    this.synth.triggerAttackRelease(note, "8n");
+    this.currentNote = sound;
+  }
+
+  onKeyClick(keyElm) {
+    const { sound, volume, octave, oscillator } = keyElm.dataset;
+
+    if (sound) this.onSoundClick(sound);
+    if (volume) this.onVolumeClick(volume);
+    if (octave) this.onOctaveClick(octave);
+    if (oscillator) this.onOscClick(oscillator);
   }
 
   onClickButton(event) {
-    const sound = event.target.dataset.sound;
-    if (sound != "") {
-      const note = `${sound}${this.octave}`;
+    this.onKeyClick(event.target);
+  }
 
-      this.synth.triggerAttackRelease(note, "8n");
-
-      this.currentNote = sound;
+  getKeyFromEvent(event) {
+    const location = event.location;
+    let selector;
+    if (location === KeyboardEvent.DOM_KEY_LOCATION_RIGHT) {
+      selector = [
+        '[data-right="true"]',
+        '[data-key="' + event.keyCode + '"]',
+      ].join("");
+    } else {
+      let code = event.keyCode || event.which;
+      selector = '[data-key="' + code + '"]';
     }
-    this.onVolumeClick(event);
-    this.onOctaveClick(event);
-    this.onOscClick(event);
+
+    return this.renderRoot.querySelector(selector);
+  }
+
+  onKeyPress(event) {
+    const key = this.getKeyFromEvent(event);
+    this.onKeyClick(key);
   }
 }
 PoorMansPunchTheKeys.properties = {
@@ -446,19 +470,46 @@ PoorMansPunchTheKeys.properties = {
   octave: {},
 };
 PoorMansPunchTheKeys.styles = css`
-  [data-octave="up"] {
-    color: red;
-    font-size: 2em;
+  button {
+    background-image: linear-gradient(transparent, #0d0d0d);
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center;
+    z-index: 2400;
   }
 
-  [data-oscillator="up"] {
-    color: blue;
-    font-size: 2em;
+  .word-top {
+    font-size: 0.8em;
+    width: 4.24em;
   }
 
-  [data-volume="up"] {
-    color: green;
-    font-size: 2em;
+  .func {
+    font-size: 0.7em;
+    padding-left: 1.3em;
+    padding-top: 0.5em;
+    width: 4.97em;
+  }
+
+  .align-esc {
+    padding-right: 0.7em;
+  }
+
+  .double {
+    padding-top: 0.2em;
+    width: 3.62em;
+    padding-right: 2em;
+  }
+
+  .backspace-tab {
+    width: 7em;
+  }
+
+  .caps-enter {
+    width: 7.4em;
+  }
+
+  .shift {
+    width: 9.55em;
   }
 `;
 
