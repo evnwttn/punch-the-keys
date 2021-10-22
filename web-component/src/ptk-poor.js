@@ -47,6 +47,7 @@ class PoorMansPunchTheKeys extends LitElement {
           octave: "0",
           classes: "double",
           value: ["!", "1"],
+          multi: "0",
           multiClasses: ["multi"],
         },
         {
@@ -54,6 +55,7 @@ class PoorMansPunchTheKeys extends LitElement {
           octave: "1",
           classes: "double",
           value: ["@", "2"],
+          multi: "1",
           multiClasses: ["multi"],
         },
         {
@@ -61,6 +63,7 @@ class PoorMansPunchTheKeys extends LitElement {
           octave: "2",
           classes: "double",
           value: ["#", "3"],
+          multi: "2",
           multiClasses: ["multi"],
         },
         {
@@ -68,6 +71,7 @@ class PoorMansPunchTheKeys extends LitElement {
           octave: "3",
           classes: "double",
           value: ["$", "4"],
+          multi: "3",
           multiClasses: ["multi"],
         },
         {
@@ -75,6 +79,7 @@ class PoorMansPunchTheKeys extends LitElement {
           octave: "4",
           classes: "double",
           value: ["%", "5"],
+          multi: "4",
           multiClasses: ["multi"],
         },
         {
@@ -82,6 +87,7 @@ class PoorMansPunchTheKeys extends LitElement {
           octave: "5",
           classes: "double",
           value: ["^", "6"],
+          multi: "5",
           multiClasses: ["multi"],
         },
         {
@@ -89,6 +95,7 @@ class PoorMansPunchTheKeys extends LitElement {
           octave: "6",
           classes: "double",
           value: ["&", "7"],
+          multi: "6",
           multiClasses: ["multi"],
         },
         {
@@ -96,6 +103,7 @@ class PoorMansPunchTheKeys extends LitElement {
           octave: "7",
           classes: "double",
           value: ["*", "8"],
+          multi: "7",
           multiClasses: ["multi"],
         },
         {
@@ -103,6 +111,7 @@ class PoorMansPunchTheKeys extends LitElement {
           octave: "8",
           classes: "double",
           value: ["(", "9"],
+          multi: "8",
           multiClasses: ["multi"],
         },
         {
@@ -110,6 +119,7 @@ class PoorMansPunchTheKeys extends LitElement {
           octave: "9",
           classes: "double",
           value: [")", "0"],
+          multi: "9",
           multiClasses: ["multi"],
         },
         {
@@ -117,7 +127,7 @@ class PoorMansPunchTheKeys extends LitElement {
           octave: "down",
           classes: "double",
           value: ["_", "-"],
-          multi: "&#10688;",
+          multi: "⧀",
           multiClasses: ["multi"],
         },
         {
@@ -125,13 +135,13 @@ class PoorMansPunchTheKeys extends LitElement {
           octave: "up",
           classes: "double",
           value: ["+", "="],
-          multi: "&#10689;",
+          multi: "⧁",
           multiClasses: ["multi"],
         },
         {
           keyCode: 8,
           classes: "word backspace-tab align-backspace",
-          value: "&#8592;",
+          value: "←",
         },
       ],
       [
@@ -186,7 +196,7 @@ class PoorMansPunchTheKeys extends LitElement {
           oscillator: "down",
           classes: "double",
           value: ["{", "["],
-          multi: "&#8818;",
+          multi: "≲",
           multiClasses: ["multi-sharps"],
         },
         {
@@ -194,10 +204,10 @@ class PoorMansPunchTheKeys extends LitElement {
           oscillator: "up",
           classes: "double",
           value: ["}", "]"],
-          multi: "&#8819;",
+          multi: "≳",
           multiClasses: ["multi-sharps"],
         },
-        { keyCode: 220, classes: "double", value: ["|", "&#92;"] },
+        { keyCode: 220, classes: "double", value: ["|", "\\"] },
       ],
       [
         /* ROW 4 */
@@ -268,7 +278,7 @@ class PoorMansPunchTheKeys extends LitElement {
           volume: "down",
           classes: "double",
           value: [":", ";"],
-          multi: "&#9661;",
+          multi: "▽",
           multiClasses: ["multi"],
         },
         {
@@ -276,7 +286,7 @@ class PoorMansPunchTheKeys extends LitElement {
           volume: "up",
           classes: "double",
           value: ['"', "'"],
-          multi: "&#9651;",
+          multi: "△",
           multiClasses: ["multi"],
         },
         {
@@ -298,7 +308,6 @@ class PoorMansPunchTheKeys extends LitElement {
           keyCode: 88,
           classes: "letter",
           value: "X",
-          multi: "&#8776;",
           multiClasses: ["multi"],
         },
         { keyCode: 67, classes: "letter", value: "C" },
@@ -320,7 +329,7 @@ class PoorMansPunchTheKeys extends LitElement {
         /* ROW 6 */
         { keyCode: 17, classes: "word bottom-ctrl", value: "CTRL" },
         { keyCode: 255, classes: "word bottom", value: "FN" },
-        { keyCode: 91, classes: "word bottom", value: "&#9734;" },
+        { keyCode: 91, classes: "word bottom", value: "☆" },
         { keyCode: 18, classes: "word bottom", value: "ALT" },
         { keyCode: 32, classes: "word space", value: "" },
         {
@@ -335,13 +344,13 @@ class PoorMansPunchTheKeys extends LitElement {
           classes: "word bottom-ctrl",
           value: "CTRL",
         },
-        { keyCode: 37, classes: "arrow", value: "&#9664;" },
+        { keyCode: 37, classes: "arrow", value: "◀" },
         {
           keyCode: 38,
           classes: "stack",
-          value: ["&#9650;", "&#9660;"],
+          value: ["▲", "▼"],
         },
-        { keyCode: 39, classes: "arrow", value: "&#9654;" },
+        { keyCode: 39, classes: "arrow", value: "▶" },
       ],
     ];
 
@@ -368,7 +377,7 @@ class PoorMansPunchTheKeys extends LitElement {
                   data-octave="${ifDefined(key.octave)}"
                   data-oscillator="${ifDefined(key.oscillator)}"
                 >
-                  ${key.value} ${key.sound}
+                  ${key.value} ${key.sound} ${key.multi}
                 </button>`
               )}
             </div>
@@ -485,6 +494,11 @@ PoorMansPunchTheKeys.styles = css`
     z-index: 2400;
   }
 
+  .row-1 {
+    height: 1.7em;
+    line-height: 1.4em;
+  }
+
   .word-top {
     font-size: 0.8em;
     width: 4.24em;
@@ -584,15 +598,13 @@ PoorMansPunchTheKeys.styles = css`
 
   .keys {
     text-align: center;
-    margin-top: 9%;
     font-size: 15px;
-    font-family: "Lato", sans-serif;
   }
 
   .key-row {
-      display: inline-block;
-      height: 3em;
-      margin: 0.2em;
+    display: inline-block;
+    height: 3em;
+    margin: 0.2em;
   }
 
   .key-row > * {
@@ -617,8 +629,6 @@ PoorMansPunchTheKeys.styles = css`
     margin-right: auto;
     min-width: 1240px;
     max-width: 1240px;
-  }
-  
   }
 `;
 
