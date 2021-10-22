@@ -390,6 +390,19 @@ class PoorMansPunchTheKeys extends LitElement {
 
   // FUNCTIONS
 
+  multiDisplay() {
+    if (key.multiClasses !== undefined) {
+      const multiDiv = document.createElement("div");
+      const multiText = key.sound || key.octave || key.multi;
+      keyDiv.appendChild(multiDiv);
+      key.multiClasses.forEach((klass) => {
+        multiDiv.classList.add(klass);
+      });
+
+      multiDiv.innerHTML = `${multiText}`;
+    }
+  }
+
   makeSynth(synthType) {
     return new Tone.PolySynth(Tone.Synth, {
       oscillator: {
@@ -493,25 +506,47 @@ PoorMansPunchTheKeys.styles = css`
     z-index: 2400;
   }
 
+  .keys {
+    text-align: center;
+    margin-top: 9%;
+    font-size: 15px;
+    font-family: "Lato", sans-serif;
+  }
+
+  .key-row {
+    display: inline-block;
+    height: 3em;
+    margin: 0.2em;
+  }
+
+  .key-row > div[data-pressed],
+  .key-row > div:active {
+    color: #aaa;
+    position: relative;
+    top: 0.2em;
+    box-shadow: 0 0 0 0.05em #0a0140;
+  }
+
+  .key-row > * {
+    position: relative;
+    text-align: center;
+    color: #f7fcff;
+    float: left;
+    border-radius: 0.3em;
+    margin: 0.3em;
+    padding: 0.2em;
+    width: 3.3em;
+    height: 100%;
+    box-sizing: border-box;
+    cursor: pointer;
+    border: 1px solid #e0e0d9;
+    box-shadow: 0 0.2em 0 0.05em hsl(73, 96%, 48%);
+    border-bottom-color: #555;
+  }
+
   .row-0 {
     height: 1.7em;
     line-height: 1.4em;
-  }
-
-  .word-top {
-    font-size: 0.8em;
-    width: 4.24em;
-  }
-
-  .func {
-    font-size: 0.7em;
-    padding-left: 1.3em;
-    padding-top: 0.5em;
-    width: 4.97em;
-  }
-
-  .align-esc {
-    padding-right: 0.7em;
   }
 
   .double {
@@ -595,40 +630,32 @@ PoorMansPunchTheKeys.styles = css`
     width: 4em;
   }
 
-  .keys {
-    text-align: center;
-    margin-top: 9%;
-    font-size: 15px;
-    font-family: "Lato", sans-serif;
+  .func {
+    font-size: 0.7em;
+    padding-left: 1.3em;
+    padding-top: 0.5em;
+    width: 4.97em;
   }
 
-  .key-row {
-    display: inline-block;
-    height: 3em;
-    margin: 0.2em;
+  .word-top {
+    font-size: 0.8em;
+    width: 4.24em;
   }
 
-  .key-row > * {
-    position: relative;
-    text-align: center;
-    color: #f7fcff;
-    float: left;
-    border-radius: 0.3em;
-    margin: 0.3em;
-    padding: 0.2em;
-    height: 100%;
-    box-sizing: border-box;
-    cursor: pointer;
-    border: 1px solid #e0e0d9;
-    box-shadow: 0 0.2em 0 0.05em hsl(73, 96%, 48%);
-    border-bottom-color: #555;
+  .multi {
+    position: absolute;
+    color: hsl(73, 99%, 45%);
+    padding-left: 2em;
+    text-shadow: 1px 1px 8px #0000005e;
+    pointer-events: none;
   }
 
-  .container {
-    margin-left: auto;
-    margin-right: auto;
-    min-width: 1240px;
-    max-width: 1240px;
+  .multi-sharps {
+    position: absolute;
+    color: hsl(73, 99%, 45%);
+    padding-left: 1.7em;
+    text-shadow: 1px 1px 8px #0000005e;
+    pointer-events: none;
   }
 `;
 
