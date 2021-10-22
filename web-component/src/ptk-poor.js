@@ -377,7 +377,7 @@ class PoorMansPunchTheKeys extends LitElement {
                 data-octave="${ifDefined(key.octave)}"
                 data-oscillator="${ifDefined(key.oscillator)}"
               >
-                ${key.value} ${key.sound} ${key.multi}
+                ${key.value}
               </button>`
             )}
           </div> `
@@ -550,13 +550,14 @@ PoorMansPunchTheKeys.styles = css`
   }
 
   .double {
+    display: block;
     padding-top: 0.2em;
     width: 3.62em;
     padding-right: 2em;
   }
 
   .letter {
-    line-height: 2.4em;
+    line-height: 2em;
     width: 3.63em;
     padding-right: 2em;
   }
