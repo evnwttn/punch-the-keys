@@ -354,25 +354,27 @@ class PoorMansPunchTheKeys extends LitElement {
       <br />
       [${this.volume}DB] [${this.synthHud}] [O${this.octave}]
       <br />
-      ${this.rows.map(
-        (row, index) => html`<div class="key-row row-${index}">
-            ${row.map(
-              (key) => html` <button
-                @click="${this.onClickButton}"
-                class="${key.classes}"
-                data-key="${ifDefined(key.keyCode)}"
-                data-sound="${ifDefined(key.sound)}"
-                data-value="${ifDefined(key.value)}"
-                data-volume="${ifDefined(key.volume)}"
-                data-octave="${ifDefined(key.octave)}"
-                data-oscillator="${ifDefined(key.oscillator)}"
-              >
-                ${key.value} ${key.sound}
-              </button>`
-            )}
-          </div>
-          )`
-      )}
+      <div class="keys">
+        ${this.rows.map(
+          (row, index) => html`<div class="key-row row-${index}">
+              ${row.map(
+                (key) => html` <button
+                  @click="${this.onClickButton}"
+                  class="${key.classes}"
+                  data-key="${ifDefined(key.keyCode)}"
+                  data-sound="${ifDefined(key.sound)}"
+                  data-value="${ifDefined(key.value)}"
+                  data-volume="${ifDefined(key.volume)}"
+                  data-octave="${ifDefined(key.octave)}"
+                  data-oscillator="${ifDefined(key.oscillator)}"
+                >
+                  ${key.value} ${key.sound}
+                </button>`
+              )}
+            </div>
+            )`
+        )}
+      </div>
 
       <!-- stop  -->
     `;
@@ -580,10 +582,41 @@ PoorMansPunchTheKeys.styles = css`
     width: 4em;
   }
 
+  .keys {
+    text-align: center;
+    margin-top: 9%;
+    font-size: 15px;
+    font-family: "Lato", sans-serif;
+  }
+
   .key-row {
       display: inline-block;
       height: 3em;
       margin: 0.2em;
+  }
+
+  .key-row > * {
+    position: relative;
+    text-align: center;
+    color: #f7fcff;
+    float: left;
+    border-radius: 0.3em;
+    margin: 0.3em;
+    padding: 0.2em;
+    width: 3.3em;
+    height: 100%;
+    box-sizing: border-box;
+    cursor: pointer;
+    border: 1px solid #e0e0d9;
+    box-shadow: 0 0.2em 0 0.05em hsl(73, 96%, 48%);
+    border-bottom-color: #555;
+  }
+
+  .container {
+    margin-left: auto;
+    margin-right: auto;
+    min-width: 1240px;
+    max-width: 1240px;
   }
   
   }
