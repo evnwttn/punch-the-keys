@@ -377,6 +377,8 @@ class PoorMansPunchTheKeys extends LitElement {
                 data-octave="${ifDefined(key.octave)}"
                 data-oscillator="${ifDefined(key.oscillator)}"
               >
+                <div id="multi">${key.multi}</div>
+
                 ${key.value}
               </button>`
             )}
@@ -550,7 +552,6 @@ PoorMansPunchTheKeys.styles = css`
   }
 
   .double {
-    display: block;
     padding-top: 0.2em;
     width: 3.62em;
     padding-right: 2em;
@@ -586,7 +587,7 @@ PoorMansPunchTheKeys.styles = css`
   }
 
   .bottom {
-    width: 4em;
+    width: 4.03em;
     padding-right: 1.8em;
   }
 
@@ -595,7 +596,7 @@ PoorMansPunchTheKeys.styles = css`
   }
 
   .word {
-    padding-top: 0.8em;
+    padding-top: 0.18em;
   }
 
   .align-tab {
@@ -643,7 +644,7 @@ PoorMansPunchTheKeys.styles = css`
     width: 4.24em;
   }
 
-  .multi {
+  #multi {
     position: absolute;
     color: hsl(73, 99%, 45%);
     padding-left: 2em;
