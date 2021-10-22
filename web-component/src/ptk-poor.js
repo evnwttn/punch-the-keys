@@ -22,7 +22,7 @@ class PoorMansPunchTheKeys extends LitElement {
     this.rows = [
       /* ROW 1 */
       [
-        { keyCode: 27, classes: "word-top align-esq", value: "ESC" },
+        { keyCode: 27, classes: "word-top align-esc", value: "ESC" },
         { keyCode: 112, classes: "func", value: "F1" },
         { keyCode: 113, classes: "func", value: "F2" },
         { keyCode: 114, classes: "func", value: "F3" },
@@ -580,22 +580,12 @@ PoorMansPunchTheKeys.styles = css`
     width: 4em;
   }
 
-  .func {
-    font-size: 0.7em;
-    padding-left: 1.3em;
-    padding-top: 0.5em;
-    width: 4.97em;
-  }
-
-  .word-top {
-    font-size: 0.8em;
-    width: 4.24em;
-
-    .key-row {
+  .key-row {
       display: inline-block;
       height: 3em;
       margin: 0.2em;
-    }
+  }
+  
   }
 `;
 
