@@ -366,22 +366,21 @@ class PoorMansPunchTheKeys extends LitElement {
       <div class="keys">
         ${this.rows.map(
           (row, index) => html`<div class="key-row row-${index}">
-              ${row.map(
-                (key) => html` <button
-                  @click="${this.onClickButton}"
-                  class="${key.classes}"
-                  data-key="${ifDefined(key.keyCode)}"
-                  data-sound="${ifDefined(key.sound)}"
-                  data-value="${ifDefined(key.value)}"
-                  data-volume="${ifDefined(key.volume)}"
-                  data-octave="${ifDefined(key.octave)}"
-                  data-oscillator="${ifDefined(key.oscillator)}"
-                >
-                  ${key.value} ${key.sound} ${key.multi}
-                </button>`
-              )}
-            </div>
-            )`
+            ${row.map(
+              (key) => html` <button
+                @click="${this.onClickButton}"
+                class="${key.classes}"
+                data-key="${ifDefined(key.keyCode)}"
+                data-sound="${ifDefined(key.sound)}"
+                data-value="${ifDefined(key.value)}"
+                data-volume="${ifDefined(key.volume)}"
+                data-octave="${ifDefined(key.octave)}"
+                data-oscillator="${ifDefined(key.oscillator)}"
+              >
+                ${key.value} ${key.sound} ${key.multi}
+              </button>`
+            )}
+          </div> `
         )}
       </div>
 
@@ -494,7 +493,7 @@ PoorMansPunchTheKeys.styles = css`
     z-index: 2400;
   }
 
-  .row-1 {
+  .row-0 {
     height: 1.7em;
     line-height: 1.4em;
   }
@@ -598,7 +597,9 @@ PoorMansPunchTheKeys.styles = css`
 
   .keys {
     text-align: center;
+    margin-top: 9%;
     font-size: 15px;
+    font-family: "Lato", sans-serif;
   }
 
   .key-row {
@@ -615,7 +616,6 @@ PoorMansPunchTheKeys.styles = css`
     border-radius: 0.3em;
     margin: 0.3em;
     padding: 0.2em;
-    width: 3.3em;
     height: 100%;
     box-sizing: border-box;
     cursor: pointer;
