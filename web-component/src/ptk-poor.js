@@ -354,22 +354,27 @@ class PoorMansPunchTheKeys extends LitElement {
       <br />
       [${this.volume}DB] [${this.synthHud}] [O${this.octave}]
       <br />
-      ${this.rows.map((row) =>
-        row.map(
-          (key) => html` <button
-            @click="${this.onClickButton}"
-            class="${key.classes}"
-            data-key="${ifDefined(key.keyCode)}"
-            data-sound="${ifDefined(key.sound)}"
-            data-value="${ifDefined(key.value)}"
-            data-volume="${ifDefined(key.volume)}"
-            data-octave="${ifDefined(key.octave)}"
-            data-oscillator="${ifDefined(key.oscillator)}"
-          >
-            ${key.value} ${key.sound}
-          </button>`
-        )
+      ${this.rows.map(
+        (row, index) => html`<div class="key-row row-${index}">
+            ${row.map(
+              (key) => html` <button
+                @click="${this.onClickButton}"
+                class="${key.classes}"
+                data-key="${ifDefined(key.keyCode)}"
+                data-sound="${ifDefined(key.sound)}"
+                data-value="${ifDefined(key.value)}"
+                data-volume="${ifDefined(key.volume)}"
+                data-octave="${ifDefined(key.octave)}"
+                data-oscillator="${ifDefined(key.oscillator)}"
+              >
+                ${key.value} ${key.sound}
+              </button>`
+            )}
+          </div>
+          )`
       )}
+
+      <!-- stop  -->
     `;
   }
 
@@ -585,6 +590,12 @@ PoorMansPunchTheKeys.styles = css`
   .word-top {
     font-size: 0.8em;
     width: 4.24em;
+
+    .key-row {
+      display: inline-block;
+      height: 3em;
+      margin: 0.2em;
+    }
   }
 `;
 
