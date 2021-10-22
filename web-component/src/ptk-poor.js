@@ -1,5 +1,5 @@
 import { LitElement, html, css } from "lit";
-import { ifDefined } from 'lit/directives/if-defined.js';
+import { ifDefined } from "lit/directives/if-defined.js";
 import * as Tone from "tone";
 
 class PoorMansPunchTheKeys extends LitElement {
@@ -15,7 +15,7 @@ class PoorMansPunchTheKeys extends LitElement {
     this.synthHud = "sawtooth";
     this.synth = this.makeSynth(this.oscillator[this.oscNum]);
 
-    this.addEventListener('keydown', (event) => {
+    this.addEventListener("keydown", (event) => {
       this.onKeyPress(event);
     });
 
@@ -275,7 +275,7 @@ class PoorMansPunchTheKeys extends LitElement {
           keyCode: 222,
           volume: "up",
           classes: "double",
-          value: ["\"", "'"],
+          value: ['"', "'"],
           multi: "&#9651;",
           multiClasses: ["multi"],
         },
@@ -500,6 +500,12 @@ PoorMansPunchTheKeys.styles = css`
     padding-right: 2em;
   }
 
+  .letter {
+    line-height: 2.4em;
+    width: 3.63em;
+    padding-right: 2em;
+  }
+
   .backspace-tab {
     width: 7em;
   }
@@ -510,6 +516,75 @@ PoorMansPunchTheKeys.styles = css`
 
   .shift {
     width: 9.55em;
+  }
+
+  .stack {
+    padding-top: 0.2em;
+    width: 4em;
+  }
+
+  .bottom-ctrl {
+    width: 4em;
+    padding-right: 1.1em;
+    padding-top: 0.8em;
+  }
+
+  .bottom {
+    width: 4em;
+    padding-right: 1.8em;
+  }
+
+  .space {
+    width: 20.5em;
+  }
+
+  .word {
+    padding-top: 0.8em;
+  }
+
+  .align-tab {
+    padding-right: 4.3em;
+  }
+
+  .align-caps {
+    padding-right: 2.6em;
+  }
+
+  .align-shiftl {
+    padding-right: 6em;
+  }
+
+  .align-backspace {
+    padding-left: 4.1em;
+  }
+
+  .align-enter {
+    padding-left: 3em;
+  }
+
+  .align-shiftr {
+    padding-left: 5.3em;
+  }
+
+  .align-esc {
+    padding-right: 0.7em;
+  }
+
+  .arrow {
+    padding-top: 0.8em;
+    width: 4em;
+  }
+
+  .func {
+    font-size: 0.7em;
+    padding-left: 1.3em;
+    padding-top: 0.5em;
+    width: 4.97em;
+  }
+
+  .word-top {
+    font-size: 0.8em;
+    width: 4.24em;
   }
 `;
 
