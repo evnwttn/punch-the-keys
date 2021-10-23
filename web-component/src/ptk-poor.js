@@ -19,6 +19,10 @@ class PoorMansPunchTheKeys extends LitElement {
       this.onKeyPress(event);
     });
 
+    this.addEventListener("keyup", (event) => {
+      this.onKeyUp(event);
+    });
+
     this.rows = [
       /* ROW 1 */
       [
@@ -493,7 +497,13 @@ class PoorMansPunchTheKeys extends LitElement {
 
   onKeyPress(event) {
     const key = this.getKeyFromEvent(event);
+    key.classList.add("clicked");
     this.onKeyClick(key);
+  }
+
+  onKeyUp(event) {
+    const key = this.getKeyFromEvent(event);
+    key.classList.remove("clicked");
   }
 }
 PoorMansPunchTheKeys.properties = {
