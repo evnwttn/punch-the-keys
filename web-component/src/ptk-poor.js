@@ -473,8 +473,11 @@ class PoorMansPunchTheKeys extends LitElement {
   }
 
   onClickButton(event) {
-    let poop = event.target;
-    poop.setAttribute("class", "clicked");
+    let key = event.target;
+    key.classList.add("clicked");
+    setInterval(function () {
+      key.classList.remove("clicked");
+    }, "0150");
 
     this.onKeyClick(event.target);
   }
