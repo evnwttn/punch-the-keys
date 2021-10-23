@@ -382,10 +382,9 @@ class PoorMansPunchTheKeys extends LitElement {
                   data-octave="${ifDefined(key.octave)}"
                   data-oscillator="${ifDefined(key.oscillator)}"
                 >
-                  <!-- <div id="multi">${key.multi}${key.sound}</div>
-                  ${key.value} -->
+                  <div id="multi">${this.multiDisplay(key)}</div>
 
-                  ${this.keyDisplay(key)} ${this.multiDisplay(key)}
+                  ${this.keyDisplay(key)}
                 </button>`
               )}
             </div> `
@@ -409,8 +408,7 @@ class PoorMansPunchTheKeys extends LitElement {
   }
 
   multiDisplay(key) {
-    if (key.multiClasses === "multi") return "baa";
-    else if (key.multiClasses === "multi-sharps") return "woof";
+    return key.sound || key.multi || key.octave;
   }
 
   makeSynth(synthType) {
