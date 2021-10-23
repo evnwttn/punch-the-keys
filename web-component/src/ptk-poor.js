@@ -363,34 +363,36 @@ class PoorMansPunchTheKeys extends LitElement {
 
   render() {
     return html`
-      <div class="ui">
-        [${this.volume}DB] [${this.synthHud}] [O${this.octave}]
-      </div>
-      <br />
-      <div class="keys">
-        ${this.rows.map(
-          (row, index) => html`<div class="key-row row-${index}">
-            ${row.map(
-              (key) => html` <button
-                @click="${this.onClickButton}"
-                class="${key.classes}"
-                multiClass="${key.multiClasses}"
-                data-key="${ifDefined(key.keyCode)}"
-                data-sound="${ifDefined(key.sound)}"
-                data-value="${ifDefined(key.value)}"
-                data-volume="${ifDefined(key.volume)}"
-                data-octave="${ifDefined(key.octave)}"
-                data-oscillator="${ifDefined(key.oscillator)}"
-              >
-                <div id="multi">${key.multi}${key.sound}</div>
-                ${this.multi} ${key.value}
-              </button>`
-            )}
-          </div> `
-        )}
+      <div id="container">
+        <div class="ui">
+          [${this.volume}DB] [${this.synthHud}] [O${this.octave}]
+        </div>
+        <div class="keys">
+          ${this.rows.map(
+            (row, index) => html`<div class="key-row row-${index}">
+              ${row.map(
+                (key) => html` <button
+                  @click="${this.onClickButton}"
+                  class="${key.classes}"
+                  multiClass="${key.multiClasses}"
+                  data-key="${ifDefined(key.keyCode)}"
+                  data-sound="${ifDefined(key.sound)}"
+                  data-value="${ifDefined(key.value)}"
+                  data-volume="${ifDefined(key.volume)}"
+                  data-octave="${ifDefined(key.octave)}"
+                  data-oscillator="${ifDefined(key.oscillator)}"
+                >
+                  <div id="multi">${key.multi}${key.sound}</div>
+                  ${this.multi} ${key.value}
+                </button>`
+              )}
+            </div> `
+          )}
+        </div>
       </div>
 
-      <!-- stop  -->
+        <!-- stop  -->
+      </div>
     `;
   }
 
@@ -517,16 +519,24 @@ PoorMansPunchTheKeys.styles = css`
     font-size: 15px;
   }
 
+  #container {
+    margin-left: auto;
+    margin-right: auto;
+    min-width: 1240px;
+    max-width: 1240px;
+  }
+
   .keys {
     text-align: center;
-    margin-top: 9%;
     font-size: 15px;
     font-family: "Lato", sans-serif;
   }
 
   .ui {
+    position: relative;
+    left: 60em;
+    text-align: center;
     text-transform: uppercase;
-    z-index: 100;
     color: #f7fcff;
     font-size: 15px;
     font-family: "Lato", sans-serif;
