@@ -437,9 +437,13 @@ class PoorMansPunchTheKeys extends LitElement {
 
   onVolumeClick(volume) {
     if (volume === "up") {
-      this.volume++;
+      if (this.volume <= 29) {
+        this.volume++;
+      }
     } else if (volume === "down") {
-      this.volume--;
+      if (this.volume >= -29) {
+        this.volume--;
+      }
     }
   }
 
@@ -529,7 +533,7 @@ PoorMansPunchTheKeys.styles = css`
     border-radius: 0.3em;
     margin: 0.3em;
     padding: 0.2em;
-    width: 11.5em;
+    width: 12em;
     box-sizing: border-box;
     border: 1px solid #e0e0d9;
     box-shadow: 0 0.2em 0 0.05em #bff205;
