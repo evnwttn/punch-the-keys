@@ -520,6 +520,7 @@ PoorMansPunchTheKeys.styles = css`
   }
 
   #container {
+    margin-top: 8%;
     margin-left: auto;
     margin-right: auto;
     min-width: 1240px;
