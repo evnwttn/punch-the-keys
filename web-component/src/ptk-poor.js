@@ -372,6 +372,7 @@ class PoorMansPunchTheKeys extends LitElement {
               (key) => html` <button
                 @click="${this.onClickButton}"
                 class="${key.classes}"
+                multiClass="${key.multiClasses}"
                 data-key="${ifDefined(key.keyCode)}"
                 data-sound="${ifDefined(key.sound)}"
                 data-value="${ifDefined(key.value)}"
@@ -380,8 +381,7 @@ class PoorMansPunchTheKeys extends LitElement {
                 data-oscillator="${ifDefined(key.oscillator)}"
               >
                 <div id="multi">${key.multi}${key.sound}</div>
-
-                ${key.value}
+                ${this.multi} ${key.value}
               </button>`
             )}
           </div> `
@@ -393,19 +393,6 @@ class PoorMansPunchTheKeys extends LitElement {
   }
 
   // FUNCTIONS
-
-  multiDisplay() {
-    if (key.multiClasses !== undefined) {
-      const multiDiv = document.createElement("div");
-      const multiText = key.sound || key.octave || key.multi;
-      keyDiv.appendChild(multiDiv);
-      key.multiClasses.forEach((klass) => {
-        multiDiv.classList.add(klass);
-      });
-
-      multiDiv.innerHTML = `${multiText}`;
-    }
-  }
 
   makeSynth(synthType) {
     return new Tone.PolySynth(Tone.Synth, {
@@ -570,6 +557,7 @@ PoorMansPunchTheKeys.styles = css`
     padding-top: 0.2em;
     width: 3.62em;
     padding-right: 2em;
+    line-height: 0em;
   }
 
   .letter {
