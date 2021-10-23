@@ -377,7 +377,7 @@ class PoorMansPunchTheKeys extends LitElement {
                 data-octave="${ifDefined(key.octave)}"
                 data-oscillator="${ifDefined(key.oscillator)}"
               >
-                <div id="multi">${key.multi}</div>
+                <div id="multi">${key.multi}${key.sound}</div>
 
                 ${key.value}
               </button>`
@@ -469,6 +469,9 @@ class PoorMansPunchTheKeys extends LitElement {
   }
 
   onClickButton(event) {
+    let poop = event.target;
+    poop.setAttribute("class", "clicked");
+
     this.onKeyClick(event.target);
   }
 
@@ -521,8 +524,7 @@ PoorMansPunchTheKeys.styles = css`
     margin: 0.2em;
   }
 
-  .key-row > div[data-pressed],
-  .key-row > div:active {
+  .clicked {
     color: #aaa;
     position: relative;
     top: 0.2em;
@@ -652,7 +654,7 @@ PoorMansPunchTheKeys.styles = css`
     pointer-events: none;
   }
 
-  .multi-sharps {
+  #multi-sharps {
     position: absolute;
     color: hsl(73, 99%, 45%);
     padding-left: 1.7em;
