@@ -363,7 +363,9 @@ class PoorMansPunchTheKeys extends LitElement {
 
   render() {
     return html`
-      [${this.volume}DB] [${this.synthHud}] [O${this.octave}]
+      <div class="ui">
+        [${this.volume}DB] [${this.synthHud}] [O${this.octave}]
+      </div>
       <br />
       <div class="keys">
         ${this.rows.map(
@@ -516,6 +518,22 @@ PoorMansPunchTheKeys.styles = css`
     margin-top: 9%;
     font-size: 15px;
     font-family: "Lato", sans-serif;
+  }
+
+  .ui {
+    text-transform: uppercase;
+    z-index: 100;
+    color: #f7fcff;
+    font-size: 15px;
+    font-family: "Lato", sans-serif;
+    border-radius: 0.3em;
+    margin: 0.3em;
+    padding: 0.2em;
+    width: 11.5em;
+    box-sizing: border-box;
+    border: 1px solid #e0e0d9;
+    box-shadow: 0 0.2em 0 0.05em #bff205;
+    border-bottom-color: #555;
   }
 
   .key-row {
