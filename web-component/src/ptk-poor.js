@@ -52,7 +52,7 @@ class PoorMansPunchTheKeys extends LitElement {
           classes: "double",
           value: ["!", "1"],
           multi: "0",
-          multiClasses: ["multi"],
+          multiClasses: "multi",
         },
         {
           keyCode: 50,
@@ -60,7 +60,7 @@ class PoorMansPunchTheKeys extends LitElement {
           classes: "double",
           value: ["@", "2"],
           multi: "1",
-          multiClasses: ["multi"],
+          multiClasses: "multi",
         },
         {
           keyCode: 51,
@@ -68,7 +68,7 @@ class PoorMansPunchTheKeys extends LitElement {
           classes: "double",
           value: ["#", "3"],
           multi: "2",
-          multiClasses: ["multi"],
+          multiClasses: "multi",
         },
         {
           keyCode: 52,
@@ -76,7 +76,7 @@ class PoorMansPunchTheKeys extends LitElement {
           classes: "double",
           value: ["$", "4"],
           multi: "3",
-          multiClasses: ["multi"],
+          multiClasses: "multi",
         },
         {
           keyCode: 53,
@@ -84,7 +84,7 @@ class PoorMansPunchTheKeys extends LitElement {
           classes: "double",
           value: ["%", "5"],
           multi: "4",
-          multiClasses: ["multi"],
+          multiClasses: "multi",
         },
         {
           keyCode: 54,
@@ -92,7 +92,7 @@ class PoorMansPunchTheKeys extends LitElement {
           classes: "double",
           value: ["^", "6"],
           multi: "5",
-          multiClasses: ["multi"],
+          multiClasses: "multi",
         },
         {
           keyCode: 55,
@@ -100,7 +100,7 @@ class PoorMansPunchTheKeys extends LitElement {
           classes: "double",
           value: ["&", "7"],
           multi: "6",
-          multiClasses: ["multi"],
+          multiClasses: "multi",
         },
         {
           keyCode: 56,
@@ -108,7 +108,7 @@ class PoorMansPunchTheKeys extends LitElement {
           classes: "double",
           value: ["*", "8"],
           multi: "7",
-          multiClasses: ["multi"],
+          multiClasses: "multi",
         },
         {
           keyCode: 57,
@@ -116,7 +116,7 @@ class PoorMansPunchTheKeys extends LitElement {
           classes: "double",
           value: ["(", "9"],
           multi: "8",
-          multiClasses: ["multi"],
+          multiClasses: "multi",
         },
         {
           keyCode: 48,
@@ -124,7 +124,7 @@ class PoorMansPunchTheKeys extends LitElement {
           classes: "double",
           value: [")", "0"],
           multi: "9",
-          multiClasses: ["multi"],
+          multiClasses: "multi",
         },
         {
           keyCode: 189,
@@ -132,7 +132,7 @@ class PoorMansPunchTheKeys extends LitElement {
           classes: "double",
           value: ["_", "-"],
           multi: "⧀",
-          multiClasses: ["multi"],
+          multiClasses: "multi",
         },
         {
           keyCode: 187,
@@ -140,7 +140,7 @@ class PoorMansPunchTheKeys extends LitElement {
           classes: "double",
           value: ["+", "="],
           multi: "⧁",
-          multiClasses: ["multi"],
+          multiClasses: "multi",
         },
         {
           keyCode: 8,
@@ -161,14 +161,14 @@ class PoorMansPunchTheKeys extends LitElement {
           sound: "C#",
           classes: "letter",
           value: "W",
-          multiClasses: ["multi-sharps"],
+          multiClasses: "multi-sharps",
         },
         {
           keyCode: 69,
           sound: "D#",
           classes: "letter",
           value: "E",
-          multiClasses: ["multi-sharps"],
+          multiClasses: "multi-sharps",
         },
         { keyCode: 82, classes: "letter", value: "R" },
         {
@@ -176,21 +176,21 @@ class PoorMansPunchTheKeys extends LitElement {
           sound: "F#",
           classes: "letter",
           value: "T",
-          multiClasses: ["multi-sharps"],
+          multiClasses: "multi-sharps",
         },
         {
           keyCode: 89,
           sound: "G#",
           classes: "letter",
           value: "Y",
-          multiClasses: ["multi-sharps"],
+          multiClasses: "multi-sharps",
         },
         {
           keyCode: 85,
           sound: "A#",
           classes: "letter",
           value: "U",
-          multiClasses: ["multi-sharps"],
+          multiClasses: "multi-sharps",
         },
         { keyCode: 73, classes: "letter", value: "I" },
         { keyCode: 79, classes: "letter", value: "O" },
@@ -201,7 +201,7 @@ class PoorMansPunchTheKeys extends LitElement {
           classes: "double",
           value: ["{", "["],
           multi: "≲",
-          multiClasses: ["multi-sharps"],
+          multiClasses: "multi-sharps",
         },
         {
           keyCode: 221,
@@ -209,7 +209,7 @@ class PoorMansPunchTheKeys extends LitElement {
           classes: "double",
           value: ["}", "]"],
           multi: "≳",
-          multiClasses: ["multi-sharps"],
+          multiClasses: "multi-sharps",
         },
         { keyCode: 220, classes: "double", value: ["|", "\\"] },
       ],
@@ -225,56 +225,56 @@ class PoorMansPunchTheKeys extends LitElement {
           sound: "C",
           classes: "letter",
           value: "A",
-          multiClasses: ["multi"],
+          multiClasses: "multi",
         },
         {
           keyCode: 83,
           sound: "D",
           classes: "letter",
           value: "S",
-          multiClasses: ["multi"],
+          multiClasses: "multi",
         },
         {
           keyCode: 68,
           sound: "E",
           classes: "letter",
           value: "D",
-          multiClasses: ["multi"],
+          multiClasses: "multi",
         },
         {
           keyCode: 70,
           sound: "F",
           classes: "letter",
           value: "F",
-          multiClasses: ["multi"],
+          multiClasses: "multi",
         },
         {
           keyCode: 71,
           sound: "G",
           classes: "letter",
           value: "G",
-          multiClasses: ["multi"],
+          multiClasses: "multi",
         },
         {
           keyCode: 72,
           sound: "A",
           classes: "letter",
           value: "H",
-          multiClasses: ["multi"],
+          multiClasses: "multi",
         },
         {
           keyCode: 74,
           sound: "B",
           classes: "letter",
           value: "J",
-          multiClasses: ["multi"],
+          multiClasses: "multi",
         },
         {
           keyCode: 75,
           sound: "C",
           classes: "letter",
           value: "K",
-          multiClasses: ["multi"],
+          multiClasses: "multi",
         },
         { keyCode: 76, classes: "letter", value: "L" },
         {
@@ -283,7 +283,7 @@ class PoorMansPunchTheKeys extends LitElement {
           classes: "double",
           value: [":", ";"],
           multi: "▽",
-          multiClasses: ["multi"],
+          multiClasses: "multi",
         },
         {
           keyCode: 222,
@@ -291,7 +291,7 @@ class PoorMansPunchTheKeys extends LitElement {
           classes: "double",
           value: ['"', "'"],
           multi: "△",
-          multiClasses: ["multi"],
+          multiClasses: "multi",
         },
         {
           keyCode: 13,
@@ -312,7 +312,7 @@ class PoorMansPunchTheKeys extends LitElement {
           keyCode: 88,
           classes: "letter",
           value: "X",
-          multiClasses: ["multi"],
+          multiClasses: "multi",
         },
         { keyCode: 67, classes: "letter", value: "C" },
         { keyCode: 86, classes: "letter", value: "V" },
@@ -374,6 +374,7 @@ class PoorMansPunchTheKeys extends LitElement {
                 (key) => html` <button
                   @click="${this.onClickButton}"
                   class="${key.classes}"
+                  multi-class="${ifDefined(key.multiClasses)}"
                   data-key="${ifDefined(key.keyCode)}"
                   data-sound="${ifDefined(key.sound)}"
                   data-value="${ifDefined(key.value)}"
@@ -384,7 +385,7 @@ class PoorMansPunchTheKeys extends LitElement {
                   <!-- <div id="multi">${key.multi}${key.sound}</div>
                   ${key.value} -->
 
-                  ${this.keyDisplay(key)}
+                  ${this.keyDisplay(key)} ${this.multiDisplay(key)}
                 </button>`
               )}
             </div> `
@@ -399,10 +400,17 @@ class PoorMansPunchTheKeys extends LitElement {
 
   // FUNCTIONS
 
-  keyDisplay(elm) {
-    if (typeof elm.value === "string") {
-      return elm.value;
+  keyDisplay(key) {
+    if (typeof key.value === "string") {
+      return key.value;
+    } else if (Array.isArray(key.value)) {
+      return `${key.value[0] + key.value[1]}`;
     }
+  }
+
+  multiDisplay(key) {
+    if (key.multiClasses === "multi") return "baa";
+    else if (key.multiClasses === "multi-sharps") return "woof";
   }
 
   makeSynth(synthType) {
