@@ -363,8 +363,6 @@ class PoorMansPunchTheKeys extends LitElement {
 
   render() {
     return html`
-      <p>poor mans punch the keys</p>
-      <br />
       [${this.volume}DB] [${this.synthHud}] [O${this.octave}]
       <br />
       <div class="keys">
