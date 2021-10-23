@@ -374,7 +374,6 @@ class PoorMansPunchTheKeys extends LitElement {
                 (key) => html` <button
                   @click="${this.onClickButton}"
                   class="${key.classes}"
-                  multiClass="${key.multiClasses}"
                   data-key="${ifDefined(key.keyCode)}"
                   data-sound="${ifDefined(key.sound)}"
                   data-value="${ifDefined(key.value)}"
@@ -382,8 +381,10 @@ class PoorMansPunchTheKeys extends LitElement {
                   data-octave="${ifDefined(key.octave)}"
                   data-oscillator="${ifDefined(key.oscillator)}"
                 >
-                  <div id="multi">${key.multi}${key.sound}</div>
-                  ${this.multi} ${key.value}
+                  <!-- <div id="multi">${key.multi}${key.sound}</div>
+                  ${key.value} -->
+
+                  ${this.keyDisplay(key)}
                 </button>`
               )}
             </div> `
@@ -397,6 +398,12 @@ class PoorMansPunchTheKeys extends LitElement {
   }
 
   // FUNCTIONS
+
+  keyDisplay(elm) {
+    if (typeof elm.value === "string") {
+      return elm.value;
+    }
+  }
 
   makeSynth(synthType) {
     return new Tone.PolySynth(Tone.Synth, {
