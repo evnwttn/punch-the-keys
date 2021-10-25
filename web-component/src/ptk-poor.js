@@ -403,7 +403,7 @@ class PoorMansPunchTheKeys extends LitElement {
     if (typeof key.value === "string") {
       return key.value;
     } else if (Array.isArray(key.value)) {
-      return `${key.value[0] + key.value[1]}`;
+      return `${key.value[0]}`, `${key.value[1]}`;
     }
   }
 
