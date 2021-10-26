@@ -403,7 +403,9 @@ class PoorMansPunchTheKeys extends LitElement {
     if (typeof key.value === "string") {
       return key.value;
     } else if (Array.isArray(key.value)) {
-      return `${key.value[0]}`, `${key.value[1]}`;
+      for (let i = 0; i < key.value.length; i++) {
+        return key.value[i];
+      }
     }
   }
 
