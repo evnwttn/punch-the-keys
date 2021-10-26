@@ -6,8 +6,5 @@ export default defineConfig({
       entry: 'src/main.js',
       formats: ['es'],
     },
-    rollupOptions: {
-      external: /^lit/
-    }
   }
 });
