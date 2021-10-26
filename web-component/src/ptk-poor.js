@@ -374,7 +374,6 @@ class PoorMansPunchTheKeys extends LitElement {
                 (key) => html` <button
                   @click="${this.onClickButton}"
                   class="${key.classes}"
-                  multi-class="${ifDefined(key.multiClasses)}"
                   data-key="${ifDefined(key.keyCode)}"
                   data-sound="${ifDefined(key.sound)}"
                   data-value="${ifDefined(key.value)}"
@@ -382,9 +381,7 @@ class PoorMansPunchTheKeys extends LitElement {
                   data-octave="${ifDefined(key.octave)}"
                   data-oscillator="${ifDefined(key.oscillator)}"
                 >
-                  <div id="multi">${this.multiDisplay(key)}</div>
-
-                  ${this.keyDisplay(key)}
+                  ${this.multiDisplay(key)} ${this.keyDisplay(key)}
                 </button>`
               )}
             </div> `
@@ -403,14 +400,16 @@ class PoorMansPunchTheKeys extends LitElement {
     if (typeof key.value === "string") {
       return key.value;
     } else if (Array.isArray(key.value)) {
-      for (let i = 0; i < key.value.length; i++) {
-        return key.value[i];
-      }
+      return key.value.map((v) => html`<div>${v}</div>`);
     }
   }
 
   multiDisplay(key) {
-    return key.sound || key.multi || key.octave;
+    const multi = key.sound || key.multi || key.octave;
+    if (multi === undefined) {
+      return;
+    }
+    return html` <div class="${key.multiClasses}">${multi}</div> `;
   }
 
   makeSynth(synthType) {
@@ -695,7 +694,7 @@ PoorMansPunchTheKeys.styles = css`
     width: 4.24em;
   }
 
-  #multi {
+  .multi {
     position: absolute;
     color: hsl(73, 99%, 45%);
     padding-left: 2em;
@@ -703,7 +702,7 @@ PoorMansPunchTheKeys.styles = css`
     pointer-events: none;
   }
 
-  #multi-sharps {
+  .multi-sharps {
     position: absolute;
     color: hsl(73, 99%, 45%);
     padding-left: 1.7em;
