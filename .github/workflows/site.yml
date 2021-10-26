@@ -15,7 +15,7 @@ jobs:
       - name: Install and Build
         run: |
           ( cd ./web-component && npm install && npm run build )
-          npm install && npm run build
+          npm install && npm run build -- --base=/punch-the-keys/
 
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@4.1.5
