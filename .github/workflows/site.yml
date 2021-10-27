@@ -16,6 +16,7 @@ jobs:
         run: |
           ( cd ./web-component && npm install && npm run build )
           npm install && npm run build -- --base=/punch-the-keys/
+          cp ./dist/assets/index.*.js ./dist/ptk.js
 
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@4.1.5
