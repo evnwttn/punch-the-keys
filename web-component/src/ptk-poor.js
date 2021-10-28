@@ -363,7 +363,6 @@ class PoorMansPunchTheKeys extends LitElement {
 
   render() {
     return html`
-      <div id="container">
         <div class="ui">
           [${this.volume}DB] [${this.synthHud}] [O${this.octave}]
         </div>
@@ -387,7 +386,6 @@ class PoorMansPunchTheKeys extends LitElement {
             </div> `
           )}
         </div>
-      </div>
 
         <!-- stop  -->
       </div>
@@ -531,14 +529,6 @@ PoorMansPunchTheKeys.styles = css`
     z-index: 2400;
     font-family: "Lato", sans-serif;
     font-size: 15px;
-  }
-
-  #container {
-    margin-top: 8%;
-    margin-left: auto;
-    margin-right: auto;
-    min-width: 1240px;
-    max-width: 1240px;
   }
 
   .keys {
