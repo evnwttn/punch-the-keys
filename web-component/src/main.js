@@ -1,2 +1,2 @@
 import "./readme";
-import "./ptk-poor";
+import "./ptk";

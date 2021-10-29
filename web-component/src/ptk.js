@@ -2,7 +2,7 @@ import { LitElement, html, css } from "lit";
 import { ifDefined } from "lit/directives/if-defined.js";
 import * as Tone from "tone";
 
-class PoorMansPunchTheKeys extends LitElement {
+class PunchTheKeys extends LitElement {
   constructor() {
     super();
 
@@ -514,13 +514,13 @@ class PoorMansPunchTheKeys extends LitElement {
     key.classList.remove("clicked");
   }
 }
-PoorMansPunchTheKeys.properties = {
+PunchTheKeys.properties = {
   currentNote: {},
   volume: {},
   synthHud: {},
   octave: {},
 };
-PoorMansPunchTheKeys.styles = css`
+PunchTheKeys.styles = css`
   button {
     background-image: linear-gradient(transparent, #0d0d0d);
     background-attachment: fixed;
@@ -701,4 +701,4 @@ PoorMansPunchTheKeys.styles = css`
   }
 `;
 
-customElements.define("ptk-poor", PoorMansPunchTheKeys);
+customElements.define("ptk", PunchTheKeys);
