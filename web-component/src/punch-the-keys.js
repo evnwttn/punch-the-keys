@@ -363,7 +363,6 @@ class PunchTheKeys extends LitElement {
 
   render() {
     return html`
-    <div class="ptk">
         <div class="ui button">
           [${this.volume}DB] [${this.synthHud}] [O${this.octave}]
         </div>
@@ -387,7 +386,6 @@ class PunchTheKeys extends LitElement {
             </div> `
           )}
         </div>
-    </div>
 
         <!-- stop  -->
       </div>
@@ -525,11 +523,6 @@ PunchTheKeys.properties = {
   octave: {},
 };
 PunchTheKeys.styles = css`
-  ptk {
-    min-width: 1240px;
-    max-width: 1240px;
-  }
-
   button {
     background-image: linear-gradient(transparent, #0d0d0d);
     background-attachment: fixed;
