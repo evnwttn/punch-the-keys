@@ -535,7 +535,6 @@ PunchTheKeys.styles = css`
     background-attachment: fixed;
     background-size: cover;
     background-position: center;
-    z-index: 2400;
     font-family: "Lato", sans-serif;
     font-size: 15px;
   }

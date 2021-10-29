@@ -67,7 +67,7 @@ export class Readme extends LitElement {
   renderButton() {
     return html`
 			<div id="button">
-				&#9786
+				<div id="icon">&#9786</div>
 			</div>
 		`;
   }
