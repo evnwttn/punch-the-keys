@@ -701,4 +701,4 @@ PunchTheKeys.styles = css`
   }
 `;
 
-customElements.define("ptk", PunchTheKeys);
+customElements.define("punch-the-keys", PunchTheKeys);
