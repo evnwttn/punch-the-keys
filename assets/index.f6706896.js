@@ -398,9 +398,12 @@ PERFORMANCE OF THIS SOFTWARE.
     padding-bottom: 1em;
   }
 
-  .key-display {
-    color: red;
+  .key-display:last-child {
     padding-top: 1.4em;
+  }
+
+  .key-display {
+    padding-top: 0.55em;
   }
 
   .letter {
@@ -496,6 +499,15 @@ PERFORMANCE OF THIS SOFTWARE.
     color: hsl(73, 99%, 45%);
     padding-left: 2em;
     text-shadow: 1px 1px 8px #0000005e;
+    pointer-events: none;
+  }
+
+  .multi-double {
+    position: fixed;
+    color: hsl(73, 99%, 45%);
+    text-shadow: 1px 1px 8px #0000005e;
+    padding-left: 2em;
+    padding-top: 0.6em;
     pointer-events: none;
   }
 
