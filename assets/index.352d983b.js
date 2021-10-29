@@ -60,7 +60,7 @@ const lo=function(){const t=document.createElement("link").relList;if(t&&t.suppo
       }
     `}constructor(){super();this.open=window.localStorage.getItem("read-me")==="on"}createRenderRoot(){const t=super.createRenderRoot();return t.addEventListener("click",()=>this.onRootClick()),t}renderButton(){return ie`
 			<div id="button">
-				&#9786
+				<div id="icon">&#9786</div>
 			</div>
 		`}renderDisplay(){if(!!this.open)return ie`
       <div id="display">
@@ -334,7 +334,6 @@ PERFORMANCE OF THIS SOFTWARE.
     background-attachment: fixed;
     background-size: cover;
     background-position: center;
-    z-index: 2400;
     font-family: "Lato", sans-serif;
     font-size: 15px;
   }
