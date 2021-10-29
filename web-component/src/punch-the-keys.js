@@ -363,7 +363,8 @@ class PunchTheKeys extends LitElement {
 
   render() {
     return html`
-        <div class="ui">
+    <div class="ptk">
+        <div class="ui button">
           [${this.volume}DB] [${this.synthHud}] [O${this.octave}]
         </div>
         <div class="keys">
@@ -386,6 +387,7 @@ class PunchTheKeys extends LitElement {
             </div> `
           )}
         </div>
+    </div>
 
         <!-- stop  -->
       </div>
@@ -453,10 +455,12 @@ class PunchTheKeys extends LitElement {
     if (volume === "up") {
       if (this.volume <= 29) {
         this.volume++;
+        this.synth = this.makeSynth(this.oscillator[this.oscNum]);
       }
     } else if (volume === "down") {
       if (this.volume >= -29) {
         this.volume--;
+        this.synth = this.makeSynth(this.oscillator[this.oscNum]);
       }
     }
   }
@@ -521,6 +525,11 @@ PunchTheKeys.properties = {
   octave: {},
 };
 PunchTheKeys.styles = css`
+  ptk {
+    min-width: 1240px;
+    max-width: 1240px;
+  }
+
   button {
     background-image: linear-gradient(transparent, #0d0d0d);
     background-attachment: fixed;
@@ -703,6 +712,7 @@ PunchTheKeys.styles = css`
   }
 
   .multi-double {
+    float: right;
     position: fixed;
     color: hsl(73, 99%, 45%);
     text-shadow: 1px 1px 8px #0000005e;
