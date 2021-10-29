@@ -500,4 +500,4 @@ PERFORMANCE OF THIS SOFTWARE.
     text-shadow: 1px 1px 8px #0000005e;
     pointer-events: none;
   }
-`;customElements.define("ptk-poor",vi);
+`;customElements.define("ptk",vi);
