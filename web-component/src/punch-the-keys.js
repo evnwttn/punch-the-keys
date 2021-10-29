@@ -52,7 +52,7 @@ class PunchTheKeys extends LitElement {
           classes: "double",
           value: ["!", "1"],
           multi: "0",
-          multiClasses: "multi",
+          multiClasses: "multi-double",
         },
         {
           keyCode: 50,
@@ -60,7 +60,7 @@ class PunchTheKeys extends LitElement {
           classes: "double",
           value: ["@", "2"],
           multi: "1",
-          multiClasses: "multi",
+          multiClasses: "multi-double",
         },
         {
           keyCode: 51,
@@ -68,7 +68,7 @@ class PunchTheKeys extends LitElement {
           classes: "double",
           value: ["#", "3"],
           multi: "2",
-          multiClasses: "multi",
+          multiClasses: "multi-double",
         },
         {
           keyCode: 52,
@@ -76,7 +76,7 @@ class PunchTheKeys extends LitElement {
           classes: "double",
           value: ["$", "4"],
           multi: "3",
-          multiClasses: "multi",
+          multiClasses: "multi-double",
         },
         {
           keyCode: 53,
@@ -84,7 +84,7 @@ class PunchTheKeys extends LitElement {
           classes: "double",
           value: ["%", "5"],
           multi: "4",
-          multiClasses: "multi",
+          multiClasses: "multi-double",
         },
         {
           keyCode: 54,
@@ -92,7 +92,7 @@ class PunchTheKeys extends LitElement {
           classes: "double",
           value: ["^", "6"],
           multi: "5",
-          multiClasses: "multi",
+          multiClasses: "multi-double",
         },
         {
           keyCode: 55,
@@ -100,7 +100,7 @@ class PunchTheKeys extends LitElement {
           classes: "double",
           value: ["&", "7"],
           multi: "6",
-          multiClasses: "multi",
+          multiClasses: "multi-double",
         },
         {
           keyCode: 56,
@@ -108,7 +108,7 @@ class PunchTheKeys extends LitElement {
           classes: "double",
           value: ["*", "8"],
           multi: "7",
-          multiClasses: "multi",
+          multiClasses: "multi-double",
         },
         {
           keyCode: 57,
@@ -116,7 +116,7 @@ class PunchTheKeys extends LitElement {
           classes: "double",
           value: ["(", "9"],
           multi: "8",
-          multiClasses: "multi",
+          multiClasses: "multi-double",
         },
         {
           keyCode: 48,
@@ -124,7 +124,7 @@ class PunchTheKeys extends LitElement {
           classes: "double",
           value: [")", "0"],
           multi: "9",
-          multiClasses: "multi",
+          multiClasses: "multi-double",
         },
         {
           keyCode: 189,
@@ -132,7 +132,7 @@ class PunchTheKeys extends LitElement {
           classes: "double",
           value: ["_", "-"],
           multi: "⧀",
-          multiClasses: "multi",
+          multiClasses: "multi-double",
         },
         {
           keyCode: 187,
@@ -140,7 +140,7 @@ class PunchTheKeys extends LitElement {
           classes: "double",
           value: ["+", "="],
           multi: "⧁",
-          multiClasses: "multi",
+          multiClasses: "multi-double",
         },
         {
           keyCode: 8,
@@ -201,7 +201,7 @@ class PunchTheKeys extends LitElement {
           classes: "double",
           value: ["{", "["],
           multi: "≲",
-          multiClasses: "multi-sharps",
+          multiClasses: "multi-double",
         },
         {
           keyCode: 221,
@@ -209,7 +209,7 @@ class PunchTheKeys extends LitElement {
           classes: "double",
           value: ["}", "]"],
           multi: "≳",
-          multiClasses: "multi-sharps",
+          multiClasses: "multi-double",
         },
         { keyCode: 220, classes: "double", value: ["|", "\\"] },
       ],
@@ -283,7 +283,7 @@ class PunchTheKeys extends LitElement {
           classes: "double",
           value: [":", ";"],
           multi: "▽",
-          multiClasses: "multi",
+          multiClasses: "multi-double",
         },
         {
           keyCode: 222,
@@ -291,7 +291,7 @@ class PunchTheKeys extends LitElement {
           classes: "double",
           value: ['"', "'"],
           multi: "△",
-          multiClasses: "multi",
+          multiClasses: "multi-double",
         },
         {
           keyCode: 13,
@@ -398,7 +398,7 @@ class PunchTheKeys extends LitElement {
     if (typeof key.value === "string") {
       return key.value;
     } else if (Array.isArray(key.value)) {
-      return key.value.map((v) => html`<div>${v}</div>`);
+      return key.value.map((v) => html`<div class="key-display">${v}</div>`);
     }
   }
 
@@ -591,10 +591,15 @@ PunchTheKeys.styles = css`
   }
 
   .double {
-    padding-top: 0.2em;
     width: 3.62em;
     padding-right: 2em;
     line-height: 0em;
+    padding-bottom: 1em;
+  }
+
+  .key-display {
+    color: red;
+    padding-top: 1.4em;
   }
 
   .letter {
@@ -685,7 +690,8 @@ PunchTheKeys.styles = css`
   }
 
   .multi {
-    position: absolute;
+    position: fixed;
+    float: right;
     color: hsl(73, 99%, 45%);
     padding-left: 2em;
     text-shadow: 1px 1px 8px #0000005e;
@@ -693,7 +699,7 @@ PunchTheKeys.styles = css`
   }
 
   .multi-sharps {
-    position: absolute;
+    position: fixed;
     color: hsl(73, 99%, 45%);
     padding-left: 1.7em;
     text-shadow: 1px 1px 8px #0000005e;
