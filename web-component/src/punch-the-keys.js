@@ -598,7 +598,7 @@ PunchTheKeys.styles = css`
   }
 
   .key-display:last-child {
-    padding-top: 1.4em;
+    padding-top: 1.3em;
   }
 
   .key-display {
@@ -624,8 +624,9 @@ PunchTheKeys.styles = css`
   }
 
   .stack {
-    padding-top: 0.2em;
+    line-height: 0em;
     width: 4em;
+    padding-bottom: 0.75em;
   }
 
   .bottom-ctrl {
