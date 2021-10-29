@@ -363,7 +363,7 @@ class PunchTheKeys extends LitElement {
 
   render() {
     return html`
-        <div class="ui button">
+        <div class="ui">
           [${this.volume}DB] [${this.synthHud}] [O${this.octave}]
         </div>
         <div class="keys">
@@ -540,6 +540,7 @@ PunchTheKeys.styles = css`
 
   .ui {
     position: relative;
+    background-color: #a9a9a9;
     left: 60em;
     text-align: center;
     text-transform: uppercase;
