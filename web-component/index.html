@@ -42,6 +42,19 @@
     box-shadow: 0 0.2em 0 0.05em #bff205;
     border-bottom-color: #555;
       }
+
+      #code {
+        border: 1px solid #e0e0d9;
+        box-shadow: 0 0.2em 0 0.05em #bff205;
+        border-bottom-color: #555;
+        padding: 1em;
+        margin: 1em;
+      }
+
+      #what {
+        font-size: 40px;
+      }
+      
     </style>
   </head>
   <body>
@@ -49,13 +62,13 @@
     <div id="container">
       <punch-the-keys></punch-the-keys>
       <div id="info">
-        <div>WHAT IS PTK?</div>
-          A keyboard keyboard.
-          <br />Simple, shareable.
-          <code>
-          <br />&#60;script src="https://evnwttn.github.io/punch-the-keys/ptk.js"&#62;&#60;/script&#62;
-          <br />&#60;punch-the-keys&#62;&#60;/punch-the-keys&#62;
-          </code>
+        <div id="what">WHAT IS PTK?</div>
+          <br />A simple, shareable keyboard keyboard.
+          <br />Simply
+          <div id="code">
+            &#60;script src="https://evnwttn.github.io/punch-the-keys/ptk.js"&#62;&#60;/script&#62;
+            <br />&#60;punch-the-keys&#62;&#60;/punch-the-keys&#62;
+          </div>
       </div>
     </div>
   </body>
