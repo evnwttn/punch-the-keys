@@ -696,7 +696,7 @@ PunchTheKeys.styles = css`
   }
 
   .multi {
-    position: fixed;
+    position: absolute;
     float: right;
     color: hsl(73, 99%, 45%);
     padding-left: 2em;
@@ -706,7 +706,7 @@ PunchTheKeys.styles = css`
 
   .multi-double {
     float: right;
-    position: fixed;
+    position: absolute;
     color: hsl(73, 99%, 45%);
     text-shadow: 1px 1px 8px #0000005e;
     padding-left: 2em;
@@ -715,7 +715,7 @@ PunchTheKeys.styles = css`
   }
 
   .multi-sharps {
-    position: fixed;
+    position: absolute;
     color: hsl(73, 99%, 45%);
     padding-left: 1.7em;
     text-shadow: 1px 1px 8px #0000005e;
