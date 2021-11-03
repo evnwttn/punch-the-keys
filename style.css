@@ -14,7 +14,7 @@ html {
 }
 
 #info {
-  background-color: #a9a9a9;
+  background-color: #585858;
   text-align: center;
   color: #f7fcff;
   font-size: 15px;
@@ -24,6 +24,7 @@ html {
   margin-top: 4%;
   margin-left: auto;
   margin-right: auto;
+  margin-bottom: 2em;
   width: 50%;
   padding: 0.2em;
   box-sizing: border-box;
@@ -36,6 +37,8 @@ html {
   border: 1px solid #e0e0d9;
   box-shadow: 0 0.2em 0 0.05em #bff205;
   border-bottom-color: #555;
+  background-color: #080808;
+  text-align: left;
   padding: 1em;
   margin: 1em;
 }
