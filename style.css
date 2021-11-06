@@ -27,7 +27,7 @@ html {
   margin-right: auto;
   margin-bottom: 2em;
   width: 40em;
-  height: 4.2em;
+  height: 4.3em;
   transition: 0.5s;
   padding: 0.2em;
   box-sizing: border-box;
@@ -38,7 +38,7 @@ html {
 }
 
 #info:focus {
-  height: 20.8em;
+  height: 21.3em;
   transition: 0.5s;
 }
 
@@ -67,5 +67,5 @@ html {
 }
 
 a {
-  color: white;
+  color: #bff205;
 }
