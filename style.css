@@ -3,6 +3,7 @@ html {
   background-repeat: no-repeat;
   background-attachment: fixed;
   font-family: "Lato", sans-serif;
+  text-shadow: 1.5px 1.5px rgba(0, 0, 0, 0.274);
 }
 
 #container {
@@ -33,6 +34,7 @@ html {
   border: 1px solid #e0e0d9;
   box-shadow: 0 0.2em 0 0.05em #bff205;
   border-bottom-color: #555;
+  text-shadow: 1.5px 1.5px rgba(0, 0, 0, 0.274);
 }
 
 #info:focus {
@@ -57,6 +59,7 @@ html {
   text-align: left;
   padding: 1em;
   margin: 1em;
+  color: #bff205;
 }
 
 #what {
