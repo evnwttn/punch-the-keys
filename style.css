@@ -15,7 +15,7 @@ html {
 }
 
 #info {
-  background-color: #585858;
+  background-color: #444444;
   text-align: center;
   color: #f7fcff;
   font-size: 15px;
@@ -27,7 +27,7 @@ html {
   margin-right: auto;
   margin-bottom: 2em;
   width: 40em;
-  height: 3.8em;
+  height: 4.2em;
   transition: 0.5s;
   padding: 0.2em;
   box-sizing: border-box;
