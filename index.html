@@ -35,6 +35,14 @@
           </div>
     </div>
 
+    <script>
+      let info = document.getElementById("info");
+      info.setAttribute('tabindex', '0');
+      info.addEventListener("click", () => {
+        console.log("yeah")
+      })
+    </script>
+
     <script type="module" src="/web-component/dist/punch-the-keys.es.js"></script>
   </body>
 </html>
