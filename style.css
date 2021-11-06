@@ -40,6 +40,11 @@ html {
   transition: 0.5s;
 }
 
+#info:focus #expand {
+  visibility: visible;
+  transition-delay: 0.35s;
+}
+
 #expand {
   visibility: hidden;
 }
