@@ -70,11 +70,20 @@ a {
   color: #bff205;
 }
 
-/* MOBILE */
-
 @media only screen and (max-width: 768px) {
   /* For mobile phones: */
-  #info {
-    color: red;
+
+  #container {
+    height: 100%;
+    max-width: 768px;
+  }
+}
+
+@media only screen and (orientation: landscape) {
+  #container {
+    -webkit-text-size-adjust: 100%;
+    max-width: 400px;
+    width: 100%;
+    height: 100%;
   }
 }
