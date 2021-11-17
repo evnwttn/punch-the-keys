@@ -77,18 +77,22 @@ a {
 
 @media screen and (max-width: 320px) {
   #container {
+    height: 100vn;
     width: 120px;
   }
 }
 
 @media screen and (min-width: 321px) and (max-width: 480px) {
   #container {
+    height: 100vn;
     width: 320px;
+    zoom: 150%;
   }
 }
 
 @media screen and (min-width: 481px) and (max-width: 768px) {
   #container {
+    height: 100vn;
     width: 480px;
   }
 }
@@ -96,7 +100,6 @@ a {
 @media only screen and (orientation: landscape) {
   #container {
     -webkit-text-size-adjust: 100%;
-    max-width: 767px;
     width: 100%;
   }
 }
