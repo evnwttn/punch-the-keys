@@ -75,12 +75,21 @@ a {
   color: #bff205;
 }
 
-@media only screen and (max-width: 768px) {
-  /* For mobile phones: */
-
+@media screen and (max-width: 320px) {
   #container {
-    height: 100%;
-    max-width: 768px;
+    width: 120px;
+  }
+}
+
+@media screen and (min-width: 321px) and (max-width: 480px) {
+  #container {
+    width: 320px;
+  }
+}
+
+@media screen and (min-width: 481px) and (max-width: 768px) {
+  #container {
+    width: 480px;
   }
 }
 
