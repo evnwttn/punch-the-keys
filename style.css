@@ -94,6 +94,7 @@ a {
   #container {
     height: 100vn;
     width: 480px;
+    zoom: 75%;
   }
 }
 
