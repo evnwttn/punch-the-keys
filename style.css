@@ -49,6 +49,8 @@ body {
 
 #info:focus #expand {
   visibility: visible;
+  pointer-events: none;
+
   transition-delay: 0.35s;
 }
 
@@ -73,6 +75,7 @@ body {
 
 a {
   color: #bff205;
+  pointer-events: auto;
 }
 
 /* mobile */
@@ -80,6 +83,7 @@ a {
 @media screen and (max-width: 320px) {
   #container {
     width: 120px;
+    zoom: 90%;
   }
 }
 
