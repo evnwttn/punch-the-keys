@@ -2,12 +2,17 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
     <link rel="icon" type="image/svg+xml" href="favicon.svg" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@1,900&display=swap">   
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>ptk</title>
     <link rel="stylesheet" href="/style.css">
+
+    <title>ptk</title>
     
+    <!-- FOR MOBILE -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.26/Tone.js"></script>
+
   </head>
   <body>
     <div id="app"></div>
@@ -39,15 +44,15 @@
     </div>
   </div>
 
+  <!-- FOR MOBILE -->
   <div id="mobile"></div>
-
+  <script type="module" src="mobile.js"></script>
 
     <script>
       let info = document.getElementById("info");
       info.setAttribute('tabindex', '0');
     </script>
 
-    <script type="module" src="mobile.js"></script>
     <script type="module" src="/web-component/dist/punch-the-keys.es.js"></script>
 
   </body>
