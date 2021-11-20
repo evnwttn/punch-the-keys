@@ -91,6 +91,8 @@ a {
   }
 }
 
+/* MOBILE */
+
 @media screen and (min-width: 481px) and (max-width: 768px) {
   #container {
     width: 480px;
@@ -103,4 +105,18 @@ a {
     -webkit-text-size-adjust: 100%;
     width: 100%;
   }
+}
+
+.keys {
+  text-align: center;
+  margin-top: 9%;
+  font-size: 15px;
+  font-family: "Lato", sans-serif;
+}
+
+.key-row {
+  display: flex;
+  justify-content: center;
+  height: 3em;
+  margin: 0.2em;
 }

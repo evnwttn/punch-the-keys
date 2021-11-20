@@ -16,13 +16,13 @@ const defaultRows = [
   [
     /* ROW 3 */
     { classes: "row-3", value: "7", sound: "G", t9: "PQRS" },
-    { classes: "row-3", value: "8", t9: "TUV" },
-    { classes: "row-3", value: "9", t9: "WXYZ" },
+    { classes: "row-3", value: "8", t9: "" },
+    { classes: "row-3", value: "9", t9: "" },
   ],
   [
     /* ROW 4 */
     { classes: "row-4", value: "*" },
-    { classes: "row-4", value: "8" },
+    { classes: "row-4", value: "0" },
     { classes: "row-4", value: "#" },
   ],
 ];
