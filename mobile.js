@@ -15,40 +15,15 @@ const defaultRows = [
   ],
   [
     /* ROW 3 */
-    { keyCode: 9, classes: "word backspace-tab align-tab gdt", value: "TAB" },
-    { keyCode: 81, classes: "letter gdt", value: "Q" },
-    {
-      keyCode: 87,
-      sound: "C#",
-      classes: "letter gdt",
-      value: "W",
-      multi: "C#",
-      multiClasses: ["multi-sharps"],
-    },
+    { classes: "row-3", value: "7", sound: "G" },
+    { classes: "row-3", value: "8" },
+    { classes: "row-3", value: "9" },
   ],
   [
     /* ROW 4 */
-    {
-      keyCode: 20,
-      classes: "word caps-enter align-caps gdt",
-      value: "CAPSLCK",
-    },
-    {
-      keyCode: 65,
-      sound: "C",
-      classes: "letter gdt",
-      value: "A",
-      multi: "C",
-      multiClasses: ["multi"],
-    },
-    {
-      keyCode: 83,
-      sound: "D",
-      classes: "letter gdt",
-      value: "S",
-      multi: "D",
-      multiClasses: ["multi"],
-    },
+    { classes: "row-4", value: "*" },
+    { classes: "row-4", value: "8" },
+    { classes: "row-4", value: "#" },
   ],
 ];
 
