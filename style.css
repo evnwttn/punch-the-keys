@@ -120,3 +120,45 @@ a {
   height: 3em;
   margin: 0.2em;
 }
+
+.key-row > * {
+  position: relative;
+  text-align: center;
+  color: #f7fcff;
+  float: left;
+  border-radius: 0.3em;
+  margin: 0.3em;
+  padding: 0.2em;
+  width: 3.3em;
+  height: 100%;
+  box-sizing: border-box;
+  cursor: pointer;
+  border: 1px solid #e0e0d9;
+  box-shadow: 0 0.2em 0 0.05em hsl(73, 96%, 48%);
+  border-bottom-color: #555;
+}
+
+.ui * {
+  display: inline-block;
+}
+
+.ui {
+  text-transform: uppercase;
+  z-index: 100;
+  color: #f7fcff;
+  font-size: 15px;
+  font-family: "Lato", sans-serif;
+  border-radius: 0.3em;
+  margin: 0.3em;
+  padding: 0.2em;
+  width: 11.5em;
+  box-sizing: border-box;
+  border: 1px solid #e0e0d9;
+  box-shadow: 0 0.2em 0 0.05em #bff205;
+  border-bottom-color: #555;
+}
+
+.hud {
+  display: flex;
+  justify-content: center;
+}
