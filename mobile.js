@@ -3,21 +3,21 @@ console.log("hello world");
 const defaultRows = [
   [
     /* ROW 1 */
-    { classes: "row-1", value: "1", sound: "A" },
-    { classes: "row-1", value: "2", sound: "B" },
-    { classes: "row-1", value: "3", sound: "C" },
+    { classes: "row-1", value: "1", sound: "A", t9: "" },
+    { classes: "row-1", value: "2", sound: "B", t9: "ABC" },
+    { classes: "row-1", value: "3", sound: "C", t9: "DEF" },
   ],
   [
     /* ROW 2 */
-    { classes: "row-2", value: "4", sound: "D" },
-    { classes: "row-2", value: "5", sound: "E" },
-    { classes: "row-2", value: "6", sound: "F" },
+    { classes: "row-2", value: "4", sound: "D", t9: "GHI" },
+    { classes: "row-2", value: "5", sound: "E", t9: "JKL" },
+    { classes: "row-2", value: "6", sound: "F", t9: "MNO" },
   ],
   [
     /* ROW 3 */
-    { classes: "row-3", value: "7", sound: "G" },
-    { classes: "row-3", value: "8" },
-    { classes: "row-3", value: "9" },
+    { classes: "row-3", value: "7", sound: "G", t9: "PQRS" },
+    { classes: "row-3", value: "8", t9: "TUV" },
+    { classes: "row-3", value: "9", t9: "WXYZ" },
   ],
   [
     /* ROW 4 */
