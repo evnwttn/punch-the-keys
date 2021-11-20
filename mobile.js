@@ -3,21 +3,21 @@ console.log("hello world");
 const defaultRows = [
   [
     /* ROW 1 */
-    { classes: "row-1", value: "1", sound: "A", t9: "" },
-    { classes: "row-1", value: "2", sound: "B", t9: "ABC" },
-    { classes: "row-1", value: "3", sound: "C", t9: "DEF" },
+    { classes: "row-1", value: "A", sound: "A", t9: "" },
+    { classes: "row-1", value: "B", sound: "B", t9: "ABC" },
+    { classes: "row-1", value: "C", sound: "C", t9: "DEF" },
   ],
   [
     /* ROW 2 */
-    { classes: "row-2", value: "4", sound: "D", t9: "GHI" },
-    { classes: "row-2", value: "5", sound: "E", t9: "JKL" },
-    { classes: "row-2", value: "6", sound: "F", t9: "MNO" },
+    { classes: "row-2", value: "D", sound: "D", t9: "GHI" },
+    { classes: "row-2", value: "E", sound: "E", t9: "JKL" },
+    { classes: "row-2", value: "F", sound: "F", t9: "MNO" },
   ],
   [
     /* ROW 3 */
-    { classes: "row-3", value: "7", sound: "G", t9: "PQRS" },
-    { classes: "row-3", value: "8", t9: "" },
-    { classes: "row-3", value: "9", t9: "" },
+    { classes: "row-3", value: "G", sound: "G", t9: "PQRS" },
+    { classes: "row-3", value: "8", t9: "TUV" },
+    { classes: "row-3", value: "9", t9: "WXYZ" },
   ],
   [
     /* ROW 4 */
@@ -63,13 +63,12 @@ class Keyboard {
     rows.forEach((row, index) => {
       const rowDiv = document.createElement("div");
       rowDiv.classList.add("key-row");
-      rowDiv.classList.add(`row-${index + 1}`);
 
       row.forEach((key) => {
         const keyDiv = document.createElement("div");
-        keyDiv.setAttribute("data-key", key.keyCode);
         keyDiv.setAttribute("data-classes", key.classes);
         keyDiv.setAttribute("data-value", key.value);
+        keyDiv.setAttribute("data-t9", key.t9);
 
         const optionalAttributes = [
           "sound",
@@ -107,14 +106,12 @@ class Keyboard {
 
         const keySpan = document.createElement("span");
 
-        if (key.multiClasses !== undefined) {
-          const multiDiv = document.createElement("div");
-          const multiText = key.sound || key.octave || key.multi;
-          keyDiv.appendChild(multiDiv);
-          key.multiClasses.forEach((klass) => {
-            multiDiv.classList.add(klass);
-          });
-          multiDiv.innerHTML = `${multiText}`;
+        if (key.t9 !== undefined) {
+          const t9Div = document.createElement("div");
+          const t9Text = key.t9;
+          keyDiv.appendChild(t9Div);
+
+          t9Div.innerHTML = `${t9Text}`;
         }
 
         if (typeof key.value === "string") {
