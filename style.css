@@ -107,6 +107,10 @@ a {
   }
 }
 
+#mobile {
+  padding-bottom: 5em;
+}
+
 .keys {
   text-align: center;
   margin-top: 9%;
