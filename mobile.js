@@ -108,6 +108,7 @@ class Keyboard {
 
         if (key.t9 !== undefined) {
           const t9Div = document.createElement("div");
+          t9Div.classList.add("t9-div");
           const t9Text = key.t9;
           keyDiv.appendChild(t9Div);
 

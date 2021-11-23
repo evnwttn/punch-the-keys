@@ -117,8 +117,11 @@ a {
 .key-row {
   display: flex;
   justify-content: center;
-  height: 3em;
-  margin: 0.2em;
+  height: 3.3em;
+  margin-left: 2.9em;
+  margin-right: 2.9em;
+  margin-bottom: 2.9em;
+  margin-top: 0.4em;
 }
 
 .key-row > * {
@@ -127,10 +130,11 @@ a {
   color: #f7fcff;
   float: left;
   border-radius: 0.3em;
-  margin: 0.3em;
+  margin: 0.29em;
   padding: 0.2em;
   width: 3.3em;
-  height: 100%;
+  font-size: 2em;
+  height: 150%;
   box-sizing: border-box;
   cursor: pointer;
   border: 1px solid #e0e0d9;
@@ -146,12 +150,12 @@ a {
   text-transform: uppercase;
   z-index: 100;
   color: #f7fcff;
-  font-size: 15px;
+  font-size: 1.6em;
   font-family: "Lato", sans-serif;
   border-radius: 0.3em;
   margin: 0.3em;
-  padding: 0.2em;
-  width: 11.5em;
+  padding: 0.3em;
+  width: 13.9em;
   box-sizing: border-box;
   border: 1px solid #e0e0d9;
   box-shadow: 0 0.2em 0 0.05em #bff205;
@@ -161,4 +165,9 @@ a {
 .hud {
   display: flex;
   justify-content: center;
+}
+
+.t9-div {
+  font-size: 0.6em;
+  color: #bff205;
 }
