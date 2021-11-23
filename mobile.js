@@ -3,27 +3,27 @@ console.log("hello world");
 const defaultRows = [
   [
     /* ROW 1 */
-    { classes: "row-1", value: "A", sound: "A", t9: "" },
-    { classes: "row-1", value: "B", sound: "B", t9: "ABC" },
-    { classes: "row-1", value: "C", sound: "C", t9: "DEF" },
+    { classes: "row-1", value: "1", sound: "A", t9: "A" },
+    { classes: "row-1", value: "2", sound: "B", t9: "B" },
+    { classes: "row-1", value: "3", sound: "C", t9: "C" },
   ],
   [
     /* ROW 2 */
-    { classes: "row-2", value: "D", sound: "D", t9: "GHI" },
-    { classes: "row-2", value: "E", sound: "E", t9: "JKL" },
-    { classes: "row-2", value: "F", sound: "F", t9: "MNO" },
+    { classes: "row-2", value: "4", sound: "D", t9: "D" },
+    { classes: "row-2", value: "5", sound: "E", t9: "E" },
+    { classes: "row-2", value: "6", sound: "F", t9: "F" },
   ],
   [
     /* ROW 3 */
-    { classes: "row-3", value: "G", sound: "G", t9: "PQRS" },
-    { classes: "row-3", value: "8", t9: "TUV" },
-    { classes: "row-3", value: "9", t9: "WXYZ" },
+    { classes: "row-3", value: "7", sound: "G", t9: "G" },
+    { classes: "row-3", value: "8", t9: "" },
+    { classes: "row-3", value: "9", t9: "" },
   ],
   [
     /* ROW 4 */
-    { classes: "row-4", value: "*" },
-    { classes: "row-4", value: "0" },
-    { classes: "row-4", value: "#" },
+    { classes: "row-4", value: "*", t9: "" },
+    { classes: "row-4", value: "0", t9: "" },
+    { classes: "row-4", value: "#", t9: "" },
   ],
 ];
 
