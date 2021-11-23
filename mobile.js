@@ -16,14 +16,14 @@ const defaultRows = [
   [
     /* ROW 3 */
     { classes: "row-3", value: "7", sound: "G", t9: "G" },
-    { classes: "row-3", value: "8", t9: "", oscUp: true },
-    { classes: "row-3", value: "9", t9: "", oscDown: true },
+    { classes: "row-3", value: "8", t9: "&#8818;", oscUp: true },
+    { classes: "row-3", value: "9", t9: "&#8819;", oscDown: true },
   ],
   [
     /* ROW 4 */
-    { classes: "row-4", value: "*", t9: "", volUp: true },
-    { classes: "row-4", value: "0", t9: "", volDown: true },
-    { classes: "row-4", value: "#", t9: "", octave: true },
+    { classes: "row-4", value: "*", t9: "&#9651;", volUp: true },
+    { classes: "row-4", value: "0", t9: "&#9661;", volDown: true },
+    { classes: "row-4", value: "#", t9: "&#10686;", octave: true },
   ],
 ];
 
