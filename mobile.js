@@ -3,19 +3,19 @@ console.log("hello world");
 const defaultRows = [
   [
     /* ROW 1 */
-    { classes: "row-1", value: "1", sound: "A", t9: "A" },
-    { classes: "row-1", value: "2", sound: "B", t9: "B" },
-    { classes: "row-1", value: "3", sound: "C", t9: "C" },
+    { classes: "row-1", value: "1", sound: "C", t9: "C" },
+    { classes: "row-1", value: "2", sound: "D", t9: "D" },
+    { classes: "row-1", value: "3", sound: "E", t9: "E" },
   ],
   [
     /* ROW 2 */
-    { classes: "row-2", value: "4", sound: "D", t9: "D" },
-    { classes: "row-2", value: "5", sound: "E", t9: "E" },
-    { classes: "row-2", value: "6", sound: "F", t9: "F" },
+    { classes: "row-2", value: "4", sound: "F", t9: "F" },
+    { classes: "row-2", value: "5", sound: "G", t9: "G" },
+    { classes: "row-2", value: "6", sound: "A", t9: "A" },
   ],
   [
     /* ROW 3 */
-    { classes: "row-3", value: "7", sound: "G", t9: "G" },
+    { classes: "row-3", value: "7", sound: "B", t9: "B" },
     { classes: "row-3", value: "8", t9: "&#8818;", oscUp: true },
     { classes: "row-3", value: "9", t9: "&#8819;", oscDown: true },
   ],
