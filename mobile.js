@@ -192,16 +192,12 @@ class Keyboard {
   }
 
   setOctave(keyElm) {
-    if (keyElm.hasAttribute("data-octave-up")) {
+    if (keyElm.hasAttribute("data-octave")) {
       if (this.octave <= 8) {
         this.octave++;
+      } else if (this.octave === 9) {
+        this.octave = 0;
       }
-    } else if (keyElm.hasAttribute("data-octave-down")) {
-      if (this.octave >= 1) {
-        this.octave--;
-      }
-    } else if (keyElm.hasAttribute("data-octave")) {
-      this.octave = keyElm.getAttribute("data-octave");
     }
     this.uiOct.innerHTML = `[0${this.octave}]`;
   }
