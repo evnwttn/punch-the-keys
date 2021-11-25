@@ -182,4 +182,9 @@ a {
 .t9-div {
   font-size: 0.6em;
   color: #bff205;
+  pointer-events: none;
+}
+
+span {
+  pointer-events: none;
 }
