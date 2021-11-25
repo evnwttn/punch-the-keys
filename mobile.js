@@ -131,42 +131,6 @@ class Keyboard {
 
     this.parentDiv.setAttribute("id", `keyboard-${this.keyboardName}`);
 
-    const getKey = (e) => {
-      let location = e.location;
-      let selector;
-      if (location === KeyboardEvent.DOM_KEY_LOCATION_RIGHT) {
-        selector = [
-          '[data-right="true"]',
-          '[data-key="' + e.keyCode + '"]',
-        ].join("");
-      } else {
-        let code = e.keyCode || e.which;
-        selector = [
-          '[data-key="' + code + '"]',
-          '[data-char*="' +
-            encodeURIComponent(String.fromCharCode(code)) +
-            '"]',
-        ].join(",");
-      }
-      return this.parentDiv.querySelector(selector);
-    };
-
-    this.parentDiv.addEventListener("keydown", (e) => {
-      e.preventDefault();
-      let key = getKey(e);
-      if (!key) {
-        return console.warn("No key for", e);
-      }
-      key.setAttribute("data-pressed", "on");
-      this.handleKey(key);
-    });
-
-    this.parentDiv.addEventListener("keyup", (e) => {
-      e.preventDefault();
-      let key = getKey(e);
-      key && key.removeAttribute("data-pressed");
-    });
-
     this.parentDiv.addEventListener("click", (e) => {
       let key = e.target;
       if (key.hasAttribute("data-key") === true) {
