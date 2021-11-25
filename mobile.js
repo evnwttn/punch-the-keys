@@ -72,16 +72,11 @@ class Keyboard {
 
         const optionalAttributes = [
           "sound",
-          "multi",
-          "multiClasses",
           "octave",
-          "octaveUp",
-          "octaveDown",
           "oscUp",
           "oscDown",
           "volUp",
           "volDown",
-          "right",
         ];
 
         optionalAttributes.forEach((optionalAttribute) => {
