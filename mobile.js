@@ -51,7 +51,7 @@ class Keyboard {
 
     this.uiOct = document.createElement("div");
     this.uiOct.classList.add("ui-oct");
-    this.uiOct.innerHTML = "[O4]";
+    this.uiOct.innerHTML = "[04]";
 
     this.hud.appendChild(this.uiVol);
     this.hud.appendChild(this.uiOsc);

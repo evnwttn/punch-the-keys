@@ -79,15 +79,13 @@ a {
 
 @media screen and (max-width: 320px) {
   #container {
-    width: 120px;
-    zoom: 90%;
+    display: none;
   }
 }
 
 @media screen and (min-width: 321px) and (max-width: 480px) {
   #container {
-    width: 320px;
-    zoom: 150%;
+    display: none;
   }
 }
 
@@ -95,8 +93,13 @@ a {
 
 @media screen and (min-width: 481px) and (max-width: 768px) {
   #container {
-    width: 480px;
-    zoom: 75%;
+    display: none;
+  }
+}
+
+@media screen and (min-width: 767px) {
+  #mobile-container {
+    display: none;
   }
 }
 
@@ -105,10 +108,6 @@ a {
     -webkit-text-size-adjust: 100%;
     width: 100%;
   }
-}
-
-#mobile {
-  padding-bottom: 5em;
 }
 
 .keys {
@@ -183,6 +182,11 @@ a {
   font-size: 0.6em;
   color: #bff205;
   pointer-events: none;
+}
+
+#mobile-container {
+  min-width: 500px;
+  padding-bottom: 30px;
 }
 
 span {
