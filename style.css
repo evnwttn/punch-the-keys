@@ -186,7 +186,19 @@ a {
 
 #mobile-container {
   min-width: 500px;
+  height: 75%;
   padding-bottom: 30px;
+}
+
+#mobile {
+  max-width: 80%;
+}
+
+#mobile-text {
+  margin-top: 3em;
+  max-width: 80%;
+  color: white;
+  text-align: left;
 }
 
 span {
