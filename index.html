@@ -4,17 +4,22 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+    <meta property="og:title" content="PUNCH THE KEYS" />
+    <meta property="og:description" content="The keyboard keyboard." />
+    <meta property="og:image" content="https://i.ibb.co/cgJrk3v/ptk.png" />
+
     <link rel="icon" type="image/svg+xml" href="/punch-the-keys/assets/favicon.17e50649.svg" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@1,900&display=swap">   
     
 
-    <title>ptk</title>
+    <title>PUNCH THE KEYS</title>
     
     <!-- FOR MOBILE -->
+    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.26/Tone.js"></script>
 
-    <script type="module" crossorigin src="/punch-the-keys/assets/index.e01f2e54.js"></script>
-    <link rel="stylesheet" href="/punch-the-keys/assets/index.566f2b74.css">
+    <script type="module" crossorigin src="/punch-the-keys/assets/index.61f49666.js"></script>
+    <link rel="stylesheet" href="/punch-the-keys/assets/index.847304d6.css">
   </head>
   <body>
     <div id="app"></div>
@@ -46,9 +51,19 @@
     </div>
   </div>
 
-  <!-- FOR MOBILE
-  <div id="mobile"></div>
-  <script type="module" src="mobile.js"></script> -->
+  <div id="mobile-container">
+    <div id="mobile-text">PUNCH THE KEYS is a simple, shareable, web component synthesizer 
+    utilizing <a href="https://tonejs.github.io/">tone.js</a> & <a href="https://lit.dev/">
+    Lit.</a>
+    <br /><br />Sadly, it's designed for higher resolution screens than the one you're currently using,
+    so you've been downgraded to PUNCH THE T9. If you'd like to leave T9 back in
+    2008 where it belongs, consider <a>switching to desktop mode</a> or returning on
+    a non-mobile device.   
+      </div>
+    <div id="mobile"></div>
+  </div>
+
+  
 
     <script>
       let info = document.getElementById("info");
