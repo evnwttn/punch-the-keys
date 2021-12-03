@@ -201,6 +201,17 @@ a {
   text-align: left;
 }
 
+#desktop {
+  border: none;
+  background: transparent;
+  color: hsl(73, 96%, 48%);
+  font-family: "Lato", sans-serif;
+  font-size: 15px;
+  text-decoration: underline;
+  padding: 0;
+  text-shadow: 1.5px 1.5px rgba(0, 0, 0, 0.226);
+}
+
 span {
   pointer-events: none;
 }
