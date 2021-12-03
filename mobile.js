@@ -1,5 +1,8 @@
 console.log("hello world");
 
+let desktopMode = document.getElementById("desktop");
+desktopMode.onclick = function () {};
+
 const defaultRows = [
   [
     /* ROW 1 */
