@@ -1,7 +1,12 @@
-console.log("hello world");
-
 let desktopMode = document.getElementById("desktop");
-desktopMode.onclick = function () {};
+desktopMode.onclick = function () {
+  document
+    .querySelector("meta[name=viewport]")
+    .setAttribute(
+      "content",
+      "width=768, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
+    );
+};
 
 const defaultRows = [
   [
